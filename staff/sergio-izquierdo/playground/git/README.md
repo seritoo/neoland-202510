@@ -84,8 +84,7 @@ Your branch is up to date with 'origin/main'.
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
         staff/
-
-nothing added to commit but untracked files present (use "git add" to track)
+   nothing added to commit but untracked files present (use "git add" to track)
 ```
 
 ## git add content-name
@@ -102,4 +101,27 @@ Configures settings in local git
 ```sh
 $ git config user.email "seritodev@gmail.com"
 $ git config user.name "Sergio Izquierdo"
+```
+## git commit -m "message"
+
+Consolidate the changes in local repository
+
+```sh
+$ git commit -m "add bash and git docs"
+```
+
+## git push
+
+Pushes the changes from local to remote repository
+
+```sh
+$ git push
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (9/9), 2.07 KiB | 1.04 MiB/s, done.
+Total 9 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/seritoo/neoland-202510
+   c0018b0..e8473e1  main -> main
 ```
