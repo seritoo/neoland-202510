@@ -125,3 +125,28 @@ Total 9 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
 To https://github.com/seritoo/neoland-202510
    c0018b0..e8473e1  main -> main
 ```
+
+## git log
+
+Commits history ordered descending by time
+
+```sh
+$ git log
+commit 4ed52eca23bcccf471a3262a5544ea36493a14b2 (HEAD -> main, origin/main, origin/HEAD)
+Author: Sergio Izquierdo <seritodev@gmail.com>
+Date:   Thu Oct 23 22:04:52 2025 +0200
+
+    add new git's documentation
+
+commit e8473e1ab2c55a303665165145e86c8a326bf6e0
+Author: Sergio Izquierdo <seritodev@gmail.com>
+Date:   Thu Oct 23 21:52:13 2025 +0200
+
+    add bash and git docs
+
+commit c0018b0a7fcd2974422226e792bbc4c080df6e91
+Author: manuelbarzi <manuelbarzi@gmail.com>
+Date:   Thu Oct 23 20:10:57 2025 +0200
+
+    Initial commit
+```
