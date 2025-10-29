@@ -20,30 +20,20 @@
         left: 100px;
         top: 100px;
       }
-      #left-eye {
+      .eye {
         width: 40px;
         height: 40px;
-        background-color: white;
+        background-color: rgb(255, 255, 255);
         position: absolute;
+        top: 10px;
+      }
+      .eye-left {
         left: 5px;
-        top: 10px;
       }
-      #left-pupil {
-        width: 20px;
-        height: 20px;
-        background-color: greenyellow;
-        position: absolute;
-        bottom: 0;
-      }
-      #right-eye {
-        width: 40px;
-        height: 40px;
-        background-color: white;
-        position: absolute;
+      .eye-right {
         right: 5px;
-        top: 10px;
       }
-      #right-pupil {
+      .pupil {
         width: 20px;
         height: 20px;
         background-color: greenyellow;
@@ -345,11 +335,11 @@
   </head>
   <body>
     <div id="face">
-      <div id="left-eye">
-        <div id="left-pupil"></div>
+      <div class="eye eye-left">
+        <div class="pupil"></div>
       </div>
-      <div id="right-eye">
-        <div id="right-pupil"></div>
+      <div class="eye eye-right">
+        <div class="pupil"></div>
       </div>
       <div id="nose">
         <div id="left-hole"></div>
@@ -401,7 +391,7 @@
         <div id="cross-v2"></div>
       </div>
       <div id="door-house"></div>
-      <div id = roof></div>
+      <div id="roof"></div>
     </div>
   </body>
 </html>
