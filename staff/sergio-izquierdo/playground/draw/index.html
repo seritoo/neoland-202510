@@ -105,7 +105,7 @@
         background-color: red;
         position: absolute;
         left: 250px;
-        top: 250px;
+        top: 100px;
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
       }
@@ -161,14 +161,13 @@
         top: 5px;
       }
       #door {
-		width: 3px;
-		height: 50px;
-		background-color: darkslategray;
-		position: absolute;
-		right: 80px;
-		bottom: 20px;
-
-	}
+        width: 3px;
+        height: 50px;
+        background-color: darkslategray;
+        position: absolute;
+        right: 80px;
+        bottom: 20px;
+      }
 
       /*spaceship*/
       #spaceship {
@@ -247,6 +246,101 @@
         left: 17px;
         border-radius: 50%;
       }
+
+      #house {
+        width: 200px;
+        height: 300px;
+        background-color: burlywood;
+        position: absolute;
+        bottom: 30px;
+        left: 400px;
+      }
+      #glass-1 {
+        width: 200px;
+        height: 75px;
+        background-color: aqua;
+        position: absolute;
+        top: 15px;
+      }
+      #cross-h1 {
+        width: 3px;
+        height: 75px;
+        background-color: rgb(207, 203, 203);
+        position: absolute;
+        left: 66.5px;
+      }
+      #cross-h1a {
+        width: 3px;
+        height: 75px;
+        background-color: rgb(207, 203, 203);
+        position: absolute;
+        left: 133px;
+      }
+      #cross-v1 {
+        width: 200px;
+        height: 3px;
+        background-color: rgb(207, 203, 203);
+        position: absolute;
+        top: 37.5px;
+      }
+      #glass-2 {
+        width: 50px;
+        height: 50px;
+        background-color: aqua;
+        position: absolute;
+        top: 100px;
+        left: 10px;
+      }
+      #cross-h2 {
+        width: 3px;
+        height: 50px;
+        background-color: rgb(207, 203, 203);
+        position: absolute;
+        left: 23.5px;
+      }
+      #cross-v2 {
+        width: 50px;
+        height: 3px;
+        background-color: rgb(207, 203, 203);
+        position: absolute;
+        top: 23.5px;
+      }
+      #glass-3 {
+        width: 50px;
+        height: 50px;
+        background-color: aqua;
+        position: absolute;
+        top: 100px;
+        left: 75px;
+      }
+      #glass-4 {
+        width: 50px;
+        height: 50px;
+        background-color: aqua;
+        position: absolute;
+        top: 100px;
+        right: 10px;
+      }
+      #door-house {
+        width: 100px;
+        height: 120px;
+        background-color: brown;
+        position: absolute;
+        bottom: 0px;
+        right: 50px;
+        border-top-left-radius: 60%;
+        border-top-right-radius: 60%;
+      }
+      #roof {
+        width: 50px;
+        height: 200px;
+        background-color: transparent;
+        position: absolute;
+        top: -250px;
+        border-left: 75px solid transparent;
+        border-right: 75px solid transparent;
+        border-bottom: 50px solid red;
+      }
     </style>
   </head>
   <body>
@@ -287,6 +381,27 @@
       <div id="fire">
         <div id="inner-fire"></div>
       </div>
+    </div>
+    <div id="house">
+      <div id="glass-1">
+        <div id="cross-h1"></div>
+        <div id="cross-h1a"></div>
+        <div id="cross-v1"></div>
+      </div>
+      <div id="glass-2">
+        <div id="cross-h2"></div>
+        <div id="cross-v2"></div>
+      </div>
+      <div id="glass-3">
+        <div id="cross-h2"></div>
+        <div id="cross-v2"></div>
+      </div>
+      <div id="glass-4">
+        <div id="cross-h2"></div>
+        <div id="cross-v2"></div>
+      </div>
+      <div id="door-house"></div>
+      <div id = roof></div>
     </div>
   </body>
 </html>
