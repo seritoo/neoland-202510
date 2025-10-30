@@ -11,85 +11,80 @@
       }
 
       /* pig */
-      #face {
+      .face {
         width: 100px;
         height: 100px;
         background-color: pink;
-        /*         border-radius: 50px;*/
         position: absolute;
         left: 100px;
         top: 100px;
-      }
-      .eye {
-        width: 40px;
-        height: 40px;
-        background-color: rgb(255, 255, 255);
-        position: absolute;
-        top: 10px;
-      }
-      .eye-left {
-        left: 5px;
-      }
-      .eye-right {
-        right: 5px;
-      }
-      .pupil {
-        width: 20px;
-        height: 20px;
-        background-color: greenyellow;
-        position: absolute;
-        bottom: 0;
-      }
-      #nose {
-        width: 40px;
-        height: 30px;
-        background-color: palevioletred;
-        position: absolute;
-        left: 30px;
-        top: 50px;
-      }
-      #left-hole {
-        width: 10px;
-        height: 10px;
-        background-color: black;
-        position: absolute;
-        left: 5px;
-        top: 10px;
-      }
-      #right-hole {
-        width: 10px;
-        height: 10px;
-        background-color: black;
-        position: absolute;
-        right: 5px;
-        top: 10px;
-      }
-      #mouth {
-        width: 30px;
-        height: 10px;
-        background-color: red;
-        position: absolute;
-        bottom: 5px;
-        left: 35px;
-      }
-      #left-ear {
-        width: 15px;
-        height: 50px;
-        background-color: pink;
-        position: absolute;
-        left: -15px;
-      }
-      #right-ear {
-        width: 15px;
-        height: 50px;
-        background-color: pink;
-        position: absolute;
-        right: -15px;
+
+        .eye {
+          width: 40px;
+          height: 40px;
+          background-color: rgb(255, 255, 255);
+          position: absolute;
+          top: 10px;
+        }
+        .eye-left {
+          left: 5px;
+        }
+        .eye-right {
+          right: 5px;
+        }
+        .pupil {
+          width: 20px;
+          height: 20px;
+          background-color: greenyellow;
+          position: absolute;
+          bottom: 0;
+        }
+        .nose {
+          width: 40px;
+          height: 30px;
+          background-color: palevioletred;
+          position: absolute;
+          left: 30px;
+          top: 50px;
+        }
+        .hole {
+          width: 10px;
+          height: 10px;
+          background-color: black;
+          position: absolute;
+          top: 10px;
+        }
+        .hole-left {
+          left: 5px;
+        }
+        .hole-right {
+          right: 5px;
+        }
+        .mouth {
+          width: 30px;
+          height: 10px;
+          background-color: red;
+          position: absolute;
+          bottom: 5px;
+          left: 35px;
+        }
+        .ear {
+          width: 15px;
+          height: 50px;
+          background-color: pink;
+          position: absolute;
+        }
+        .ear-left {
+          left: -15px;
+        }
+        .ear-right {
+          right: -15px;
+        }
       }
 
       /* car */
 
-      #car {
+      .car {
         width: 200px;
         height: 50px;
         background-color: red;
@@ -98,300 +93,260 @@
         top: 100px;
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
-      }
 
-      #windows {
-        width: 100px;
-        height: 20px;
-        background-color: rgb(29, 190, 230);
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        position: absolute;
-        left: 50px;
-        top: -20px;
-      }
-
-      #front-wheel {
-        width: 40px;
-        height: 40px;
-        background-color: gray;
-        border-radius: 20px;
-        position: absolute;
-        left: 20px;
-        top: 30px;
-      }
-
-      #front-rim {
-        width: 30px;
-        height: 30px;
-        background-color: black;
-        border-radius: 15px;
-        position: absolute;
-        left: 5px;
-        top: 5px;
-      }
-
-      #back-wheel {
-        width: 40px;
-        height: 40px;
-        background-color: gray;
-        border-radius: 20px;
-        position: absolute;
-        right: 20px;
-        top: 30px;
-      }
-
-      #back-rim {
-        width: 30px;
-        height: 30px;
-        background-color: black;
-        border-radius: 15px;
-        position: absolute;
-        left: 5px;
-        top: 5px;
-      }
-      #door {
-        width: 3px;
-        height: 50px;
-        background-color: darkslategray;
-        position: absolute;
-        right: 80px;
-        bottom: 20px;
+        .windows {
+          width: 100px;
+          height: 20px;
+          background-color: rgb(29, 190, 230);
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+          position: absolute;
+          left: 50px;
+          top: -20px;
+        }
+        .wheel {
+          width: 40px;
+          height: 40px;
+          background-color: gray;
+          border-radius: 20px;
+          position: absolute;
+          top: 30px;
+        }
+        .front-wheel {
+          left: 20px;
+        }
+        .back-wheel {
+          right: 20px;
+        }
+        .rim {
+          width: 30px;
+          height: 30px;
+          background-color: black;
+          border-radius: 15px;
+          position: absolute;
+          left: 5px;
+          top: 5px;
+        }
+        .door {
+          width: 3px;
+          height: 50px;
+          background-color: darkslategray;
+          position: absolute;
+          right: 80px;
+          bottom: 20px;
+        }
       }
 
       /*spaceship*/
-      #spaceship {
+      .spaceship {
         width: 50px;
-        height: 100px;
+        height: 200px;
         background-color: grey;
         position: absolute;
         left: 100px;
         top: 300px;
-      }
-      #head {
-        width: 50px;
-        height: 100px;
-        background-color: grey;
-        position: absolute;
-        left: 0px;
-        top: -50px;
-        border-radius: 50%;
-      }
-      #wings {
-        width: 50px;
-        height: 50px;
-        background-color: transparent;
-        position: absolute;
-        left: -50px;
-        bottom: 0px;
-        border-bottom: 50px solid grey;
-        border-left: 50px solid transparent;
-        border-right: 50px solid transparent;
-      }
-      #fire {
-        width: 70px;
-        height: 100px;
-        background-color: gold;
-        position: absolute;
-        left: -10px;
-        bottom: -50px;
-        border-radius: 50%;
-        z-index: -10;
-      }
-      #inner-fire {
-        width: 40px;
-        height: 60px;
-        background-color: firebrick;
-        position: absolute;
-        left: 15px;
-        bottom: 20px;
-        border-radius: 50%;
-        z-index: -10;
-      }
-      #window-1 {
-        width: 30px;
-        height: 20px;
-        background-color: blue;
-        position: absolute;
-        top: 25px;
-        left: 10px;
         border-top-left-radius: 50%;
         border-top-right-radius: 50%;
-      }
-      #window-2 {
-        width: 15px;
-        height: 15px;
-        background-color: blue;
-        position: absolute;
-        top: 50px;
-        left: 17px;
-        border-radius: 50%;
-      }
-      #window-3 {
-        width: 15px;
-        height: 15px;
-        background-color: blue;
-        position: absolute;
-        top: 75px;
-        left: 17px;
-        border-radius: 50%;
+
+        .wings {
+          width: 50px;
+          height: 50px;
+          background-color: transparent;
+          position: absolute;
+          left: -50px;
+          bottom: 0px;
+          border-bottom: 50px solid grey;
+          border-left: 50px solid transparent;
+          border-right: 50px solid transparent;
+        }
+        .fire {
+          width: 70px;
+          height: 150px;
+          background: linear-gradient(250deg, #ff0000, #fdcf58);
+          position: absolute;
+          left: -10px;
+          bottom: -80px;
+          border-radius: 50%;
+          z-index: -10;
+        }
+        .panom-window {
+          width: 30px;
+          height: 20px;
+          background-color: blue;
+          position: absolute;
+          top: 25px;
+          left: 10px;
+          border-top-left-radius: 50%;
+          border-top-right-radius: 50%;
+        }
+        .windows {
+          width: 15px;
+          height: 15px;
+          background-color: blue;
+          position: absolute;
+          left: 17px;
+          border-radius: 50%;
+        }
+        .window-2 {
+          top: 50px;
+        }
+        .window-3 {
+          top: 75px;
+        }
+        .window-4 {
+          top: 100px;
+        }
+        .window-5 {
+          top: 125px;
+        }
       }
 
-      #house {
+      .house {
         width: 200px;
         height: 300px;
         background-color: burlywood;
         position: absolute;
         bottom: 30px;
         left: 400px;
-      }
-      #glass-1 {
-        width: 200px;
-        height: 75px;
-        background-color: aqua;
-        position: absolute;
-        top: 15px;
-      }
-      #cross-h1 {
-        width: 3px;
-        height: 75px;
-        background-color: rgb(207, 203, 203);
-        position: absolute;
-        left: 66.5px;
-      }
-      #cross-h1a {
-        width: 3px;
-        height: 75px;
-        background-color: rgb(207, 203, 203);
-        position: absolute;
-        left: 133px;
-      }
-      #cross-v1 {
-        width: 200px;
-        height: 3px;
-        background-color: rgb(207, 203, 203);
-        position: absolute;
-        top: 37.5px;
-      }
-      #glass-2 {
-        width: 50px;
-        height: 50px;
-        background-color: aqua;
-        position: absolute;
-        top: 100px;
-        left: 10px;
-      }
-      #cross-h2 {
-        width: 3px;
-        height: 50px;
-        background-color: rgb(207, 203, 203);
-        position: absolute;
-        left: 23.5px;
-      }
-      #cross-v2 {
-        width: 50px;
-        height: 3px;
-        background-color: rgb(207, 203, 203);
-        position: absolute;
-        top: 23.5px;
-      }
-      #glass-3 {
-        width: 50px;
-        height: 50px;
-        background-color: aqua;
-        position: absolute;
-        top: 100px;
-        left: 75px;
-      }
-      #glass-4 {
-        width: 50px;
-        height: 50px;
-        background-color: aqua;
-        position: absolute;
-        top: 100px;
-        right: 10px;
-      }
-      #door-house {
-        width: 100px;
-        height: 120px;
-        background-color: brown;
-        position: absolute;
-        bottom: 0px;
-        right: 50px;
-        border-top-left-radius: 60%;
-        border-top-right-radius: 60%;
-      }
-      #roof {
-        width: 50px;
-        height: 200px;
-        background-color: transparent;
-        position: absolute;
-        top: -250px;
-        border-left: 75px solid transparent;
-        border-right: 75px solid transparent;
-        border-bottom: 50px solid red;
+
+        .glass-1 {
+          width: 200px;
+          height: 75px;
+          background-color: aqua;
+          position: absolute;
+          top: 15px;
+        }
+        .cross-h {
+          width: 3px;
+          height: 75px;
+          background-color: rgb(207, 203, 203);
+          position: absolute;
+        }
+        .cross-h1 {
+          left: 66.5px;
+        }
+        .cross-h1a {
+          left: 133px;
+        }
+        .cross-v1 {
+          width: 200px;
+          height: 3px;
+          background-color: rgb(207, 203, 203);
+          position: absolute;
+          top: 37.5px;
+        }
+        .glasses {
+          width: 50px;
+          height: 50px;
+          background-color: aqua;
+          position: absolute;
+          top: 100px;
+        }
+        .glass-2 {
+          left: 10px;
+        }
+
+        .glass-3 {
+          left: 75px;
+        }
+        .glass-4 {
+          right: 10px;
+        }
+        .cross-h2 {
+          width: 3px;
+          height: 50px;
+          background-color: rgb(207, 203, 203);
+          position: absolute;
+          left: 23.5px;
+        }
+        .cross-v2 {
+          width: 50px;
+          height: 3px;
+          background-color: rgb(207, 203, 203);
+          position: absolute;
+          top: 23.5px;
+        }
+        .door-house {
+          width: 100px;
+          height: 120px;
+          background-color: brown;
+          position: absolute;
+          bottom: 0px;
+          right: 50px;
+          border-top-left-radius: 60%;
+          border-top-right-radius: 60%;
+        }
+        .roof {
+          width: 50px;
+          height: 200px;
+          background-color: transparent;
+          position: absolute;
+          top: -250px;
+          border-left: 75px solid transparent;
+          border-right: 75px solid transparent;
+          border-bottom: 50px solid red;
+        }
       }
     </style>
   </head>
   <body>
-    <div id="face">
+    <div class="face">
       <div class="eye eye-left">
         <div class="pupil"></div>
       </div>
       <div class="eye eye-right">
         <div class="pupil"></div>
       </div>
-      <div id="nose">
-        <div id="left-hole"></div>
-        <div id="right-hole"></div>
+      <div class="nose">
+        <div class="hole hole-left"></div>
+        <div class="hole hole-right"></div>
       </div>
-      <div id="mouth"></div>
-      <div id="right-ear"></div>
-      <div id="left-ear"></div>
+      <div class="mouth"></div>
+      <div class="ear ear-right"></div>
+      <div class="ear ear-left"></div>
     </div>
 
-    <div id="car">
-      <div id="windows"></div>
-      <div id="front-wheel">
-        <div id="front-rim"></div>
+    <div class="car">
+      <div class="windows"></div>
+      <div class="wheel front-wheel">
+        <div class="rim"></div>
       </div>
-      <div id="back-wheel">
-        <div id="back-rim"></div>
-        <div id="door"></div>
+      <div class="wheel back-wheel">
+        <div class="rim"></div>
+        <div class="door"></div>
       </div>
     </div>
 
-    <div id="spaceship">
-      <div id="head">
-        <div id="window-1"></div>
-        <div id="window-2"></div>
-        <div id="window-3"></div>
-      </div>
-      <div id="wings"></div>
-      <div id="fire">
-        <div id="inner-fire"></div>
-      </div>
+    <div class="spaceship">
+      <div class="panom-window"></div>
+      <div class="windows window-2"></div>
+      <div class="windows window-3"></div>
+      <div class="windows window-4"></div>
+      <div class="windows window-5"></div>
+      <div class="wings"></div>
+      <div class="fire"></div>
     </div>
-    <div id="house">
-      <div id="glass-1">
-        <div id="cross-h1"></div>
-        <div id="cross-h1a"></div>
-        <div id="cross-v1"></div>
+
+    <div class="house">
+      <div class="glass-1">
+        <div class="cross-h cross-h1"></div>
+        <div class="cross-h cross-h1a"></div>
+        <div class="cross-v1"></div>
       </div>
-      <div id="glass-2">
-        <div id="cross-h2"></div>
-        <div id="cross-v2"></div>
+      <div class="glasses glass-2">
+        <div class="cross-h2"></div>
+        <div class="cross-v2"></div>
       </div>
-      <div id="glass-3">
-        <div id="cross-h2"></div>
-        <div id="cross-v2"></div>
+      <div class="glasses glass-3">
+        <div class="cross-h2"></div>
+        <div class="cross-v2"></div>
       </div>
-      <div id="glass-4">
-        <div id="cross-h2"></div>
-        <div id="cross-v2"></div>
+      <div class="glasses glass-4">
+        <div class="cross-h2"></div>
+        <div class="cross-v2"></div>
       </div>
-      <div id="door-house"></div>
-      <div id="roof"></div>
+      <div class="door-house"></div>
+      <div class="roof"></div>
     </div>
   </body>
 </html>
