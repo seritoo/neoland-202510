@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Draw</title>
+
+    <style>
+      body {
+        background-color: black;
+      }
+      /* utility class*/
+      .absolute {
+        position: absolute;
+      }
+      .bg-pink {
+        background-color: pink;
+      }
+      .bg-whitesmoke {
+        background-color: whitesmoke;
+      }
+      .bg-greenyellow {
+        background-color: greenyellow;
+      }
+      .bg-palevioletred {
+        background-color: palevioletred;
+      }
+      .bg-black {
+        background-color: black;
+      }
+      .bg-red {
+        background-color: red;
+      }
+      .bg-pink {
+        background-color: pink;
+      }
+      .bg-rgb-29-190-230 {
+        background-color: rgb(29, 190, 230);
+      }
+      .bg-gray {
+        background-color: gray;
+      }
+      .bg-darkslategray {
+        background-color: darkslategray;
+      }
+      .bg-blue {
+        background-color: blue;
+      }
+      .bg-transparent {
+        background-color: transparent;
+      }
+      .bg-burlywood {
+        background-color: burlywood;
+      }
+      .bg-aqua {
+        background-color: aqua;
+      }
+      .bg-207-203-203 {
+        background-color: rgb(207, 203, 203);
+      }
+      .bg-brown {
+        background-color: brown;
+      }
+      .w-3 {
+        width: 3px;
+      }
+      .w-10 {
+        width: 10px;
+      }
+      .w-15 {
+        width: 15px;
+      }
+      .w-20 {
+        width: 20px;
+      }
+      .w-30 {
+        width: 30px;
+      }
+      .w-40 {
+        width: 40px;
+      }
+      .w-50 {
+        width: 50px;
+      }
+      .w-70 {
+        width: 70px;
+      }
+      .w-100 {
+        width: 100px;
+      }
+      .w-200 {
+        width: 200px;
+      }
+      .h-3 {
+        height: 3px;
+      }
+      .h-10 {
+        height: 10px;
+      }
+      .h-15 {
+        height: 15px;
+      }
+      .h-20 {
+        height: 20px;
+      }
+      .h-30 {
+        height: 30px;
+      }
+      .h-40 {
+        height: 40px;
+      }
+      .h-50 {
+        height: 50px;
+      }
+      .h-75 {
+        height: 75px;
+      }
+      .h-100 {
+        height: 100px;
+      }
+      .h-120 {
+        height: 120px;
+      }
+      .h-150 {
+        height: 150px;
+      }
+      .h-200 {
+        height: 200px;
+      }
+      .h-300 {
+        height: 300px;
+      }
+      .-top-250 {
+        top: -250px;
+      }
+      .-top-20 {
+        top: -20px;
+      }
+      .top-5 {
+        top: 5px;
+      }
+      .top-10 {
+        top: 10px;
+      }
+      .top-15 {
+        top: 15px;
+      }
+      .top-23_5 {
+        top: 23.5px;
+      }
+      .top-25 {
+        top: 25px;
+      }
+      .top-30 {
+        top: 30px;
+      }
+      .top-37_5 {
+        top: 37.5px;
+      }
+      .top-50 {
+        top: 50px;
+      }
+      .top-75 {
+        top: 75px;
+      }
+      .top-100 {
+        top: 100px;
+      }
+      .top-125 {
+        top: 125px;
+      }
+      .top-300 {
+        top: 300px;
+      }
+      .-bottom-80 {
+        bottom: -80px;
+      }
+      .bottom-0 {
+        bottom: 0;
+      }
+      .bottom-5 {
+        bottom: 5px;
+      }
+      .bottom-20 {
+        bottom: 20px;
+      }
+      .bottom-30 {
+        bottom: 30px;
+      }
+      .-left-50 {
+        left: -50px;
+      }
+      .-left-15 {
+        left: -15px;
+      }
+      .-left-10 {
+        left: -10px;
+      }
+      .left-5 {
+        left: 5px;
+      }
+      .left-10 {
+        left: 10px;
+      }
+      .left-17 {
+        left: 17px;
+      }
+      .left-10 {
+        left: 10px;
+      }
+      .left-20 {
+        left: 20px;
+      }
+      .left-23_5 {
+        left: 23.5px;
+      }
+      .left-30 {
+        left: 30px;
+      }
+      .left-35 {
+        left: 35px;
+      }
+      .left-40 {
+        left: 40px;
+      }
+      .left-50 {
+        left: 50px;
+      }
+      .left-66_5 {
+        left: 66.5px;
+      }
+      .left-75 {
+        left: 75px;
+      }
+      .left-100 {
+        left: 100px;
+      }
+      .left-133 {
+        left: 133px;
+      }
+      .left-250 {
+        left: 250px;
+      }
+      .left-400 {
+        left: 400px;
+      }
+      .-right-15 {
+        right: -15px;
+      }
+      .right-5 {
+        right: 5px;
+      }
+      .right-10 {
+        right: 10px;
+      }
+      .right-20 {
+        right: 20px;
+      }
+      .right-50 {
+        right: 50px;
+      }
+      .right-80 {
+        right: 80px;
+      }
+      .rounded-50per {
+        border-radius: 50%;
+      }
+      .rounded-top-left-20 {
+        border-top-left-radius: 20px;
+      }
+      .rounded-top-right-20 {
+        border-top-right-radius: 20px;
+      }
+      .rounded-top-left-50per {
+        border-top-left-radius: 50%;
+      }
+      .rounded-bottom-left-50per {
+        border-bottom-left-radius: 50%;
+      }
+      .rounded-top-right-50per {
+        border-top-right-radius: 50%;
+      }
+      .rounded-bottom-right-50per {
+        border-bottom-right-radius: 50%;
+      }
+      .border-bottom-50 {
+        border-bottom-width: 50px;
+      }
+      .border-bottom-solid {
+        border-bottom-style: solid;
+      }
+      .border-bottom-gray {
+        border-bottom-color: gray;
+      }
+      .border-bottom-red {
+        border-bottom-color: red;
+      }
+      .border-left-50 {
+        border-left-width: 50px;
+      }
+      .border-left-75 {
+        border-left-width: 75px;
+      }
+      .border-left-solid {
+        border-left-style: solid;
+      }
+      .border-left-transparent {
+        border-left-color: transparent;
+      }
+      .border-right-50 {
+        border-right-width: 50px;
+      }
+      .border-right-75 {
+        border-right-width: 75px;
+      }
+      .border-right-solid {
+        border-right-style: solid;
+      }
+      .border-right-transparent {
+        border-right-color: transparent;
+      }
+      .l-gr-250deg-ff0000-fdcf58 {
+        background: linear-gradient(250deg, #ff0000, #fdcf58);
+      }
+      .-z-10 {
+        z-index: -10;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="w-100 h-100 bg-pink absolute left-100 top-100">
+      <div class="w-40 h-40 bg-whitesmoke absolute top-10 left-5">
+        <div class="w-20 h-20 bg-greenyellow absolute bottom-0"></div>
+      </div>
+      <div class="w-40 h-40 bg-whitesmoke absolute top-10 right-5">
+        <div class="w-20 h-20 bg-greenyellow absolute bottom-0"></div>
+      </div>
+      <div class="w-40 h-30 bg-palevioletred absolute left-30 top-50">
+        <div class="w-10 h-10 bg-black absolute top-10 left-5"></div>
+        <div class="w-10 h-10 bg-black absolute top-10 right-5"></div>
+      </div>
+      <div class="w-30 h-10 bg-red absolute bottom-5 left-35"></div>
+      <div class="w-15 h-50 bg-pink absolute -right-15"></div>
+      <div class="w-15 h-50 bg-pink absolute -left-15"></div>
+    </div>
+
+    <div
+      class="w-200 h-50 bg-red absolute left-250 top-100 rounded-top-left-20 rounded-top-right-20"
+    >
+      <div
+        class="w-100 h-20 bg-rgb-29-190-230 rounded-top-left-20 rounded-top-right-20 absolute left-50 -top-20"
+      ></div>
+      <div class="w-40 h-40 bg-gray rounded-50per absolute top-30 left-20">
+        <div
+          class="w-30 h-30 bg-black rounded-50per absolute left-5 top-5"
+        ></div>
+      </div>
+      <div class="w-40 h-40 bg-gray rounded-50per absolute top-30 right-20">
+        <div
+          class="w-30 h-30 bg-black rounded-50per absolute left-5 top-5"
+        ></div>
+        <div
+          class="w-3 h-50 bg-darkslategray absolute right-80 bottom-20"
+        ></div>
+      </div>
+    </div>
+
+    <div
+      class="w-50 h-200 bg-gray absolute left-100 top-300 rounded-top-left-50per rounded-top-right-50per"
+    >
+      <div
+        class="w-30 h-20 bg-blue absolute top-25 left-10 rounded-top-left-50per rounded-top-right-50per"
+      ></div>
+      <div
+        class="w-15 h-15 bg-blue absolute left-17 rounded-50per top-50"
+      ></div>
+      <div
+        class="w-15 h-15 bg-blue absolute left-17 rounded-50per top-75"
+      ></div>
+      <div
+        class="w-15 h-15 bg-blue absolute left-17 rounded-50per top-100"
+      ></div>
+      <div
+        class="w-15 h-15 bg-blue absolute left-17 rounded-50per top-125"
+      ></div>
+      <div
+        class="w-50 h-50 bg-transparent absolute -left-50 bottom-0 border-bottom-50 border-bottom-solid border-bottom-gray border-left-50 border-left-solid border-left-transparent border-right-50 border-right-solid border-right-transparent"
+      ></div>
+      <div
+        class="w-70 h-150 l-gr-250deg-ff0000-fdcf58 absolute -left-10 -bottom-80 rounded-50per -z-10"
+      ></div>
+    </div>
+
+    <div class="w-200 h-300 bg-burlywood absolute bottom-30 left-400">
+      <div class="w-200 h-75 bg-aqua absolute top-15">
+        <div class="w-3 h-75 bg-207-203-203 absolute left-66_5"></div>
+        <div class="w-3 h-75 bg-207-203-203 absolute left-133"></div>
+        <div class="w-200 h-3 bg-207-203-203 absolute top-37_5"></div>
+      </div>
+      <div class="w-50 h-50 bg-aqua absolute top-100 left-10">
+        <div class="w-3 h-50 bg-207-203-203 absolute left-23_5"></div>
+        <div class="w-50 h-3 bg-207-203-203 absolute top-23_5"></div>
+      </div>
+      <div class="w-50 h-50 bg-aqua absolute top-100 left-75">
+        <div class="w-3 h-50 bg-207-203-203 absolute left-23_5"></div>
+        <div class="w-50 h-3 bg-207-203-203 absolute top-23_5"></div>
+      </div>
+      <div class="w-50 h-50 bg-aqua absolute top-100 right-10">
+        <div class="w-3 h-50 bg-207-203-203 absolute left-23_5"></div>
+        <div class="w-50 h-3 bg-207-203-203 absolute top-23_5"></div>
+      </div>
+      <div
+        class="w-100 h-120 bg-brown absolute bottom-0 right-50 rounded-top-left-50per rounded-top-right-50per"
+      ></div>
+      <div
+        class="w-50 h-200 bg-transparent absolute -top-250 border-left-75 border-left-solid border-left-transparent border-right-75 border-right-solid border-right-style border-bottom-50 border-bottom-solid border-bottom-red"
+      ></div>
+    </div>
+    <div class="h-100 w-100 bg-greenyellow absolute rounded-50per">
+      <div
+        class="w-40 h-40 bg-whitesmoke rounded-50per absolute left-35 top-23_5"
+      >
+        <div
+          class="w-15 h-15 bg-black rounded-50per absolute left-10 top-15"
+        ></div>
+      </div>
+      <div
+        class="w-50 h-10 bg-red absolute bottom-20 left-23_5 rounded-top-left-50per rounded-top-right-50per"
+      ></div>
+    </div>
+  </body>
+</html>
