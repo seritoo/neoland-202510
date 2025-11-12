@@ -39,12 +39,10 @@ console.log(collection)
 collection.add('Pepito')
 console.log(collection)
 
-collection.update = function (src, update){
-    for(var i = 0; i < this.count; i++){
-        if(this[i] === src)
-            this[i] = update
-    }
-
+collection.update = function (target, replacement){
+    for(var i = 0; i < this.count; i++)
+        if(this[i] === target)
+            this[i] = replacement
 }
 collection.update('Pepito', 'Jiminy')
 console.log(collection)
