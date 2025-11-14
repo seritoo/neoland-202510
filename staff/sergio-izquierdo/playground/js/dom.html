@@ -4,14 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DOM</title>
-    <!--
-	<style>
-		.mi-clase{
-			border-style: solid;
-			background-color: pink;
-		}
-	</style>
-	-->
+
+    <style>
+      body {
+        background-color: darkgray;
+      }
+    </style>
   </head>
   <body>
     <h1>Hello, DOM!</h1>
@@ -22,80 +20,325 @@
 
     <script>
       document.childNodes[1].childNodes[2].childNodes[1].style.backgroundColor =
-        'green';
-      document.childNodes[1].childNodes[2].childNodes[1].style.color = 'orange';
+        "green";
+      document.childNodes[1].childNodes[2].childNodes[1].style.color = "orange";
       document.childNodes[1].childNodes[2].childNodes[1].style.paddingLeft =
-        '.5rem';
+        ".5rem";
       document.childNodes[1].childNodes[2].childNodes[3].childNodes[1].style.color =
-        'red';
+        "red";
 
-      const div = document.createElement('div');
-      div.textContent = 'Descubriendo DOM';
+      const div = document.createElement("div");
+      div.textContent = "Descubriendo DOM";
       //div.className = 'mi-clase'
-      div.style.borderStyle = 'solid';
-      div.style.backgroundColor = 'rgb(126, 126, 126)';
+      div.style.borderStyle = "solid";
+      div.style.backgroundColor = "rgb(126, 126, 126)";
       document.body.appendChild(div);
 
-	  const box = document.createElement('div')
-	  box.style.width = '100px'
-	  box.style.height = '100px'
-	  box.style.backgroundColor = 'green'
-	  box.style.position = 'absolute'
-	  box.style.top = '200px'
-	  box.style.left = '150px'
-	  document.body.appendChild(box)
+      /* Robot face*/
+      const box = document.createElement("div");
+      box.style.width = "100px";
+      box.style.height = "100px";
+      box.style.backgroundColor = "green";
+      box.style.position = "absolute";
+      box.style.top = "200px";
+      box.style.left = "50px";
+      document.body.appendChild(box);
 
-	  const minibox = document.createElement('div')
-	  minibox.style.width = '50px'
-	  minibox.style.height = '50px'
-	  minibox.style.backgroundColor = 'red'
-	  minibox.style.position = 'absolute'
-	  minibox.style.top = '25px'
-	  minibox.style.right = '25px'
-	  minibox.style.borderRadius = '50%'
-	  box.appendChild(minibox)
+      const minibox = document.createElement("div");
+      minibox.style.width = "50px";
+      minibox.style.height = "50px";
+      minibox.style.backgroundColor = "red";
+      minibox.style.position = "absolute";
+      minibox.style.top = "25px";
+      minibox.style.right = "25px";
+      minibox.style.borderRadius = "50%";
+      box.appendChild(minibox);
 
-	  const robot = document.createElement('div')
-	  robot.style.width = '200px'
-	  robot.style.height = '200px'
-	  robot.style.backgroundColor = 'grey'
-	  robot.style.position = 'absolute'
-	  robot.style.top = '400px'
-	  robot.style.left = '100px'
-	  document.body.appendChild(robot)
+      const robot = document.createElement("div");
+      robot.style.width = "200px";
+      robot.style.height = "200px";
+      robot.style.backgroundColor = "grey";
+      robot.style.position = "absolute";
+      robot.style.top = "400px";
+      robot.style.left = "100px";
+      document.body.appendChild(robot);
 
-	  const eyeL = document.createElement('div')
-	  eyeL.style.width = '40px'
-	  eyeL.style.height = '40px'
-	  eyeL.style.backgroundColor = 'silver'
-	  eyeL.style.position = 'absolute'
-	  eyeL.style.top = '50px'
-	  eyeL.style.left = '35px'
-	  robot.appendChild(eyeL)
+      const eyeL = document.createElement("div");
+      eyeL.style.width = "40px";
+      eyeL.style.height = "40px";
+      eyeL.style.backgroundColor = "silver";
+      eyeL.style.position = "absolute";
+      eyeL.style.top = "50px";
+      eyeL.style.left = "35px";
+      robot.appendChild(eyeL);
 
-	  const eyeR = document.createElement('div')
-	  eyeR.style.width = '40px'
-	  eyeR.style.height = '40px'
-	  eyeR.style.backgroundColor = 'silver'
-	  eyeR.style.position = 'absolute'
-	  eyeR.style.top = '50px'
-	  eyeR.style.right = '35px'
-	  robot.appendChild(eyeR)
+      const eyeR = document.createElement("div");
+      eyeR.style.width = "40px";
+      eyeR.style.height = "40px";
+      eyeR.style.backgroundColor = "silver";
+      eyeR.style.position = "absolute";
+      eyeR.style.top = "50px";
+      eyeR.style.right = "35px";
+      robot.appendChild(eyeR);
 
-	  const mouth = document.createElement('div')
-	  mouth.style.width = '80px'
-	  mouth.style.height = '40px'
-	  mouth.style.backgroundColor = 'silver'
-	  mouth.style.position = 'absolute'
-	  mouth.style.top = '130px'
-	  mouth.style.right = '60px'
-	  robot.appendChild(mouth)
+      const mouth = document.createElement("div");
+      mouth.style.width = "80px";
+      mouth.style.height = "40px";
+      mouth.style.backgroundColor = "silver";
+      mouth.style.position = "absolute";
+      mouth.style.top = "130px";
+      mouth.style.right = "60px";
+      robot.appendChild(mouth);
 
+      /* Finn the Human*/
 
+      const body = document.createElement("div");
+      body.style.width = "100px";
+      body.style.height = "150px";
+      body.style.backgroundColor = "rgb(50, 210, 255)";
+      body.style.position = "absolute";
+      body.style.top = "300px";
+      body.style.left = "400px";
+      body.style.border = "solid";
+      body.style.borderWidth = "2px";
+      document.body.appendChild(body);
 
+      const head = document.createElement("div");
+      head.style.width = "100px";
+      head.style.height = "75px";
+      head.style.backgroundColor = "white";
+      head.style.position = "absolute";
+      head.style.top = "-79px";
+      head.style.border = "solid";
+      head.style.borderWidth = "2px";
+      head.style.left = "-2px";
+      body.appendChild(head);
 
+      const earLeft = document.createElement("div");
+      earLeft.style.width = "15px";
+      earLeft.style.height = "20px";
+      earLeft.style.backgroundColor = "white";
+      earLeft.style.position = "absolute";
+      earLeft.style.top = "-15px";
+      earLeft.style.border = "solid";
+      earLeft.style.borderWidth = "2px";
+      earLeft.style.left = "-2px";
+      earLeft.style.borderBottom = "transparent";
+      earLeft.style.borderTopLeftRadius = "50%";
+      earLeft.style.borderTopRightRadius = "50%";
+      head.appendChild(earLeft);
 
+      const earRight = document.createElement("div");
+      earRight.style.width = "15px";
+      earRight.style.height = "20px";
+      earRight.style.backgroundColor = "white";
+      earRight.style.position = "absolute";
+      earRight.style.top = "-15px";
+      earRight.style.border = "solid";
+      earRight.style.borderWidth = "2px";
+      earRight.style.right = "-2px";
+      earRight.style.borderBottom = "transparent";
+      earRight.style.borderTopLeftRadius = "50%";
+      earRight.style.borderTopRightRadius = "50%";
+      head.appendChild(earRight);
 
+      const face = document.createElement("div");
+      face.style.width = "80px";
+      face.style.height = "50px";
+      face.style.backgroundColor = "rgb(248, 210, 180)";
+      face.style.position = "absolute";
+      face.style.top = "15px";
+      face.style.left = "10px";
+      face.style.borderRadius = "50%";
+      face.style.border = "solid";
+      face.style.borderWidth = "2px";
+      head.appendChild(face);
+
+      const eyeLeft = document.createElement("div");
+      eyeLeft.style.width = "5px";
+      eyeLeft.style.height = "7px";
+      eyeLeft.style.backgroundColor = "black";
+      eyeLeft.style.position = "absolute";
+      eyeLeft.style.top = "15px";
+      eyeLeft.style.left = "15px";
+      eyeLeft.style.borderRadius = "50%";
+      face.appendChild(eyeLeft);
+
+      const eyeRight = document.createElement("div");
+      eyeRight.style.width = "5px";
+      eyeRight.style.height = "7px";
+      eyeRight.style.backgroundColor = "black";
+      eyeRight.style.position = "absolute";
+      eyeRight.style.top = "15px";
+      eyeRight.style.right = "15px";
+      eyeRight.style.borderRadius = "50%";
+      face.appendChild(eyeRight);
+
+      const smile = document.createElement("div");
+      smile.style.width = "20px";
+      smile.style.height = "10px";
+      //smile.style.backgroundColor = 'black'
+      smile.style.position = "absolute";
+      smile.style.bottom = "15px";
+      smile.style.left = "30px";
+      smile.style.borderBottom = "2px solid black";
+      smile.style.borderRadius = "20px 20px 50px 50px";
+      face.appendChild(smile);
+
+      const strapLeft = document.createElement("div");
+      strapLeft.style.width = "10px";
+      strapLeft.style.height = "50px";
+      strapLeft.style.background =
+        "linear-gradient(rgb(205, 255, 70), rgb(90, 150, 30))";
+      strapLeft.style.position = "absolute";
+      strapLeft.style.left = "-14px";
+      strapLeft.style.top = "-10px";
+      strapLeft.style.border = "solid";
+      strapLeft.style.borderWidth = "2px";
+      strapLeft.style.borderRadius = "8px 8px 8px 8px";
+      body.appendChild(strapLeft);
+
+      const strapRight = document.createElement("div");
+      strapRight.style.width = "10px";
+      strapRight.style.height = "50px";
+      strapRight.style.background =
+        "linear-gradient(rgb(205, 255, 70), rgb(90, 150, 30))";
+      strapRight.style.position = "absolute";
+      strapRight.style.right = "-14px";
+      strapRight.style.top = "-10px";
+      strapRight.style.border = "solid";
+      strapRight.style.borderWidth = "2px";
+      strapRight.style.borderRadius = "8px 8px 8px 8px";
+      body.appendChild(strapRight);
+
+      const upperLeft = document.createElement("div");
+      upperLeft.style.width = "70px";
+      upperLeft.style.height = "12px";
+      upperLeft.style.backgroundColor = "rgb(248, 210, 180)";
+      upperLeft.style.position = "absolute";
+      upperLeft.style.right = "-70px";
+      upperLeft.style.top = "30px";
+      upperLeft.style.border = "2px solid black";
+      upperLeft.style.transform = "rotate(40deg)";
+      upperLeft.style.zIndex = "-10";
+      upperLeft.style.borderRight = "transparent";
+      body.appendChild(upperLeft);
+
+      const elbowLeft = document.createElement("div");
+      elbowLeft.style.width = "13px";
+      elbowLeft.style.height = "11px";
+      elbowLeft.style.backgroundColor = "rgb(248, 210, 180)";
+      elbowLeft.style.position = "absolute";
+      elbowLeft.style.left = "60px";
+      elbowLeft.style.border = "2px transparent black";
+      elbowLeft.style.zIndex = "10";
+      upperLeft.appendChild(elbowLeft);
+
+      const foreLeft = document.createElement("div");
+      foreLeft.style.width = "12px";
+      foreLeft.style.height = "55px";
+      foreLeft.style.backgroundColor = "rgb(248, 210, 180)";
+      foreLeft.style.position = "absolute";
+      foreLeft.style.left = "66px";
+      foreLeft.style.top = "-2px";
+      foreLeft.style.borderLeft = "transparent";
+      foreLeft.style.border = "2px solid black";
+      foreLeft.style.borderRadius = "10px";
+      foreLeft.style.zIndex = "-10";
+      upperLeft.appendChild(foreLeft);
+
+      const upperRight = document.createElement("div");
+      upperRight.style.width = "70px";
+      upperRight.style.height = "12px";
+      upperRight.style.backgroundColor = "rgb(248, 210, 180)";
+      upperRight.style.position = "absolute";
+      upperRight.style.left = "-70px";
+      upperRight.style.top = "30px";
+      upperRight.style.border = "2px solid black";
+      upperRight.style.transform = "rotate(-40deg)";
+      upperRight.style.zIndex = "-10";
+      upperRight.style.borderLeft = "transparent";
+      body.appendChild(upperRight);
+
+      const elbowRight = document.createElement("div");
+      elbowRight.style.width = "13px";
+      elbowRight.style.height = "11px";
+      elbowRight.style.backgroundColor = "rgb(248, 210, 180)";
+      elbowRight.style.position = "absolute";
+      elbowRight.style.left = "-6px";
+      elbowRight.style.border = "2px transparent black";
+      elbowRight.style.zIndex = "10";
+      upperRight.appendChild(elbowRight);
+
+      const foreRight = document.createElement("div");
+      foreRight.style.width = "12px";
+      foreRight.style.height = "55px";
+      foreRight.style.backgroundColor = "rgb(248, 210, 180)";
+      foreRight.style.position = "absolute";
+      foreRight.style.left = "-12px";
+      foreRight.style.top = "-2px";
+      foreRight.style.borderLeft = "transparent";
+      foreRight.style.border = "2px solid black";
+      foreRight.style.borderRadius = "10px";
+      foreRight.style.zIndex = "-10";
+      upperRight.appendChild(foreRight);
+
+      const shorts = document.createElement("div");
+      shorts.style.width = "100px";
+      shorts.style.height = "30px";
+      shorts.style.backgroundColor = "blue";
+      shorts.style.position = "absolute";
+      shorts.style.left = "-2px";
+      shorts.style.bottom = "-30px";
+      shorts.style.border = "solid";
+      shorts.style.borderWidth = "2px";
+      body.appendChild(shorts);
+
+      const shortLeft = document.createElement("div");
+      shortLeft.style.width = "20px";
+      shortLeft.style.height = "30px";
+      shortLeft.style.backgroundColor = "blue";
+      shortLeft.style.position = "absolute";
+      shortLeft.style.bottom = "-30px";
+      shortLeft.style.left = "-2px";
+      shortLeft.style.border = "solid";
+      shortLeft.style.borderTop = "transparent";
+      shortLeft.style.borderWidth = "2px";
+      shorts.appendChild(shortLeft);
+
+	  const shortRight = document.createElement('div')
+	  shortRight.style.width = '20px'
+	  shortRight.style.height = '30px'
+	  shortRight.style.backgroundColor = 'blue'
+	  shortRight.style.position = 'absolute'
+	  shortRight.style.bottom = '-30px'
+	  shortRight.style.right = '-2px'
+	  shortRight.style.border = 'solid'
+	  shortRight.style.borderTop = 'transparent'
+	  shortRight.style.borderWidth = '2px'
+	  shorts.appendChild(shortRight)
+
+	  const legLeft = document.createElement('div')
+	  legLeft.style.width = '15px'
+	  legLeft.style.height = '100px'
+	  legLeft.style.backgroundColor = "rgb(248, 210, 180)"
+	  legLeft.style.position = 'absolute'
+	  legLeft.style.bottom = '-103px'
+	  legLeft.style.left = '1px'
+	  legLeft.style.border = 'solid'
+	  legLeft.style.borderWidth = '2px'
+	  shortLeft.appendChild(legLeft)
+
+	  const legRight = document.createElement('div')
+	  legRight.style.width = '15px'
+	  legRight.style.height = '100px'
+	  legRight.style.backgroundColor = "rgb(248, 210, 180)"
+	  legRight.style.position = 'absolute'
+	  legRight.style.bottom = '-103px'
+	  legRight.style.left = '1px'
+	  legRight.style.border = 'solid'
+	  legRight.style.borderWidth = '2px'
+	  shortRight.appendChild(legRight)
     </script>
   </body>
 </html>
