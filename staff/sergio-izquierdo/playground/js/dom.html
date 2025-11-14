@@ -34,7 +34,7 @@
       div.style.backgroundColor = "rgb(126, 126, 126)";
       document.body.appendChild(div);
 
-      /* Robot face*/
+
       const box = document.createElement("div");
       box.style.width = "100px";
       box.style.height = "100px";
@@ -90,7 +90,11 @@
       mouth.style.right = "60px";
       robot.appendChild(mouth);
 
+
       /* Finn the Human*/
+
+      let bodyX = 100, bodyY = 200
+      const step = 10
 
       const body = document.createElement("div");
       body.style.width = "100px";
@@ -339,6 +343,20 @@
 	  legRight.style.border = 'solid'
 	  legRight.style.borderWidth = '2px'
 	  shortRight.appendChild(legRight)
+
+    document.addEventListener('keydown', function(event) {
+      if(event.key === 'ArrowUp' || event.key === 'w' )
+        bodyY -= step
+      else if(event.key === 'ArrowDown' || event.key === 's')
+        bodyY += step
+      else if(event.key === 'ArrowLeft' || event.key === 'a')
+        bodyX -= step
+      else if(event.key === 'ArrowRight' || event.key === 'd')
+        bodyX += step
+
+      body.style.left = bodyX + 'px'
+      body.style.top = bodyY + 'px'
+    })
     </script>
   </body>
 </html>
