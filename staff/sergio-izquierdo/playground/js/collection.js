@@ -46,3 +46,14 @@ collection.update = function (target, replacement){
 }
 collection.update('Pepito', 'Jiminy')
 console.log(collection)
+
+collection.updateFirst = function (target, replacement){
+    for(var i = 0; i < this.count; i++)
+        if(this[i] === target) {
+            this[i] = replacement
+            return
+        }
+}
+
+collection.updateFirst('Jiminy', 'Pepito')
+console.log(collection)
