@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Robot</title>
+</head>
+<body>
+	<script>
+		function Robot(color) {
+			// las propiedades y características se guardan en la función
+			this.container = document.createElement('div')
+			this.container.style. backgroundColor = color
+			this.container.style.width = '100px'
+			this.container.style.height = '100px'
+			this.container.style.position = 'absolute'
+			this.x = 100
+			this.y = 100
+			this.container.style.left = this.x + 'px'
+			this.container.style.top = this.y + 'px'
+
+			this.eye = document.createElement('div')
+			this.eye.style.backgroundColor = 'white'
+			this.eye.style.width = '50px'
+			this.eye.style.height = '50px'
+			this.eye.style.position = 'absolute'
+			this.eye.style.left = '25px'
+			this.eye.style.top = '25px'
+			this.container.appendChild(this.eye)
+
+			this.pupil = document.createElement('div')
+			this.pupil.style.backgroundColor = 'black'
+			this.pupil.style.width = '10px'
+			this.pupil.style.height = '10px'
+			this.pupil.style.position = 'absolute'
+			this.pupilX = 20
+			this.pupilY = 20
+			this.pupil.style.left = this.pupilX + 'px'
+			this.pupil.style.top = this.pupilY + 'px'
+			this.eye.appendChild(this.pupil)
+		}
+		// agregamos comportamiento dentro de prototype
+		Robot.prototype.setPosition = function (x, y){
+			this.x = x
+			this.y = y
+			this.container.style.left = this.x + 'px'
+			this.container.style.top = this.y + 'px'
+		}
+		Robot.prototype.moveRight = function(){
+			this.x += 10
+			this.container.style.right = this.x + 'px'
+
+		}
+
+		const robot = new Robot('green')
+		const robot2 = new Robot('red')
+
+		document.body.appendChild(robot.container)
+
+		document.addEventListener('keydown', function(event) {
+			if(event.key === 'ArrowUp')
+				robot.moveUp()
+			else if(evet.key === 'ArrowDown')
+				robot.moveDown()
+			else if(event.key === 'ArrowLeft')
+				robot.moveLeft()
+			else if(event.key === 'ArrowRight')
+				robot.moveRight()
+
+
+		})
+	</script>
+
+</body>
+</html>
