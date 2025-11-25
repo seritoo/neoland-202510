@@ -150,7 +150,7 @@
             for (let i = 0; i < this.pets.length; i++) {
                 const pet = this.pets[i]
 
-                if(pet.passport === passport)
+                if (pet.passport === passport)
                     return pet
             }
 
@@ -226,35 +226,36 @@
         }
 
         Logic.prototype.registerPet = function (ownerId, passport, name, yearOfBirth, species, gender, race, colors) {
-            if (typeof ownerId !== 'string') return 'invalid ownerId type'
-            if (ownerId.length < 7) return 'invalid ownerId length'
+            if (typeof ownerId !== 'string') throw new error('invalid ownerId type')
+            if (ownerId.length < 7) throw new error('invalid ownerId length'
+            )
+            if (typeof passport !== 'string') throw new error('invalid passport type')
+            if (passport.length < 10) throw new error('invalid passport length'
+            )
+            if (typeof name !== 'string') throw new error('invalid name type')
+            if (name.length < 2) throw new error('invalid name length')
 
-            if (typeof passport !== 'string') return 'invalid passport type'
-            if (passport.length < 10) return 'invalid passport length'
+            if (typeof yearOfBirth !== 'number') throw new error('invalid yearOfBirth type')
+            if (yearOfBirth < 1900) throw new error('invalid yearOfBirth value')
 
-            if (typeof name !== 'string') return 'invalid name type'
-            if (name.length < 2) return 'invalid name length'
+            if (typeof species !== 'string') throw new error('invalid species type')
+            if (species.length < 3) throw new error('invalid species length')
 
-            if (typeof yearOfBirth !== 'number') return 'invalid yearOfBirth type'
-            if (yearOfBirth < 1900) return 'invalid yearOfBirth value'
+            if (typeof gender !== 'string') throw new error('invalid gender type')
+            if (gender !== 'female' && gender !== 'male') throw new error('invalid gender value')
+            if (typeof race !== 'string') throw new error('invalid race type')
+            if (race.length < 3) throw new error('invalid race length')
+            if (typeof colors !== 'object') throw new error('invalid colors type')
+            if (colors.length < 1) throw new error('invalid color   s length')
 
-            if (typeof species !== 'string') return 'invalid species type'
-            if (species.length < 3) return 'invalid species length'
+            const owner = data.findOwnerById(ownerId)
 
-            if (typeof gender !== 'string') return 'invalid gender type'
-            if (gender.length < 4) return 'invalid gender length'
-
-            if (typeof race !== 'string') return 'invalid race type'
-            if (race.length < 3) return 'invalid race length'
-
-            if (typeof colors !== 'object') return 'invalid colors type'
-            if (colors.length < 1) return 'invalid colors length'
+            if (owner === null) throw new error('owner of pet not found')
 
             let pet = data.findPetByPassport(passport)
 
-            if (pet !== null) return 'pet already exists'
-
-            pet = new Pet ('pet-' + data.petsCount, ownerId, passport, name,yearOfBirth, species, gender, race, colors)
+            if (pet !== null) throw new error('pet already exists')
+            pet = new Pet('pet-' + data.petsCount, ownerId, passport, name, yearOfBirth, species, gender, race, colors)
 
             data.addPet(pet)
         }
