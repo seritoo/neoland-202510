@@ -30,12 +30,30 @@ function Data() {
 	this.petsCount = 0
 }
 
-Data.prototype.insertUser = function(user) {
+Data.prototype.insertUser = function (user) {
 	this.users.push(user)
 	this.usersCount++
 }
 
-Data.prototype.insertPet = function(pet) {
+Data.prototype.findUserByEmail = function (email) {
+	for (let i = 0; i < this.users.length; i++) {
+		const user = this.users[i]
+
+		if (user.email === email) return user
+	}
+	return null
+}
+
+Data.prototype.findUserByUsername = function (username) {
+	for (let i = 0; i < this.users.length; i++) {
+		const user = this.users[i]
+
+		if (user.username === username) return user
+	}
+	return null
+}
+
+Data.prototype.insertPet = function (pet) {
 	this.pets.push(pet)
 	this.petsCount++
 }
