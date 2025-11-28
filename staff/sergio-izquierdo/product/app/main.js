@@ -200,6 +200,17 @@ const homeSubtitle = document.createElement('h2')
 homeSubtitle.textContent = 'Welcome Home!'
 homeView.appendChild(homeSubtitle)
 
+const homeLogoutButton = document.createElement('button')
+homeLogoutButton.textContent = 'Logout'
+homeView.appendChild(homeLogoutButton)
+
+homeLogoutButton.addEventListener('click', function (event){
+    event.preventDefault()
+
+    homeView.style.display = 'none'
+    loginView.style.display = ''
+})
+
 document.body.appendChild(homeView)
 
 
