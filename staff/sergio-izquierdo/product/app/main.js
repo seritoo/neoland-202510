@@ -72,12 +72,45 @@ const registerPasswordLabel = document.createElement('label')
 registerPasswordLabel.textContent = 'Password'
 registerForm.appendChild(registerPasswordLabel)
 const registerPasswordInput = document.createElement('input')
+registerPasswordInput.type = 'password'
 registerForm.appendChild(registerPasswordInput)
+const showPasswordButton = document.createElement('button')
+showPasswordButton.textContent = 'Show'
+registerForm.appendChild(showPasswordButton)
+
+showPasswordButton.addEventListener('click', function(){
+    if (registerPasswordInput.type === 'password'){
+            registerPasswordInput.type = 'text'
+            showPasswordButton.textContent = 'Hide'
+    }
+    else if (registerPasswordInput.type === 'text') {
+            registerPasswordInput.type = 'password'
+            showPasswordButton.textContent = 'Show'
+    }
+
+})
+
 const registerPasswordRepeatLabel = document.createElement('label')
 registerPasswordRepeatLabel.textContent = 'Repeat Password'
 registerForm.appendChild(registerPasswordRepeatLabel)
 const registerPasswordRepeatInput = document.createElement('input')
+registerPasswordRepeatInput.type = 'password'
 registerForm.appendChild(registerPasswordRepeatInput)
+const showPassRepeatButton = document.createElement('button')
+showPassRepeatButton.textContent = 'Show'
+registerForm.appendChild(showPassRepeatButton)
+
+showPassRepeatButton.addEventListener('click', function(){
+    if (registerPasswordRepeatInput.type === 'password'){
+            registerPasswordRepeatInput.type = 'text'
+            showPassRepeatButton.textContent = 'Hide'
+    }
+    else if (registerPasswordRepeatInput.type === 'text') {
+            registerPasswordRepeatInput.type = 'password'
+            showPassRepeatButton.textContent = 'Show'
+    }
+})
+
 const registerSubmitButton = document.createElement('button')
 registerSubmitButton.textContent = 'Register'
 registerForm.appendChild(registerSubmitButton)
@@ -145,6 +178,7 @@ const loginPasswordLabel = document.createElement('label')
 loginPasswordLabel.textContent = 'Password'
 loginForm.appendChild(loginPasswordLabel)
 const loginPasswordInput = document.createElement('input')
+loginPasswordInput.type = 'password'
 loginForm.appendChild(loginPasswordInput)
 const loginSubmitButton = document.createElement('button')
 loginSubmitButton.textContent = 'Login'
