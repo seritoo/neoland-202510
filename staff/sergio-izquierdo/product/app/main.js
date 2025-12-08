@@ -1,6 +1,6 @@
 //body
 
-document.body.className = 'p-4 border-4 border-red-500 h-screen'
+document.body.className = 'p-4 h-screen'
 
 // landing
 
@@ -63,6 +63,7 @@ registerSubtitle.className = 'font-bold'
 registerView.appendChild(registerSubtitle)
 
 const registerForm = document.createElement('form')
+registerForm.className = 'flex flex-col'
 const registerNameLabel = document.createElement('label')
 registerNameLabel.textContent = 'Name'
 registerNameLabel.htmlFor = 'name'
@@ -97,22 +98,22 @@ registerPasswordInput.id = 'password'
 registerPasswordInput.type = 'password'
 registerPasswordInput.className = 'border border-black'
 registerForm.appendChild(registerPasswordInput)
-const RegisterShowPasswordButton = document.createElement('button')
-RegisterShowPasswordButton.textContent = 'Show'
-RegisterShowPasswordButton.type = 'button'
-RegisterShowPasswordButton.className = 'border border-black bg-gray-300 px-2'
-registerForm.appendChild(RegisterShowPasswordButton)
+const registerShowPasswordButton = document.createElement('button')
+registerShowPasswordButton.textContent = 'Show'
+registerShowPasswordButton.type = 'button'
+registerShowPasswordButton.className = 'border border-black bg-gray-300 px-2 self-end'
+registerForm.appendChild(registerShowPasswordButton)
 
-RegisterShowPasswordButton.addEventListener('click', function (event) {
+registerShowPasswordButton.addEventListener('click', function (event) {
     event.preventDefault()
 
     if (registerPasswordInput.type === 'password') {
         registerPasswordInput.type = 'text'
-        RegisterShowPasswordButton.textContent = 'Hide'
+        registerShowPasswordButton.textContent = 'Hide'
     }
     else if (registerPasswordInput.type === 'text') {
         registerPasswordInput.type = 'password'
-        RegisterShowPasswordButton.textContent = 'Show'
+        registerShowPasswordButton.textContent = 'Show'
     }
 
 })
@@ -126,7 +127,7 @@ registerPasswordRepeatInput.className = 'border border-black'
 registerForm.appendChild(registerPasswordRepeatInput)
 const RegisterShowPasswordRepeatButton = document.createElement('button')
 RegisterShowPasswordRepeatButton.textContent = 'Show'
-RegisterShowPasswordRepeatButton.className = 'border border-black bg-gray-300 px-2'
+RegisterShowPasswordRepeatButton.className = 'border border-black bg-gray-300 px-2 self-end'
 registerForm.appendChild(RegisterShowPasswordRepeatButton)
 
 RegisterShowPasswordRepeatButton.addEventListener('click', function (event) {
@@ -205,6 +206,7 @@ loginSubtitle.className = 'font-bold'
 loginView.appendChild(loginSubtitle)
 
 const loginForm = document.createElement('form')
+loginForm.className = 'flex flex-col'
 const loginUsernameLabel = document.createElement('label')
 loginUsernameLabel.textContent = 'Username'
 loginUsernameLabel.htmlFor = 'username'
