@@ -8,12 +8,12 @@ const landingView = document.createElement('div')
 
 const landingTitle = document.createElement('h1')
 landingTitle.textContent = 'MyPet'
-landingTitle.className = 'font-bold text-2xl'
+landingTitle.className = 'font-bold text-2xl alaign-middle'
 landingView.appendChild(landingTitle)
 
 const landingWelcome = document.createElement('p')
 landingWelcome.textContent = 'Welcome!'
-landingWelcome.className = 'text-xl'
+landingWelcome.className = 'text-xl text'
 landingView.appendChild(landingWelcome)
 
 const landingAccess = document.createElement('p')
