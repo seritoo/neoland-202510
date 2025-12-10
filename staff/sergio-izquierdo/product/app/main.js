@@ -20,14 +20,14 @@ const landingAccess = document.createElement('p')
 const landingLoginLink = document.createElement('a')
 landingLoginLink.textContent = 'Login'
 landingLoginLink.href = ''
-landingLoginLink.className = 'underline text-blue-500'
+landingLoginLink.className = 'underline text-blue-800 font-bold '
 landingAccess.appendChild(landingLoginLink)
 const landingOrText = document.createTextNode(' or ')
 landingAccess.appendChild(landingOrText)
 const landingRegisterLink = document.createElement('a')
 landingRegisterLink.textContent = 'Register'
 landingRegisterLink.href = ''
-landingRegisterLink.className = 'underline text-blue-500'
+landingRegisterLink.className = 'underline text-blue-800 font-bold'
 landingAccess.appendChild(landingRegisterLink)
 landingView.appendChild(landingAccess)
 
@@ -70,7 +70,7 @@ registerNameLabel.htmlFor = 'name'
 registerForm.appendChild(registerNameLabel)
 const registerNameInput = document.createElement('input')
 registerNameInput.id = 'name'
-registerNameInput.className = 'border border-black'
+registerNameInput.className = 'border px-1'
 registerForm.appendChild(registerNameInput)
 const registerEmailLabel = document.createElement('label')
 registerEmailLabel.textContent = 'Email'
@@ -79,7 +79,7 @@ registerForm.appendChild(registerEmailLabel)
 const registerEmailInput = document.createElement('input')
 registerEmailInput.id = 'email'
 registerEmailInput.type = 'email'
-registerEmailInput.className = 'border border-black'
+registerEmailInput.className = 'border px-1'
 registerForm.appendChild(registerEmailInput)
 const registerUsernameLabel = document.createElement('label')
 registerUsernameLabel.textContent = 'Username'
@@ -87,7 +87,7 @@ registerUsernameLabel.htmlFor = 'username'
 registerForm.appendChild(registerUsernameLabel)
 const registerUsernameInput = document.createElement('input')
 registerUsernameInput.id = 'username'
-registerUsernameInput.className = 'border border-black'
+registerUsernameInput.className = 'border px-1'
 registerForm.appendChild(registerUsernameInput)
 const registerPasswordLabel = document.createElement('label')
 registerPasswordLabel.textContent = 'Password'
@@ -96,12 +96,12 @@ registerForm.appendChild(registerPasswordLabel)
 const registerPasswordInput = document.createElement('input')
 registerPasswordInput.id = 'password'
 registerPasswordInput.type = 'password'
-registerPasswordInput.className = 'border border-black'
+registerPasswordInput.className = 'border  px-1'
 registerForm.appendChild(registerPasswordInput)
 const registerShowPasswordButton = document.createElement('button')
 registerShowPasswordButton.textContent = 'Show'
 registerShowPasswordButton.type = 'button'
-registerShowPasswordButton.className = 'border border-black bg-gray-300 px-2 self-end'
+registerShowPasswordButton.className = 'bg-black text-white px-2 self-end'
 registerForm.appendChild(registerShowPasswordButton)
 
 registerShowPasswordButton.addEventListener('click', function (event) {
@@ -110,10 +110,12 @@ registerShowPasswordButton.addEventListener('click', function (event) {
     if (registerPasswordInput.type === 'password') {
         registerPasswordInput.type = 'text'
         registerShowPasswordButton.textContent = 'Hide'
+        registerPasswordInput.className = 'border bg-[gold] px-1'
     }
     else if (registerPasswordInput.type === 'text') {
         registerPasswordInput.type = 'password'
         registerShowPasswordButton.textContent = 'Show'
+        registerPasswordInput.className = 'border px-1'
     }
 
 })
@@ -123,30 +125,33 @@ registerPasswordRepeatLabel.textContent = 'Repeat Password'
 registerForm.appendChild(registerPasswordRepeatLabel)
 const registerPasswordRepeatInput = document.createElement('input')
 registerPasswordRepeatInput.type = 'password'
-registerPasswordRepeatInput.className = 'border border-black'
+registerPasswordRepeatInput.className = 'border '
 registerForm.appendChild(registerPasswordRepeatInput)
-const RegisterShowPasswordRepeatButton = document.createElement('button')
-RegisterShowPasswordRepeatButton.textContent = 'Show'
-RegisterShowPasswordRepeatButton.className = 'border border-black bg-gray-300 px-2 self-end'
-registerForm.appendChild(RegisterShowPasswordRepeatButton)
+const registerShowPasswordRepeatButton = document.createElement('button')
+registerShowPasswordRepeatButton.textContent = 'Show'
+registerShowPasswordRepeatButton.className = 'bg-black text-white px-2 self-end'
+registerForm.appendChild(registerShowPasswordRepeatButton)
 
-RegisterShowPasswordRepeatButton.addEventListener('click', function (event) {
+registerShowPasswordRepeatButton.addEventListener('click', function (event) {
     event.preventDefault()
 
     if (registerPasswordRepeatInput.type === 'password') {
         registerPasswordRepeatInput.type = 'text'
-        RegisterShowPasswordRepeatButton.textContent = 'Hide'
+        registerShowPasswordRepeatButton.textContent = 'Hide'
+        registerPasswordRepeatInput.className = 'border bg-[gold] px-1'
     }
     else if (registerPasswordRepeatInput.type === 'text') {
         registerPasswordRepeatInput.type = 'password'
-        RegisterShowPasswordRepeatButton.textContent = 'Show'
+        registerShowPasswordRepeatButton.textContent = 'Show'
+        registerPasswordRepeatInput.className = 'border px-1'
+
     }
 })
 
 const registerSubmitButton = document.createElement('button')
 registerSubmitButton.textContent = 'Register'
 registerSubmitButton.type = 'submit'
-registerSubmitButton.className = 'border border-black bg-gray-300 px-2'
+registerSubmitButton.className = 'bg-black text-white px-2 self-center'
 registerForm.appendChild(registerSubmitButton)
 registerView.appendChild(registerForm)
 
@@ -175,7 +180,7 @@ registerForm.addEventListener('submit', function (event) {
 const registerLoginLink = document.createElement('a')
 registerLoginLink.textContent = 'Login'
 registerLoginLink.href = ''
-registerLoginLink.className = 'underline text-blue-500'
+registerLoginLink.className = 'underline text-blue-800 font-bold'
 registerView.appendChild(registerLoginLink)
 
 registerLoginLink.addEventListener('click', function (event) {
@@ -213,21 +218,42 @@ loginUsernameLabel.htmlFor = 'username'
 loginForm.appendChild(loginUsernameLabel)
 const loginUsernameInput = document.createElement('input')
 loginUsernameInput.id = 'username'
-loginUsernameInput.className = 'border border-black'
+loginUsernameInput.className = 'border px-1'
 loginForm.appendChild(loginUsernameInput)
 const loginPasswordLabel = document.createElement('label')
 loginPasswordLabel.textContent = 'Password'
 loginPasswordLabel.htmlFor = 'password'
 loginForm.appendChild(loginPasswordLabel)
 const loginPasswordInput = document.createElement('input')
-loginPasswordInput.className = 'border border-black'
+loginPasswordInput.className = 'border px-1'
 loginPasswordInput.id = 'password'
 loginPasswordInput.type = 'password'
 loginForm.appendChild(loginPasswordInput)
+const loginShowPasswordButton = document.createElement('button')
+loginShowPasswordButton.textContent = 'Show'
+loginShowPasswordButton.type = 'button'
+loginShowPasswordButton.className = 'bg-black text-white px-2 self-end'
+loginForm.appendChild(loginShowPasswordButton)
+
+loginShowPasswordButton.addEventListener('click', function (event) {
+    event.preventDefault()
+
+    if (loginPasswordInput.type === 'password') {
+        loginPasswordInput.type = 'text'
+        loginShowPasswordButton.textContent = 'Hide'
+        loginPasswordInput.className = 'border bg-[gold] px-1'
+    }
+    else if (loginPasswordInput.type === 'text') {
+        loginPasswordInput.type = 'password'
+        loginShowPasswordButton.textContent = 'Show'
+        loginPasswordInput.className = 'border px-1'
+    }
+
+})
 const loginSubmitButton = document.createElement('button')
 loginSubmitButton.textContent = 'Login'
 loginSubmitButton.type = 'submit'
-loginSubmitButton.className = 'border border-black bg-gray-300 px-2'
+loginSubmitButton.className = 'bg-black  text-white px-2 self-center'
 loginForm.appendChild(loginSubmitButton)
 loginView.appendChild(loginForm)
 
@@ -253,7 +279,7 @@ loginForm.addEventListener('submit', function (event) {
 const loginRegisterLink = document.createElement('a')
 loginRegisterLink.textContent = 'Register'
 loginRegisterLink.href = ''
-loginRegisterLink.className = 'underline text-blue-500'
+loginRegisterLink.className = 'underline text-blue-800 font-bold'
 loginView.appendChild(loginRegisterLink)
 
 loginRegisterLink.addEventListener('click', function (event) {
@@ -275,6 +301,7 @@ homeView.style.display = 'none'
 
 const homeTitle = document.createElement('h1')
 homeTitle.textContent = 'MyPet'
+homeTitle.className = 'font-bold text-2xl alaign-middle'
 homeView.appendChild(homeTitle)
 
 const homeSubtitle = document.createElement('h2')
