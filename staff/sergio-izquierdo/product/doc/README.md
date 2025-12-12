@@ -38,6 +38,6 @@ Veterinary (User)
 
 ### UI/UX design
 
-[Figma](https://www.figma.com/design/DKVKZIFIQ9uXAdqP5eTdD8/Mypet?node-id=0-1&p=f&t=yRD5BtzIcUKfIb4e-0)
+[Figma](https://www.figma.com/design/DKVKZIFIQ9uXAdqP5eTdD8/Mypet?node-id=0-1&p=f&t=MyPYAiosHk1At5qA-0)
 
 ## Technical description
