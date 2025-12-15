@@ -3,7 +3,6 @@ const landingView = createView()
 
 const landingTitle = createTitle()
 setTextContent(landingTitle, 'MyPet')
-setClass(landingTitle, 'font-bold text-4xl alaign-middle')
 addChild(landingView, landingTitle)
 
 const landingWelcome = createParagraph()
@@ -15,7 +14,6 @@ const landingAccess =  createNavigation()
 
 const landingLoginLink = createLink()
 setTextContent(landingLoginLink, 'Login')
-setClass(landingLoginLink, 'underline text-blue-800 font-bold ')
 addChild(landingAccess, landingLoginLink)
 
 const landingOrText = createTextNode(' or ')
@@ -23,7 +21,6 @@ addChild(landingAccess, landingOrText)
 
 const landingRegisterLink = createLink()
 setTextContent(landingRegisterLink, 'Register')
-setClass(landingRegisterLink, 'underline text-blue-800 font-bold')
 addChild(landingAccess, landingRegisterLink)
 addChild(landingView, landingAccess)
 

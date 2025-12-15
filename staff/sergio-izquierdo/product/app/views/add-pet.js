@@ -3,22 +3,18 @@ hideView(addPetView)
 
 const addPetTitle = createTitle()
 setTextContent(addPetTitle, 'MyPet')
-setClass(addPetTitle, 'font-bold text-2xl alaign-middle')
 addChild(addPetView, addPetTitle)
 
 const addPetTopPanel = createView()
 setClass(addPetTopPanel, 'flex justify-between')
 addChild(addPetView, addPetTopPanel)
 
-
 const addPetSubtitle = createTitle2()
 setTextContent(addPetSubtitle, 'Add Pet')
-setClass(addPetSubtitle, 'font-bold')
 addChild(addPetTopPanel, addPetSubtitle)
 
 const addPetBackLink = createLink()
 setTextContent(addPetBackLink, '< Back')
-setClass(addPetBackLink, 'underline text-blue-800 font-bold')
 addChild(addPetTopPanel, addPetBackLink)
 
 addPetBackLink.addEventListener('click', function(event){
@@ -38,6 +34,7 @@ addChild(addPetForm, addPetNameLabel)
 
 const addPetNameInput = createInput()
 setId(addPetNameInput, 'name')
+setType(addPetNameInput, 'text')
 setClass(addPetNameInput, 'border px-1')
 addChild(addPetForm, addPetNameInput)
 
@@ -60,6 +57,7 @@ addChild(addPetForm, addPetWeightLabel)
 const addPetWeightInput = createInput()
 setId(addPetWeightInput, 'weight')
 setType(addPetWeightInput, 'number')
+setStep(addPetWeightInput, '0.01')
 setClass(addPetWeightInput, 'border px-1')
 addChild(addPetForm, addPetWeightInput)
 
@@ -77,8 +75,10 @@ addChild(addPetForm, addPetImageInput)
 const addPetSubmitButton = createButton()
 setTextContent(addPetSubmitButton, 'AddPet')
 setType(addPetSubmitButton, 'submit')
-setClass(addPetSubmitButton, 'bg-black text-white px-2 self-center mt-4')
+addClass('self-center')
+addClass('mt-4')
 addChild(addPetForm, addPetSubmitButton)
+
 addChild(addPetView, addPetForm)
 
 addPetForm.addEventListener('submit', function(event){

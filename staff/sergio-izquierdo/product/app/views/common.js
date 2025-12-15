@@ -20,8 +20,16 @@ function removeChild(element, childElement) {
 	element.removeChild(childElement)
 }
 
-function setClass(element, clazz) {    // se pone z porque la palabra class está reservada
-	element.className = clazz
+function setClass(element, value) {
+	element.className = value
+}
+
+function addClass(element, value) {
+	element.classList.add(value)
+}
+
+function removeClass(element, value) {
+	element.classList.remove(value)
 }
 
 function createTextNode(text) {
@@ -76,11 +84,17 @@ function showView(view) {
 }
 
 function createTitle(){
-	return createElement('h1')
+	const title = createElement('h1')
+	setClass(title, 'font-bold text-3xl alaign-middle')
+
+	return title
 }
 
 function createTitle2() {
-	return createElement('h2')
+	const title2 = createElement('h2')
+	setClass(title2, 'font-bold')
+
+	return title2
 }
 
 function createParagraph() {
@@ -93,8 +107,8 @@ function createNavigation() {
 
 function createLink() {
 	const link = createElement('a')
-	link.href = ''
 
+	setClass(link, 'cusrsor-pointer underline text-blue-800 font-bold')
 	return link
 }
 
@@ -111,7 +125,10 @@ function createInput() {
 }
 
 function createButton() {
-    return createElement('button')
+    const button = createElement('button')
+	setClass(button, 'bg-black text-white px-2')
+
+	return button
 }
 
 function createPanel() {
