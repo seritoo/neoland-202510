@@ -25,82 +25,84 @@ function Pet(id, userId, /*chip,*/ name, /*gender,*/ birthdate, weight, /*specie
 
 // manager
 
-function Data() {
-	this.users = []
-	this.usersCount = 0
-	this.pets = []
-	this.petsCount = 0
-	this.loggedInUserId = null
-}
-
-Data.prototype.insertUser = function (user) {
-	this.users.push(user)
-	this.usersCount++
-}
-
-Data.prototype.findUserByEmail = function (email) {
-	for (let i = 0; i < this.users.length; i++) {
-		const user = this.users[i]
-
-		if (user.email === email) return user
+class Data {
+	constructor(parameters) {
+		this.users = []
+		this.usersCount = 0
+		this.pets = []
+		this.petsCount = 0
+		this.loggedInUserId = null
 	}
-	return null
-}
 
-Data.prototype.findUserByUsername = function (username) {
-	for (let i = 0; i < this.users.length; i++) {
-		const user = this.users[i]
-
-		if (user.username === username) return user
+	insertUser = function (user) {
+		this.users.push(user)
+		this.usersCount++
 	}
-	return null
-}
 
-Data.prototype.findUserById = function(id) {
-    for (let i = 0; i < this.users.length; i++) {
-        const user = this.users[i]
+	findUserByEmail = function (email) {
+		for (let i = 0; i < this.users.length; i++) {
+			const user = this.users[i]
 
-        if (user.id === id) return user
-    }
+			if (user.email === email) return user
+		}
+		return null
+	}
 
-    return null
-}
+	findUserByUsername = function (username) {
+		for (let i = 0; i < this.users.length; i++) {
+			const user = this.users[i]
 
-Data.prototype.setLoggedInUserId = function(userId) {
-    this.loggedInUserId = userId
-}
+			if (user.username === username) return user
+		}
+		return null
+	}
 
-Data.prototype.getLoggedInUserId = function() {
-    return this.loggedInUserId
-}
+	findUserById = function (id) {
+		for (let i = 0; i < this.users.length; i++) {
+			const user = this.users[i]
 
-Data.prototype.insertPet = function (pet) {
-	this.pets.push(pet)
-	this.petsCount++
-}
+			if (user.id === id) return user
+		}
 
-Data.prototype.findPetsByUserId = function(userId) {
-    const foundPets = []
+		return null
+	}
 
-    for (let i = 0; i < this.pets.length; i++) {
-        const pet = this.pets[i]
+	setLoggedInUserId = function (userId) {
+		this.loggedInUserId = userId
+	}
 
-        if (pet.userId === userId)
-            foundPets.push(pet)
-    }
+	getLoggedInUserId = function () {
+		return this.loggedInUserId
+	}
 
-    return foundPets
-}
+	insertPet = function (pet) {
+		this.pets.push(pet)
+		this.petsCount++
+	}
 
-Data.prototype.findPetById = function(petId) {
-    for (let i = 0; i < this.pets.length; i++) {
-        const pet = this.pets[i]
+	findPetsByUserId = function (userId) {
+		const foundPets = []
 
-        if (pet.id === petId)
-            return pet
-    }
+		for (let i = 0; i < this.pets.length; i++) {
+			const pet = this.pets[i]
 
-    return null
+			if (pet.userId === userId)
+				foundPets.push(pet)
+		}
+
+		return foundPets
+	}
+
+	findPetById = function (petId) {
+		for (let i = 0; i < this.pets.length; i++) {
+			const pet = this.pets[i]
+
+			if (pet.id === petId)
+				return pet
+		}
+
+		return null
+	}
 }
 
 // instance
