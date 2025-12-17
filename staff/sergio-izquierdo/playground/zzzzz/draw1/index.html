@@ -7,16 +7,22 @@
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
   </head>
- <body class="bg-black">
-    <div id="root"></div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
-
-    <script src="main.jsx" type="text/babel"></script>
-
+  <body>
+    <div class="w-100 h-100 bg-pink-300 absolute left-100 top-100">
+      <div class="w-40 h-40 bg-white absolute top-10 left-5">
+        <div class="w-20 h-20 bg-[greenyellow] absolute bottom-0"></div>
+      </div>
+      <div class="w-40 h-40 bg-white absolute top-10 right-5">
+        <div class="w-20 h-20 bg-[greenyellow] absolute bottom-0"></div>
+      </div>
+      <div class="w-40 h-30 bg-[palevioletred] absolute left-30 top-50">
+        <div class="w-10 h-10 bg-black absolute top-10 left-5"></div>
+        <div class="w-10 h-10 bg-black absolute top-10 right-5"></div>
+      </div>
+      <div class="w-30 h-10 bg-red-500 absolute bottom-5 left-35"></div>
+      <div class="w-15 h-50 bg-pink-300 absolute -right-15"></div>
+      <div class="w-15 h-50 bg-pink-300 absolute -left-15"></div>
+    </div>
 
     <div
       class="w-200 h-50 bg-red-600 absolute left-250 top-100 rounded-tl-[100px] rounded-tr-[100px]"
@@ -88,6 +94,18 @@
       ></div>
       <div
         class="w-50 h-100 bg-transparent absolute -top-[50rem] border-l-[25rem] border-l-transparent border-r-[25rem] border-r-transparent border-r-red-500 border-b-[50rem] border-b-solid border-b-red-500"
+      ></div>
+    </div>
+    <div class="h-100 w-100 bg-[greenyellow] absolute rounded-full">
+      <div
+        class="w-40 h-40 bg-white rounded-full absolute left-30 top-18"
+      >
+        <div
+          class="w-15 h-15 bg-black rounded-full absolute left-12 top-12"
+        ></div>
+      </div>
+      <div
+        class="w-50 h-10 bg-red-500 absolute bottom-20 left-25 rounded-full"
       ></div>
     </div>
   </body>
