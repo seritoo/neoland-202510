@@ -8,6 +8,19 @@ function App() {
 	const displayValue = displayState[0]
 	const setDisplayValue = displayState[1]
 
+	const handlePlusLessClicked = () => {
+		
+	}
+
+	const handleDeleteClicked = () => {
+		let result = displayValue.slice(0, -1)
+
+		if(result.length == '0')
+			result = '0'
+
+		setDisplayValue(result)
+	}
+
 	const handleOneClicked = () => {
 		if (displayValue === '0')
 			setDisplayValue('1')
@@ -100,7 +113,7 @@ function App() {
 
 			<div className='p-2 flex flex-col gap-2'>
 				<div className='flex justify-between'>
-					<div className='bg-gray-400 p-2 rounded-full w-10 h-10 flex justify-center items-center cursorpointer'>⌫</div>
+					<div className='bg-gray-400 p-2 rounded-full w-10 h-10 flex justify-center items-center cursorpointer'onClick={handleDeleteClicked}>⌫</div>
 					<div className='bg-gray-400 p-2 rounded-full w-10 h-10 flex justify-center items-center cursorpointer'onClick={handleAllClearClicked}>AC</div>
 					<div className='bg-gray-400 p-2 rounded-full w-10 h-10 flex justify-center items-center cursorpointer'>%</div>
 					<div className='bg-gray-400 p-2 rounded-full w-10 h-10 flex justify-center items-center cursorpointer' onClick={handleDivideClicked}>÷</div>
