@@ -8,19 +8,6 @@ function App() {
 	const displayValue = displayState[0]
 	const setDisplayValue = displayState[1]
 
-	const handlePlusLessClicked = () => {
-		
-	}
-
-	const handleDeleteClicked = () => {
-		let result = displayValue.slice(0, -1)
-
-		if(result.length == '0')
-			result = '0'
-
-		setDisplayValue(result)
-	}
-
 	const handleOneClicked = () => {
 		if (displayValue === '0')
 			setDisplayValue('1')
@@ -84,8 +71,11 @@ function App() {
 			setDisplayValue(displayValue + '9')
 	}
 	const handleZeroClicked = () => {
-		if(displayValue != '0')
+		if(displayValue != '0') {
+			const newValue = displayValue + '0'
+
 			setDisplayValue(displayValue + '0')
+		}
 	}
 
 	const handleAllClearClicked = () => setDisplayValue('0')
@@ -103,8 +93,56 @@ function App() {
 
 		const result = eval(operation)
 
-		setDisplayValue(String(result))
+		setDisplayValue(newValue)
 	}
+
+	const handleBackspaceClicked = () => {
+		if(displayValue.length === 1) {
+			if(displayValue === '0')
+				return
+			else
+				setDisplayValue('0')
+		} else {
+			const newValue = displayValue.slice(0, displayValue.length -1)
+
+			setDisplayValue(newValue)
+		}
+	}
+
+	const handleCommaClicked = () => {
+		const lastCharacter = displayValue.at(-1)
+
+		if(lastCharacter === ',') return
+
+		const lastIndexOfDivide = displayValue.lastIndexOf('÷')
+		const lastIndexOfMultiply = displayValue.lastIndexOf('×')
+		const lastIndexOfSubtract = displayValue.lastIndexOf('-')
+		const lastIndexOfAdd = displayValue.lastIndexOf('+')
+
+		const lastINdexOfOperation = Math.max(lastIndexOfDivide, lastIndexOfMultiply, lastIndexOfSubtract, lastIndexOfAdd)
+
+		const lastIndex = displayValue.length - 1
+
+		let newValue
+
+		if(lastINdexOfOperation === lastIndex)
+			newValue = displayValue + '0,'
+		else if( lastINdexOfOperation === -1) {
+			if(displayValue.includes(',')) return
+
+			newValue = displayValue + ','
+		} else {
+			const lastOperand = displayValue.slice(lastINdexOfOperation + 1)
+
+			if(lastOperand.includes(',')) return
+
+			newValue = displayValue + ','
+		}
+
+		setDisplayValue(newValue)
+	}
+
+	
 
 	console.log('App -> render')
 
