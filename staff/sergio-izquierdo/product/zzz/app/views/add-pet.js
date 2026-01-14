@@ -5,7 +5,7 @@ const addPetTitle = createTitle()
 setTextContent(addPetTitle, 'MyPet')
 addChild(addPetView, addPetTitle)
 
-const addPetTopPanel = createView()
+const addPetTopPanel = createPanel()
 setClass(addPetTopPanel, 'flex justify-between')
 addChild(addPetView, addPetTopPanel)
 
@@ -75,8 +75,8 @@ addChild(addPetForm, addPetImageInput)
 const addPetSubmitButton = createButton()
 setTextContent(addPetSubmitButton, 'AddPet')
 setType(addPetSubmitButton, 'submit')
-addClass('self-center')
-addClass('mt-4')
+addClass(addPetSubmitButton, 'self-center')
+addClass(addPetSubmitButton, 'mt-4')
 addChild(addPetForm, addPetSubmitButton)
 
 addChild(addPetView, addPetForm)
@@ -86,7 +86,7 @@ addPetForm.addEventListener('submit', function(event){
 
     const name = getValue(addPetNameInput)
     const birthdate = getValue(addPetBirthdateInput)
-    const weight = parsefloat(getValue(addPetWeightInput))
+    const weight = parseFloat(getValue(addPetWeightInput))
     const image = getValue(addPetImageInput)
 
       try {

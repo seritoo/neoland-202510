@@ -1,5 +1,5 @@
 const homeView = createView()
-//hideView(homeView)
+hideView(homeView)
 
 const homeTitle = createTitle()
 setTextContent(homeTitle, 'MyPet')
@@ -14,7 +14,7 @@ setClass(homeTopPanel, 'flex justify-between')
 addChild(homeView, homeTopPanel)
 
 const homeAddPetButton = createButton()
-setTextContent(homeAddPetButton, '+ Pet')
+setTextContent(homeAddPetButton, 'Add Pet')
 setType(homeAddPetButton, 'button')
 addChild(homeView, homeAddPetButton)
 
@@ -115,7 +115,7 @@ function renderHomePetList() {
         const petItem = createListItem()
         setClass(petItem, 'flex items-center border-2 border-black p-2 justify-between')
 
-        onst panel = createPanel()
+        const panel = createPanel()
         setClass(panel, 'flex items-center gap-4')
 
          const image = createImage()
