@@ -76,7 +76,7 @@ function Register({ onGoToLogin }) {
                 <input id="passwordRepeat" name="passwordRepeat" autoComplete="off" type={passwordRepeatType} className={passwordRepeatType === 'password' ? 'border px-1' : 'border px-1 bg-[gold]'} />
                 <button className="self-end" type="button" onClick={handleTogglePasswordRepeatClick}>{passwordRepeatType === 'password' ? 'Show' : 'Hide'}</button>
 
-                <button className="bg-black text-white px-1 self-center" type="submit">Register</button>
+                <Button className="self-center" type="submit">Register</Button>
             </form>
 
             <a className="cursor-pointer underline font-bold" onClick={handleLoginClick}>Login</a>

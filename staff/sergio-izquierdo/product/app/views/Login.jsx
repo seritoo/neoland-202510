@@ -55,7 +55,7 @@ function Login({ onGoToHome, onGoToRegister }) {
             <input id="password" name="password" autoComplete="off" type={passwordType} className={passwordType === 'password' ? 'border px-1' : 'border px-1 bg-[gold]'} />
             <button className="self-end" type="button" onClick={handleTogglePasswordClick}>{passwordType === 'password' ? 'Show' : 'Hide'}</button>
 
-            <button className="bg-black text-white px-1 self-center" type="submit">Login</button>
+            <Button className="self-center" type="submit">Login</Button>
         </form>
 
         <a className="cursor-pointer underline font-bold" onClick={handleRegisterClick}>Register</a>

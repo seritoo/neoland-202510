@@ -56,7 +56,7 @@ function AddPet({ onGoToHome }) {
                 <label htmlFor="image">Image</label>
                 <input id="image" name="image" autoComplete="off" type="url" className="border px-1" />
 
-                <button className="bg-black text-white px-1 self-center mt-4" type="submit">Add Pet</button>
+                <Button className="self-center mt-4" type="submit">Add Pet</Button>
             </form>
 
             <p>{message}</p>
