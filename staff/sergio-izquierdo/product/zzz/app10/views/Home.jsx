@@ -1,6 +1,6 @@
 const { useState } = React
 
-function Home({ onGoToAddPet, onGoToLogin, onGoToProfile }) {
+function Home({ onGoToAddPet, onGoToLogin }) {
     console.log('Home -> call')
 
     const [message, setMessage] = useState('')
@@ -25,12 +25,6 @@ function Home({ onGoToAddPet, onGoToLogin, onGoToProfile }) {
         }
     }
 
-    const handleProfileClick = event => {
-        event.preventDefault()
-
-        onGoToProfile()
-    }
-
     console.log('Home -> render')
 
     return <div className="p-4">
@@ -39,15 +33,12 @@ function Home({ onGoToAddPet, onGoToLogin, onGoToProfile }) {
         <h2 className="font-bold">Welcome Home!</h2>
 
         <div className="flex justify-between">
-            <Anchor onClick={handleAddPetClick}>+ Pet</Anchor>
-
-            <Anchor onClick={handleProfileClick}>Profile</Anchor>
-
+            <Button type="button" onClick={handleAddPetClick}>+ Pet</Button>
             <Button type="button" onClick={handleLogoutClick}>Logout</Button>
         </div>
 
-        <PetList />
+       <PetList />
 
         <p>{message}</p>
     </div>
-} 
+}

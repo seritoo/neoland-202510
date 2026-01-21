@@ -15,18 +15,17 @@ function App() {
 
     console.log('App -> render')
 
-    if (view === 'landing')
-        return <Landing onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} />
+    return <>
 
-    if (view === 'login')
-        return <Login onGoToHome={handleGoToHome} onGoToRegister={handleGoToRegister} />
+        {(view === 'landing' && <Landing onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} />)}
 
-    if (view === 'register')
-        return <Register onGoToLogin={handleGoToLogin} />
+        {(view === 'login' && <Login onGoToHome={handleGoToHome} onGoToRegister={handleGoToRegister} />)
+        }
+        {(view === 'register' && <Register onGoToLogin={handleGoToLogin} />)
+        }
 
-    if (view === 'home')
-        return <Home onGoToAddPet={handleGoToAddPet} onGoToLogin={handleGoToLogin} />
+        {(view === 'home' && <Home onGoToAddPet={handleGoToAddPet} onGoToLogin={handleGoToLogin} />)
+        }
 
-    if (view === 'add-pet')
-        return <AddPet onGoToHome={handleGoToHome} />
+        {(view === 'add-pet' && <AddPet onGoToHome={handleGoToHome} />)}    </>
 }
