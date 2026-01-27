@@ -6,85 +6,11 @@
     <title>Collection</title>
   </head>
   <body style="background-color: black">
-    <script>
-      function Collection() {
-      	this.count = 0
-      }
 
-      Collection.prototype.add = function (item) {
-      	this[this.count] = item
-      	this.count++
-      }
-
-	  Collection.prototype.remove = function (item) {
-		for( let i = 0; i < this.count; i++)
-			if(this[i] === item)
-				delete this[i]
-	  }
-
-	  Collection.prototype.removeFirst = function (item) {
-		for(let i = 0; i < this.count; i++)
-			if(this[i] === item) {
-				delete this[i]
-				return;
-			}
-	  }
-
-	  Collection.prototype.update = function (target, replacement) {
-		for(let i = 0; i < this.count; i++)
-			if(this[i] === target)
-				this[i] = replacement
-	  }
-
-	  Collection.prototype.updateFirst = function (target, replacement) {
-		for(let i = 0; i < this.count; i++)
-			if(this[i] === target) {
-				this[i] = replacement
-				return;
-			}
-	  }
-
-	  Collection.prototype.push = function (item) {
-		this[this.count] = item
-		this.count++
-	  }
-
-	  Collection.prototype.pop = function () {
-		const lastItem = this[this.count - 1]
-		delete this[this.count -1]
-		this.count--
-
-		return lastItem
-	  }
-
-	  Collection.prototype.shift = function () {
-		const firstItem = this[0]
-		this.count--
-		for(let i = 0; i < this.count; i++)
-			this[i] = this[i + 1]
-
-		delete this[this.count]
-		return firstItem
-	  }
-
-	  const names = new Collection()
-	  names.add('Juan')
-	  names.add('Sergio')
-	  names.add('Laura')
-	  names.add('Albert')
-	  names.add('Sergio')
-	  names.add('Manu')
-
-	  const colors = new Collection()
-	  colors.add('red')
-	  colors.add('green')
-	  colors.add('blue')
-
-	  const nums = new Collection()
-	  nums.add(3.141592)
-	  nums.add(666)
-	  nums.add(2000)
-
-    </script>
+    <script src="collection.js"></script>
+    <script src="collection.test.js"></script>
+    
   </body>
 </html>
+
+
