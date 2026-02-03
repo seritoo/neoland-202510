@@ -32,6 +32,34 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
     }
 })
 
+api.patch('/users/email', jsonBodyParser, (req, res) => {
+	try{
+		const userId = req.headers.authorization.slice(6)
+
+		const { email, newEmail, newEmailRepeat } = req.body
+
+		logic.ChangeUserEmail(userId, email, newEmail, newEmailRepeat)
+
+		res.status(204).send()
+	} catch (error) {
+		res.status(400).json({error: error.constructor.name, message: error.message})
+	}
+})
+
+api.patch('/users/password', jsonBodyParser, (req, res) => {
+	try{
+		const userId = req.headers.authorization.slice(6)
+
+		const { password, newPassword, newPasswordRepeat} = req.body
+
+		logic.changeUserPassword(userId, password, newPassword, newPasswordRepeat)
+
+		res.status(204).send()
+	} catch (error) {
+		res.status(400).json({error: error.constructor.name, message: error.message})
+	}
+})
+
 api.post('/pets', jsonBodyParser, (req, res) => {
 	try{
 		const userId = req.headers.authorization.slice(6)
@@ -73,32 +101,6 @@ api.delete('/pets/:petId', (req, res) => {
 	}
 })
 
-api.patch('/users/updateEmail', jsonBodyParser, (req, res) => {
-	try{
-		const userId = req.headers.authorization.slice(6)
 
-		const { email, newEmail, newEmailRepeat } = req.body
-
-		logic.ChangeUserEmail(userId, email, newEmail, newEmailRepeat)
-
-		res.status(204).send()
-	} catch (error) {
-		res.status(400).json({error: error.constructor.name, message: error.message})
-	}
-})
-
-api.patch('/user/updatePassword', jsonBodyParser, (req, res) => {
-	try{
-		const userId = req.headers.authorization.slice(6)
-
-		const { password, newPassword, newPasswordRepeat} = req.body
-
-		logic.changeUserPassword(userId, password, newPassword, newPasswordRepeat)
-
-		res.status(204).send()
-	} catch (error) {
-		res.status(400).json({error: error.constructor.name, message: error.message})
-	}
-})
 
 api.listen(8080, () => console.log('API listening on port 8080'))
