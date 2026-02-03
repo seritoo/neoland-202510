@@ -1,0 +1,1 @@
+curl -X PATCH -H 'Authorization: Basic user-0' -H 'Content-Type: application/json' -d '{"email":"jack@skellington.com", "newEmail":"jack@christmas.com", "newEmailRepeat":"jack@christmas.com"}' http://localhost:8080/users/updateEmail -v
