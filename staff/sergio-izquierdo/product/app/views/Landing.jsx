@@ -1,4 +1,6 @@
-function Landing({ onGoToLogin, onGoToRegister }) {   // con onGoToLogin y ToRegister se maneja desde la Landing a que vista ir
+import { Anchor } from './components/commons/Anchor'
+
+export function Landing({ onGoToLogin, onGoToRegister }) {   // con onGoToLogin y ToRegister se maneja desde la Landing a que vista ir
     console.log('Landing -> call')
 
     const handleLoginClick = event => {   // manejamos el click abajo y una vez manejado usamos la prop onGoToLogin para ir a la view
@@ -20,7 +22,7 @@ function Landing({ onGoToLogin, onGoToRegister }) {   // con onGoToLogin y ToReg
         <p>Welcome!</p>
 
         <nav>
-            <a className="cursor-pointer underline font-bold" onClick={handleLoginClick}>Login</a> or <a className="cursor-pointer underline font-bold" onClick={handleRegisterClick}>Register</a>
+           <Anchor onClick={handleLoginClick}>Login</Anchor> or <Anchor onClick={handleRegisterClick}>Register</Anchor>
         </nav>
     </div>
 }

@@ -1,37 +1,67 @@
-const { useState } = React
+import { useState } from 'react'
 
-function App() {
-    console.log('App -> call')
+import { Form } from './components/commons/Form'
+import { Field } from './components/commons/Field'
+import { Button } from './components/commons/Button'
+import { Anchor } from './components/commons/Anchor'
 
-    const [view, setView] = useState('landing')
+import { logic } from '../logic'
 
-    const handleGoToLogin = () => setView('login')
+export function AddPet({ onGoToHome }) {
+    console.log('AddPet -> call')
 
-    const handleGoToRegister = () => setView('register')
+    const [message, setMessage] = useState('')
 
-    const handleGoToHome = () => setView('home')
+    const handleBackClick = event => {
+        event.preventDefault()
 
-    const handleGoToAddPet = () => setView('add-pet')
+        onGoToHome()
+    }
 
-    const handleGoToProfile = () => setView('profile')
+    const handleAddPetSubmit = event => {
+        event.preventDefault()
 
-    console.log('App -> render')
+        const form = event.target
 
-    if (view === 'landing')
-        return <Landing onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} />
+        const name = form.name.value
+        const birthdate = form.birthdate.value
+        const weight = Number(form.weight.value)
+        const image = form.image.value
 
-    if (view === 'login')
-        return <Login onGoToHome={handleGoToHome} onGoToRegister={handleGoToRegister} />
+        try {
+            logic.addPet(name, birthdate, weight, image)
 
-    if (view === 'register')
-        return <Register onGoToLogin={handleGoToLogin} />
+            form.reset()
 
-    if (view === 'home')
-        return <Home onGoToAddPet={handleGoToAddPet} onGoToLogin={handleGoToLogin} onGoToProfile={handleGoToProfile} />
+            onGoToHome()
+        } catch (error) {
+            setMessage(error.message)
+        }
+    }
 
-    if (view === 'add-pet')
-        return <AddPet onGoToHome={handleGoToHome} />
+    console.log('AddPet -> render')
 
-    if (view === 'profile')
-        return <Profile onGoToHome={handleGoToHome} />
+    return <div className="p-4">
+            <h1 className="font-bold text-xl">MyPet</h1>
+
+            <div className="flex justify-between">
+                <h2 className="font-bold">Add Pet</h2>
+
+                <Anchor onClick={handleBackClick}>&lt; Back</Anchor>
+            </div>
+
+            <Form onSubmit={handleAddPetSubmit}>
+                <Field alias="name" type="text">Name</Field>
+
+                <Field alias="birthdate" type="date">Birthdate</Field>
+
+                <Field alias="weight" type="number">Weight (kg)</Field>
+
+                <Field alias="image" type="url">Image</Field>
+
+                <Button className="self-center mt-4" type="submit">Add Pet</Button>
+            </Form>
+
+            <p>{message}</p>
+        </div>
 }

@@ -1,6 +1,15 @@
-const { useState } = React
+import { useState } from 'react'
 
-function Register({ onGoToLogin }) {
+import { Form } from './components/commons/Form'
+import { Field } from './components/commons/Field'
+import { PasswordField } from './components/commons/PasswordField'
+import { Button } from './components/commons/Button'
+import { Anchor } from './components/commons/Anchor'
+
+import { logic } from '../logic'
+
+
+export function Register({ onGoToLogin }) {
     console.log('Register -> call')
 
     const [message, setMessage] = useState('')

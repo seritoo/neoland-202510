@@ -1,6 +1,15 @@
-const { useState } = React
+import { useState } from 'react'
 
-function ChangeUserPassword({ }) {
+import { Form } from './commons/Form'
+import { PasswordField } from './commons/PasswordField'
+import { Button } from './commons/Button'
+
+import { logic } from '../../logic'
+
+
+
+
+export function ChangeUserPassword({ }) {
     console.log('ChangeUserPassword -> call')
 
     const [message, setMessage] = useState('')

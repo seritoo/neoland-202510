@@ -1,6 +1,13 @@
-const { useState } = React
+import { useState } from 'react'
 
-function Home({ onGoToAddPet, onGoToLogin, onGoToProfile }) {
+import { Anchor } from './components/commons/Anchor'
+import { Button } from './components/commons/Button'
+import { PetList } from './components/PetList'
+
+import { logic } from '../logic'
+
+
+export function Home({ onGoToAddPet, onGoToLogin, onGoToProfile }) {
     console.log('Home -> call')
 
     const [message, setMessage] = useState('')
@@ -50,4 +57,4 @@ function Home({ onGoToAddPet, onGoToLogin, onGoToProfile }) {
 
         <p>{message}</p>
     </div>
-} 
+}
