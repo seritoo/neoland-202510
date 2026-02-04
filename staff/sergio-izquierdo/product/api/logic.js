@@ -78,7 +78,14 @@ class Logic {
 
         const user = data.findUserById(userId)
 
+        if (!user) throw new Error('user not found')
+
+
         if(user.email !== email) throw new Error('email do not belong to user')
+
+        const otherUser = data.findUserByEmail(newEmail)
+
+        if (otherUser) throw new Error('newEmail belongs to another user')
 
             user.email = newEmail // acutalizamos el usuario con el nuevo mail
     }
@@ -99,6 +106,8 @@ class Logic {
 		if(newPassword !== newPasswordRepeat) throw new Error('newPassword and nePasswordRepeat do not match')
 
 		const user = data.findUserById(userId)
+
+        if (!user) throw new Error('user not found')
 
 		if(user.password !== password) throw new Error('incorrect password')
 
