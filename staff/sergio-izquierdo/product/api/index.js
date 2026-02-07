@@ -87,7 +87,7 @@ api.get('/pets', (req, res) => {  // no hay jsonBodyParser porque estoy pidiendo
 	}
 })
 
-api.delete('/pets/:petId', (req, res) => {
+api.delete('/pets/:petId', (req, res) => {  // usamos :petId como variable dinámica, indicamos que se borra un pet pero no sabemos cual
 	try{
 		const userId = req.headers.authorization.slice(6)
 
