@@ -27,15 +27,12 @@ export function Register({ onGoToLogin }) {
 
         try {
             logic.registerUser(name, email, username, password, passwordRepeat)
-            .then(() => {
-                 form.reset()
 
-                setMessage('')
+            form.reset()
 
-                onGoToLogin()
+            setMessage('')
 
-            })
-			.catch(error => setMessage(error.message))
+            onGoToLogin()
         } catch (error) {
             setMessage(error.message)
         }

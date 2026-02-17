@@ -15,12 +15,9 @@ export function PetList() {
 		console.log('Home -> useEffect')
 
 		try {
-			logic.getPets()
-                .then((pets) => { // recibe pets como parámetro porque este then recive lo que retorna el callback anterior (api)
+			const pets = logic.getPets()
 
-     			setPets(pets)
-                })
-                .catch(error => setMessage(error.message))
+			setPets(pets)
 		} catch (error) {
 			setMessage(error.message)
 		}
@@ -44,16 +41,14 @@ export function PetList() {
 
 	const handleConfirmDeletePetClick = event => {
         event.preventDefault()
+
         try {
             logic.deletePet(petId)
-                .then(() => {
-                    return logic.getPets()
-                })
-                .then(pets => {
-                    setPetId(null) // borra el pet
-                    setPets(pets) // actualiza los pets
-                })
-                .catch(error => setMessage(error.message))
+
+            const pets = logic.getPets() //traemos y actualizamos pets
+
+            setPetId(null)
+            setPets(pets)
         } catch (error) {
             setMessage(error.message)
         }
@@ -71,7 +66,7 @@ export function PetList() {
                 <p>{pet.name}</p>
             </div>
 
-            <Button id={pet.id} className="justify-self-end" onClick={handleDeletePetClick}>🗑️</Button>
+            <Button id={pet.id} className="justify-self-end" onClick={handleCancelDeletePetClick}>🗑️</Button>
         </li>
 
         petItems.push(petItem)

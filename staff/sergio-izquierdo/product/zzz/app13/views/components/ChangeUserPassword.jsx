@@ -25,12 +25,8 @@ export function ChangeUserPassword({ }) {
 
         try {
             logic.changeUserPassword(password, newPassword, newPasswordRepeat)
-            .then(() => {
-                form.reset()
 
-                setMessage('user password successfully updated')
-            })
-            .catch(error => setMessage(error.message))
+            form.reset()
         } catch (error) {
             setMessage(error.message)
         }

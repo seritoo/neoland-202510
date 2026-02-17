@@ -30,12 +30,10 @@ export function AddPet({ onGoToHome }) {
 
         try {
             logic.addPet(name, birthdate, weight, image)
-                .then(() => {   // si todo ha ido bien en el callback de logic
-                    form.reset()
 
-                    onGoToHome()
-                })
-                .catch(error => setMessage(error.message))
+            form.reset()
+
+            onGoToHome()
         } catch (error) {
             setMessage(error.message)
         }
