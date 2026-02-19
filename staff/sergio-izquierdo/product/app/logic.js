@@ -47,7 +47,7 @@ class Logic {
 
                         const { error, message } = body
 
-                        throw Error(message)
+                        throw new Error(message)
 
                     })
             })
@@ -97,17 +97,17 @@ class Logic {
     changeUserEmail(email, newEmail, newEmailRepeat) {
         if (data.getLoggedInUserId() === null) throw new Error('user not logged in')
 
-        if (typeof email !== 'string') throw new Error('invalid e-mail type 😥')
-        if (email.length < 6) throw new Error('invalid e-mail length 😥')
-        if (!EMAIL_REGEX.test(email)) throw new Error('invalid e-mail format 😥')
+        if (typeof email !== 'string') throw new Error('invalid e-mail type')
+        if (email.length < 6) throw new Error('invalid e-mail length')
+        if (!EMAIL_REGEX.test(email)) throw new Error('invalid e-mail format')
 
-        if (typeof newEmail !== 'string') throw new Error('invalid new E-mail type 😥')
-        if (newEmail.length < 6) throw new Error('invalid new E-mail length 😥')
-        if (!EMAIL_REGEX.test(newEmail)) throw new Error('invalid e-mail format 😥')
+        if (typeof newEmail !== 'string') throw new Error('invalid new E-mail type')
+        if (newEmail.length < 6) throw new Error('invalid new E-mail length')
+        if (!EMAIL_REGEX.test(newEmail)) throw new Error('invalid e-mail format')
 
-        if (typeof newEmailRepeat !== 'string') throw new Error('invalid e-mail type 😥')
-        if (newEmailRepeat.length < 6) throw new Error('invalid new E-mail repeat length 😥')
-        if (!EMAIL_REGEX.test(newEmailRepeat)) throw new Error('invalid new E-mail repeat format 😥')
+        if (typeof newEmailRepeat !== 'string') throw new Error('invalid e-mail type')
+        if (newEmailRepeat.length < 6) throw new Error('invalid new E-mail repeat length')
+        if (!EMAIL_REGEX.test(newEmailRepeat)) throw new Error('invalid new E-mail repeat format')
 
         if (newEmail !== newEmailRepeat) throw new Error('new E-mail and new E-mail repeat do not match 😥')
 
@@ -120,7 +120,7 @@ class Logic {
             body: JSON.stringify({ email, newEmail, newEmailRepeat })
         })
             .then(res => {
-                debugger
+
                 const { status } = res // manejamos el status
 
                 if (status === 204)
@@ -128,7 +128,7 @@ class Logic {
 
                 return res.json()
                     .then(body => {
-                        debugger
+
                         const { error, message } = body
 
                         throw new Error(message)
@@ -159,7 +159,7 @@ class Logic {
             body: JSON.stringify({ password, newPassword, newPasswordRepeat })
         })
             .then(res => {
-                debugger
+
                 const { status } = res
 
                 if (status === 204)
@@ -167,7 +167,7 @@ class Logic {
 
                 return res.json()
                     .then(body => {
-                        debugger
+
                         const { error, message } = body
 
                         throw new Error(message)
@@ -200,7 +200,7 @@ class Logic {
             body: JSON.stringify({ name, birthdate, weight, image })
         })
             .then(res => {
-                debugger
+
                 const { status } = res
 
                 if (status === 201)
@@ -208,10 +208,10 @@ class Logic {
 
                 return res.json()
                     .then(body => {
-                        debugger
+
                         const { error, message } = body
 
-                        console.error(error, message)
+                        throw new Error(message)
                     })
             })
     }
@@ -226,28 +226,28 @@ class Logic {
             }
         })
             .then(res => {
-                debugger
+
                 const { status } = res
 
                 if (status === 200)
                     return res.json()
                         .then(pets => {
-                            debugger
+
                             return pets  //  esto lo usa el petlist
                         })
 
                 return res.json()
                     .then(body => {
-                        debugger
+
                         const { error, message } = body
 
-                        console.error(error, message)
+                        throw new Error(message)
                     })
             })
 
     }
 
-    deletePet(petId) {
+    removePet(petId) {
         if (data.getLoggedInUserId() === null) throw new Error('user not logged in')
 
         if (typeof petId !== 'string') throw new Error('invalid pet-id type')
@@ -255,28 +255,60 @@ class Logic {
         if (!PET_ID_REGEX.test(petId)) throw new Error('invalid pet-id format')
 
         return fetch('http://localhost:8080/pets/' + petId, { // construimos la la ruta con el petId
-    method: 'DELETE',
-    headers: {
-        Authorization: 'Basic ' + data.getLoggedInUserId()
-    }
-})
-    .then(res => {
-        debugger
-        const { status } = res
+            method: 'DELETE',
+            headers: {
+                Authorization: 'Basic ' + data.getLoggedInUserId()
+            }
+        })
+            .then(res => {
 
-        if (status === 204)
-            return
+                const { status } = res
 
-        return res.json()
-            .then(body => {
-                debugger
-                const { error, message } = body
+                if (status === 204)
+                    return
 
-                console.error(error, message)
+                return res.json()
+                    .then(body => {
+
+                        const { error, message } = body
+
+                        throw new Error(message)
+                    })
             })
-    })
+    }
+
+    getPet(petId) {
+        if (data.getLoggedInUserId() === null) throw new Error('user not logged in')
+
+        if (typeof petId !== 'string') throw new Error('invalid pet-id type')
+
+        if (!PET_ID_REGEX.test(petId)) throw new Error('invalid pet-id format')
+
+        return fetch('http://localhost:8080/pets/' + petId, { // construimos la la ruta con el petId
+            //method: 'GET',  el método GET se puede omitir, el fetch lo reconocerá como tal
+            headers: {
+                Authorization: 'Basic ' + data.getLoggedInUserId()
+            }
+        })
+            .then(res => {
+
+                const { status } = res
+
+                if (status === 200)
+                    return res.json()
+                        .then(pet => pet)
+
+                return res.json()
+                    .then(body => {
+
+                        const { error, message } = body
+
+                        throw new Error(message)
+                    })
+            })
     }
 }
+
 
 // instance
 
