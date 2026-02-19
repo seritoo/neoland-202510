@@ -60,21 +60,12 @@ export function PetList() {
         }
     }
 
-    const handleGoToPetClick = event => {
-        event.preventDefault()
-
-        const li = event.target
-
-        const petId = li.id
-
-        console.log(petId)
-    }
-
     console.log('PetList -> render')
 
-    return <div>
-        <ul className='flex flex-col gap-2 mt-2'>
-            {pets.map(pet => <li id={pet.id} className="flex items-center border-2 border-black p-2 justify-between" onClick={handleGoToPetClick}>
+    const petItems = []
+
+    for (const pet of pets) {
+        const petItem = <li className="flex items-center border-2 border-black p-2 justify-between">
             <div className="flex items-center gap-4">
                 <img src={pet.image} className="rounded-full w-10 h-10 object-cover" />
 
@@ -82,7 +73,14 @@ export function PetList() {
             </div>
 
             <Button id={pet.id} className="justify-self-end" onClick={handleDeletePetClick}>🗑️</Button>
-        </li>)}
+        </li>
+
+        petItems.push(petItem)
+    }
+
+    return <div>
+        <ul className="flex flex-col gap-2 mt-2">
+            {petItems}
         </ul>
 
         {petId && <div className="w-full h-full fixed top-0 left-0 bg-black/75 flex justify-center items-center">
@@ -96,5 +94,6 @@ export function PetList() {
             </div>
         </div>}
 
-    {feedback && <Feedback feedback={feedback} />}    </div>
+        {feedback && <Feedback feedback={feedback} />}
+    </div>
 }
