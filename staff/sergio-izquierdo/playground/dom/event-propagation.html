@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>event propagation</title>
+
+	<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+	<ul>
+		 <li id="persona-0" class="flex items-center gap-4 border">
+            <img class="w-20 border" src="https://thispersondoesnotexist.com/" alt="">
+            <p class="border">persona 1</p>
+            <button id="persona-0" class="border">🗑️</button>
+        </li>
+	</ul>
+
+	<script>
+        // const img = document.querySelector('img')
+        // img.addEventListener('click', function(event) {
+        //     event.preventDefault()
+        //     // event.stopPropagation()
+
+        //     console.log('img', event.currentTarget, event.currentTarget.id)
+        // })
+
+        // const p = document.querySelector('p')
+        // p.addEventListener('click', function(event) {
+        //     event.preventDefault()
+        //     // event.stopPropagation()
+
+        //     console.log('p', event.currentTarget, event.currentTarget.id)
+        // })
+
+        const button = document.querySelector('button')
+        button.addEventListener('click', function(event) {
+            event.preventDefault()
+            event.stopPropagation()
+
+            console.log('button', event.currentTarget, event.currentTarget.id)
+        })
+
+        const li = document.querySelector('li')
+        li.addEventListener('click', function(event) {
+            event.preventDefault()
+            // event.stopPropagation()
+
+            console.log('li', event.currentTarget, event.currentTarget.id)
+        }, !true)
+    </script>
+
+</body>
+</html>
