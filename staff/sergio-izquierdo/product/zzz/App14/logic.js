@@ -36,7 +36,7 @@ class Logic {
             body: JSON.stringify({ name, email, username, password, passwordRepeat })
         })
             .then(res => {
-
+                debugger
                 const { status } = res
 
                 if (status === 201)
@@ -44,7 +44,7 @@ class Logic {
 
                 return res.json()
                     .then(body => {
-
+                        debugger
                         const { error, message } = body
 
                         throw Error(message)
@@ -68,20 +68,20 @@ class Logic {
             body: JSON.stringify({ username, password })
         })
             .then(res => {
-
+                debugger
                 const { status } = res
 
                 if (status === 200)
                     return res.json()
                         .then(userId => {
-
+                            debugger
                             data.setLoggedInUserId(userId)
 
                         })
 
                 return res.json()
                     .then(body => {
-
+                        debugger
                         const { error, message } = body
 
                         throw new Error(message)
@@ -97,19 +97,19 @@ class Logic {
     changeUserEmail(email, newEmail, newEmailRepeat) {
         if (data.getLoggedInUserId() === null) throw new Error('user not logged in')
 
-        if (typeof email !== 'string') throw new Error('invalid e-mail type 😥')
-        if (email.length < 6) throw new Error('invalid e-mail length 😥')
-        if (!EMAIL_REGEX.test(email)) throw new Error('invalid e-mail format 😥')
+        if (typeof email !== 'string') throw new Error('invalid email type')
+        if (email.length < 6) throw new Error('invalid email length')
+        if (!EMAIL_REGEX.test(email)) throw new Error('invalid email format')
 
-        if (typeof newEmail !== 'string') throw new Error('invalid new E-mail type 😥')
-        if (newEmail.length < 6) throw new Error('invalid new E-mail length 😥')
-        if (!EMAIL_REGEX.test(newEmail)) throw new Error('invalid e-mail format 😥')
+        if (typeof newEmail !== 'string') throw new Error('invalid newEmail type')
+        if (newEmail.length < 6) throw new Error('invalid newEmail length')
+        if (!EMAIL_REGEX.test(newEmail)) throw new Error('invalid email format')
 
-        if (typeof newEmailRepeat !== 'string') throw new Error('invalid e-mail type 😥')
-        if (newEmailRepeat.length < 6) throw new Error('invalid new E-mail repeat length 😥')
-        if (!EMAIL_REGEX.test(newEmailRepeat)) throw new Error('invalid new E-mail repeat format 😥')
+        if (typeof newEmailRepeat !== 'string') throw new Error('invalid email type')
+        if (newEmailRepeat.length < 6) throw new Error('invalid newEmailRepeat length')
+        if (!EMAIL_REGEX.test(newEmailRepeat)) throw new Error('invalid newEmailRepeat format')
 
-        if (newEmail !== newEmailRepeat) throw new Error('new E-mail and new E-mail repeat do not match 😥')
+        if (newEmail !== newEmailRepeat) throw new Error('newEmail and newEmailRepeat do not match')
 
         return fetch('http://localhost:8080/users/email', {
             method: 'PATCH',
@@ -142,13 +142,13 @@ class Logic {
         if (typeof password !== 'string') throw new Error('invalid password type')
         if (password.length < 8) throw new Error('invalid password length')
 
-        if (typeof newPassword !== 'string') throw new Error('invalid new Password type')
-        if (newPassword.length < 8) throw new Error('invalid new Password length')
+        if (typeof newPassword !== 'string') throw new Error('invalid newPassword type')
+        if (newPassword.length < 8) throw new Error('invalid newPassword length')
 
-        if (typeof newPasswordRepeat !== 'string') throw new Error('invalid new Passeord repeat type')
-        if (newPasswordRepeat.length < 8) throw new Error('invalid new Password repeat length')
+        if (typeof newPasswordRepeat !== 'string') throw new Error('invalid email type')
+        if (newPasswordRepeat.length < 8) throw new Error('invalid newPasswordRepeat length')
 
-        if (newPassword !== newPasswordRepeat) throw new Error('new Password and new Password repeat do not match')
+        if (newPassword !== newPasswordRepeat) throw new Error('newPassword and nePasswordRepeat do not match')
 
         return fetch('http://localhost:8080/users/password', {
             method: 'PATCH',

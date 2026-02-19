@@ -5,6 +5,8 @@ import { Field } from './components/commons/Field'
 import { PasswordField } from './components/commons/PasswordField'
 import { Button } from './components/commons/Button'
 import { Anchor } from './components/commons/Anchor'
+import { Feedback} from './components/commons/Feedback'
+
 
 import { logic } from '../logic'
 
@@ -12,7 +14,7 @@ import { logic } from '../logic'
 export function Register({ onGoToLogin }) {
     console.log('Register -> call')
 
-    const [message, setMessage] = useState('')
+     const [feedback, setFeedback] = useState(null)
 
     const handleRegisterSubmit = event => {
         event.preventDefault()
@@ -27,17 +29,17 @@ export function Register({ onGoToLogin }) {
 
         try {
             logic.registerUser(name, email, username, password, passwordRepeat)
-            .then(() => {
-                 form.reset()
+                .then(() => {
+                    form.reset()
 
-                setMessage('')
+                    setFeedback(null)
 
-                onGoToLogin()
+                    onGoToLogin()
 
-            })
-			.catch(error => setMessage(error.message))
+                })
+                .catch(error => setFeedback({ message: error.message, level: 'error' }))
         } catch (error) {
-            setMessage(error.message)
+            setFeedback({ message: error.message, level: 'error' })
         }
     }
 
@@ -50,26 +52,26 @@ export function Register({ onGoToLogin }) {
     console.log('Register -> render')
 
     return <div className="p-4">
-            <h1 className="font-bold text-xl">MyPet</h1>
+        <h1 className="font-bold text-xl">MyPet</h1>
 
-            <h2 className="font-bold">Register</h2>
+        <h2 className="font-bold">Register</h2>
 
-            <Form className="flex flex-col" onSubmit={handleRegisterSubmit}>
-                <Field alias="name" type="text">Name</Field>
+        <Form className="flex flex-col" onSubmit={handleRegisterSubmit}>
+            <Field alias="name" type="text">Name</Field>
 
-                <Field alias="email" type="email">Email</Field>
+            <Field alias="email" type="email">Email</Field>
 
-                <Field alias="username" type="text">Username</Field>
+            <Field alias="username" type="text">Username</Field>
 
-                <PasswordField alias="password">Password</PasswordField>
+            <PasswordField alias="password">Password</PasswordField>
 
-                <PasswordField alias="passwordRepeat">Repeat Password</PasswordField>
+            <PasswordField alias="passwordRepeat">Repeat Password</PasswordField>
 
-                <Button className="self-center" type="submit">Register</Button>
-            </Form>
+            <Button className="self-center" type="submit">Register</Button>
+        </Form>
 
-            <Anchor className="cursor-pointer underline font-bold" onClick={handleLoginClick}>Login</Anchor>
+        <Anchor className="cursor-pointer underline font-bold" onClick={handleLoginClick}>Login</Anchor>
 
-            <p>{message}</p>
-        </div>
+        {feedback && <Feedback feedback={feedback} />}
+    </div>
 }

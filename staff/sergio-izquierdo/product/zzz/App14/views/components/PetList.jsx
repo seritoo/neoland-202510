@@ -1,33 +1,32 @@
 import { useState, useEffect } from 'react'
 
 import { Button } from './commons/Button'
-import { Feedback } from './commons/Feedback'
 
 import { logic } from '../../logic'
 
 export function PetList() {
     console.log('PetList -> call')
 
-    const [feedback, setFeedback] = useState(null)
-    const [pets, setPets] = useState([])
-    const [petId, setPetId] = useState(null)
+	const [message, setMessage] = useState('')
+	const [pets, setPets] = useState([])
+	const [petId, setPetId] = useState(null)
 
-    useEffect(() => {
-        console.log('Home -> useEffect')
+	useEffect(() => {
+		console.log('Home -> useEffect')
 
-        try {
-            logic.getPets()
+		try {
+			logic.getPets()
                 .then((pets) => { // recibe pets como parámetro porque este then recive lo que retorna el callback anterior (api)
 
-                    setPets(pets)
+     			setPets(pets)
                 })
-                .catch(error => setFeedback({ message: error.message, level: 'error' }))
-        } catch (error) {
-            setFeedback({ message: error.message, level: 'error' })
-        }
-    }, [])
+                .catch(error => setMessage(error.message))
+		} catch (error) {
+			setMessage(error.message)
+		}
+	}, [])
 
-    const handleDeletePetClick = event => {
+	const handleDeletePetClick = event => {
         event.preventDefault()
 
         const button = event.target
@@ -37,13 +36,13 @@ export function PetList() {
         setPetId(petId)
     }
 
-    const handleCancelDeletePetClick = event => {
+	 const handleCancelDeletePetClick = event => {
         event.preventDefault()
 
         setPetId(null)
     }
 
-    const handleConfirmDeletePetClick = event => {
+	const handleConfirmDeletePetClick = event => {
         event.preventDefault()
         try {
             logic.deletePet(petId)
@@ -54,15 +53,15 @@ export function PetList() {
                     setPetId(null) // borra el pet
                     setPets(pets) // actualiza los pets
                 })
-                .catch(error => setFeedback({ message: error.message, level: 'error' }))
+                .catch(error => setMessage(error.message))
         } catch (error) {
-           setFeedback({ message: error.message, level: 'error' })
+            setMessage(error.message)
         }
     }
 
-    console.log('PetList -> render')
+	console.log('PetList -> render')
 
-    const petItems = []
+	 const petItems = []
 
     for (const pet of pets) {
         const petItem = <li className="flex items-center border-2 border-black p-2 justify-between">
@@ -78,12 +77,12 @@ export function PetList() {
         petItems.push(petItem)
     }
 
-    return <div>
+	return <div>
         <ul className="flex flex-col gap-2 mt-2">
             {petItems}
         </ul>
 
-        {petId && <div className="w-full h-full fixed top-0 left-0 bg-black/75 flex justify-center items-center">
+		{petId && <div className="w-full h-full fixed top-0 left-0 bg-black/75 flex justify-center items-center">
             <div className="bg-white border-black border-2 p-2">
                 <p className="text-center">Delete Pet?</p>
 
@@ -94,6 +93,6 @@ export function PetList() {
             </div>
         </div>}
 
-        {feedback && <Feedback feedback={feedback} />}
-    </div>
+        <p>{message}</p>
+	</div>
 }

@@ -5,9 +5,9 @@ data.insertUser(new User('user-' + data.usersCount, 'Shally', 'shally@haloween.c
 data.insertUser(new User('user-' + data.usersCount, 'Sandy Claws', 'sandy@christmas.com', 'claws', '123123123', 'regular'))
 data.insertUser(new User('user-' + data.usersCount, 'Oogie Boogie', 'oogie@boogie.com', 'oogieboogie', '123123123', 'regular'))
 
-data.insertPet(new Pet('pet-' + data.petsCount, 'user-0', 'Sultan', '2024-12-01', 20, 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTVhMDRuNzh2c2Z4cmxzN2U0aHRsOTFzMDBvcnoydG1wZTc4dXBnbSZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/FY8c5SKwiNf1EtZKGs/giphy.gif'))
-data.insertPet(new Pet('pet-' + data.petsCount, 'user-0', 'Simba', '2020-12-01', 3, 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXM3YjY4aDF6bHhtN29lZDlxYzBvZDRuOGFtN3ZoYmt6MHVzMXYzeCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/vyBYO8ENb4eDFpYmDI/giphy.gif'))
-data.insertPet(new Pet('pet-' + data.petsCount, 'user-0', 'Donatello', '2014-12-01', 2, 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnNtenlmajY2Yzd3aTFmcTh0YXA0Ymw5emVpYmY0NDV3czJ1NWFydiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/65AMOI22i27d34VBdM/giphy.gif'))
+data.insertPet(new Pet('pet-' + data.petsCount, 'user-0', 'Zero', '2024-12-01', 0, 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXcxNWd0enZhZjBxMzB0NGhyNnFqN3ZhdHVyMXd3aWpmaXdicGlveCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Bo95o8mSV8jHW/giphy.gif'))
+data.insertPet(new Pet('pet-' + data.petsCount, 'user-0', 'Scraps', '2020-12-01', 1, 'https://imgs.search.brave.com/1VVPWkEK7nOD4Y0qAHwieXRR7edFknS3eBPyxpBdebk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9iLnRo/dW1icy5yZWRkaXRt/ZWRpYS5jb20vVkI4/dThyNkdpdUt6V2NM/aWZuQmcwSHk4RDA1/SE9CWlRNSHpCajFr/ekZ6VS5qcGc'))
+data.insertPet(new Pet('pet-' + data.petsCount, 'user-0', 'Sparky', '2014-12-01', 8, 'https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dzV0ZTkzN3ZyN2g2NTUzMWVhNWEzMXRndmo5ZGpiMHZlMzV1YThheiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/VEdrOxVXfkgRW/giphy.gif'))
 
 data.insertPet(new Pet('pet-' + data.petsCount, 'user-1', 'Mafia', '2025-07-01', 1.5, 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnI3Z3J0c3lybjFwcmVpMjVoN29nNXQzNml2ZTNjbXZ3NHdncTQ5MCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/901mxGLGQN2PyCQpoc/giphy.gif'))
 

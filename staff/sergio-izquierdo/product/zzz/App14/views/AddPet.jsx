@@ -4,15 +4,13 @@ import { Form } from './components/commons/Form'
 import { Field } from './components/commons/Field'
 import { Button } from './components/commons/Button'
 import { Anchor } from './components/commons/Anchor'
-import { Feedback } from './components/commons/Feedback'
-
 
 import { logic } from '../logic'
 
 export function AddPet({ onGoToHome }) {
     console.log('AddPet -> call')
 
-    const [feedback, setFeedback] = useState(null)
+    const [message, setMessage] = useState('')
 
     const handleBackClick = event => {
         event.preventDefault()
@@ -37,35 +35,35 @@ export function AddPet({ onGoToHome }) {
 
                     onGoToHome()
                 })
-                .catch(error => setFeedback({ message: error.message, level: 'error' }))
+                .catch(error => setMessage(error.message))
         } catch (error) {
-            setFeedback({ message: error.message, level: 'error' })
+            setMessage(error.message)
         }
     }
 
     console.log('AddPet -> render')
 
     return <div className="p-4">
-        <h1 className="font-bold text-xl">MyPet</h1>
+            <h1 className="font-bold text-xl">MyPet</h1>
 
-        <div className="flex justify-between">
-            <h2 className="font-bold">Add Pet</h2>
+            <div className="flex justify-between">
+                <h2 className="font-bold">Add Pet</h2>
 
-            <Anchor onClick={handleBackClick}>&lt; Back</Anchor>
+                <Anchor onClick={handleBackClick}>&lt; Back</Anchor>
+            </div>
+
+            <Form onSubmit={handleAddPetSubmit}>
+                <Field alias="name" type="text">Name</Field>
+
+                <Field alias="birthdate" type="date">Birthdate</Field>
+
+                <Field alias="weight" type="number">Weight (kg)</Field>
+
+                <Field alias="image" type="url">Image</Field>
+
+                <Button className="self-center mt-4" type="submit">Add Pet</Button>
+            </Form>
+
+            <p>{message}</p>
         </div>
-
-        <Form onSubmit={handleAddPetSubmit}>
-            <Field alias="name" type="text">Name</Field>
-
-            <Field alias="birthdate" type="date">Birthdate</Field>
-
-            <Field alias="weight" type="number">Weight (kg)</Field>
-
-            <Field alias="image" type="url">Image</Field>
-
-            <Button className="self-center mt-4" type="submit">Add Pet</Button>
-        </Form>
-
-        {feedback && <Feedback feedback={feedback} />}
-    </div>
 }
