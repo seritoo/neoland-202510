@@ -27,24 +27,16 @@ export function PetList({ onGoToPetDetail }) {
         }
     }, [])
 
-    const handleremovePetClick = event => {
-        event.preventDefault()
-        event.stopPropagation()
+    const handleRemovePetClick = petId => setPetId(petId)
 
-        const button = event.target
 
-        const petId = button.id
-
-        setPetId(petId)
-    }
-
-    const handleCancelremovePetClick = event => {
+    const handleCancelRemovePetClick = event => {
         event.preventDefault()
 
         setPetId(null)
     }
 
-    const handleConfirmremovePetClick = event => {
+    const handleConfirmRemovePetClick = event => {
         event.preventDefault()
         try {
             logic.removePet(petId)
@@ -61,29 +53,24 @@ export function PetList({ onGoToPetDetail }) {
         }
     }
 
-    const handleGoToPetDetailClick = event => {
-        event.preventDefault()
-
-        const li = event.currentTarget
-
-        const petId = li.id
-
-        onGoToPetDetail(petId)
-
-    }
+    const handleGoToPetDetailClick = petId => onGoToPetDetail(petId)
 
     console.log('PetList -> render')
 
     return <div>
         <ul className='flex flex-col gap-2 mt-2'>
-            {pets.map(pet => <li id={pet.id} className="flex items-center border-2 border-black p-2 justify-between" onClick={handleGoToPetDetailClick}>
+            {pets.map(pet => <li className="flex items-center border-2 border-black p-2 justify-between" onClick={() => handleGoToPetDetailClick(pet.id)}>
                 <div className="flex items-center gap-4">
                     <img src={pet.image} className="rounded-full w-10 h-10 object-cover" />
 
                     <p>{pet.name}</p>
                 </div>
 
-                <Button id={pet.id} className="justify-self-end" onClick={handleremovePetClick}>🗑️</Button>
+                <Button className="justify-self-end !bg-black p-2" onClick={event => {
+                    event.stopPropagation()
+
+                    handleRemovePetClick(pet.id)}
+                    }>🗑️</Button>
             </li>)}
         </ul>
 
@@ -92,8 +79,8 @@ export function PetList({ onGoToPetDetail }) {
                 <p className="text-center">Delete Pet?</p>
 
                 <div className="flex justify-center gap-2">
-                    <Button onClick={handleCancelremovePetClick}>❌</Button>
-                    <Button onClick={handleConfirmremovePetClick}>✅</Button>
+                    <Button className="!bg-black"onClick={handleCancelRemovePetClick}>❌</Button>
+                    <Button className="!bg-black" onClick={handleConfirmRemovePetClick}>✅</Button>
                 </div>
             </div>
         </div>}

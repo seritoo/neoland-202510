@@ -8,7 +8,7 @@
     body: '{"name":"An Drew","email":"an@drew.com","username":"andrew","password":"123123123","passwordRepeat":"123123123"}'
 })
     .then(res => {
-        debugger
+        
         const { status } = res
 
         if (status === 201)
@@ -16,7 +16,7 @@
 
         return res.json()
             .then(body => {
-                debugger
+                
                 const { error, message } = body
 
                 console.error(error, message)
@@ -34,19 +34,19 @@
     body: '{"username":"andrew","password":"123123123"}'
 })
     .then(res => {
-        debugger
+        
         const { status } = res
 
         if (status === 200)
             return res.json()
                 .then(userId => {
-                    debugger
+                    
                     console.log(userId)
                 })
 
         return res.json()
             .then(body => {
-                debugger
+                
                 const { error, message } = body
 
                 console.error(error, message)
@@ -65,7 +65,7 @@
     body: '{"email":"an@drew.com","newEmail":"an@drew2.com","newEmailRepeat":"an@drew2.com"}'
 })
     .then(res => {
-        debugger
+        
         const { status } = res
 
         if (status === 204)
@@ -73,7 +73,7 @@
 
         return res.json()
             .then(body => {
-                debugger
+                
                 const { error, message } = body
 
                 console.error(error, message)

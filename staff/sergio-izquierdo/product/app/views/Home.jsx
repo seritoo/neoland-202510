@@ -45,9 +45,9 @@ export function Home({ onGoToAddPet, onGoToLogin, onGoToProfile, onGoToPetDetail
     console.log('Home -> render')
 
     return <div className="p-4">
-        <h1 className="font-bold text-xl">MyPet</h1>
+        <h1 className="font-bold text-4xl text-green-500">MyPet</h1>
 
-        <h2 className="font-bold">Welcome Home!</h2>
+        <h2 className="flex justify-center font-bold text-xl p-2 ">Welcome Home!</h2>
 
         <div className="flex justify-between">
             <Anchor onClick={handleAddPetClick}>+ Pet</Anchor>

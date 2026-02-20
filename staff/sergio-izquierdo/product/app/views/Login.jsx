@@ -50,14 +50,14 @@ export function Login({ onGoToHome, onGoToRegister }) {
     console.log('Login -> render')
 
     return <div className="p-4">
-        <h1 className="font-bold text-xl">MyPet</h1>
+        <h1 className="font-bold text-green-500 text-4xl">MyPet</h1>
 
-        <h2 className="font-bold">Login</h2>
+        <h2 className="flex justify-center font-bold text-xl p-2">Login</h2>
 
         <Form className="flex flex-col" onSubmit={handleLoginSubmit}>
-            <Field alias="username" type="text">Username</Field>
+            <Field alias="username" type="text">Username:</Field>
 
-            <PasswordField alias="password">Password</PasswordField>
+            <PasswordField alias="password">Password:</PasswordField>
 
             <Button className="self-center" type="submit">Login</Button>
         </Form>

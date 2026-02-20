@@ -52,18 +52,18 @@ export function Register({ onGoToLogin }) {
     console.log('Register -> render')
 
     return <div className="p-4">
-        <h1 className="font-bold text-xl">MyPet</h1>
+        <h1 className="font-bold text-green-500 text-4xl">MyPet</h1>
 
-        <h2 className="font-bold">Register</h2>
+        <h2 className="flex justify-center font-bold text-xl p-2">Register</h2>
 
         <Form className="flex flex-col" onSubmit={handleRegisterSubmit}>
-            <Field alias="name" type="text">Name</Field>
+            <Field alias="name" type="text">Name:</Field>
 
-            <Field alias="email" type="email">Email</Field>
+            <Field alias="email" type="email">Email:</Field>
 
-            <Field alias="username" type="text">Username</Field>
+            <Field alias="username" type="text">Username:</Field>
 
-            <PasswordField alias="password">Password</PasswordField>
+            <PasswordField alias="password">Password:</PasswordField>
 
             <PasswordField alias="passwordRepeat">Repeat Password</PasswordField>
 
