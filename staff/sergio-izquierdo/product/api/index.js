@@ -75,6 +75,20 @@ api.get('/users/me', jsonBodyParser, (req, res) => {
     }
 })
 
+api.patch('/users/me/image', jsonBodyParser, (req, res) => {
+	try{
+		const userId = req.headers.authorization.slice(6)
+
+		const { image } = req.body
+
+		logic.changeUserImage(userId, image)
+
+		res.status(204).send()
+	} catch (error) {
+		res.status(400).json({error: error.constructor.name, message: error.message})
+	}
+})
+
 api.post('/pets', jsonBodyParser, (req, res) => {
 	try{
 		const userId = req.headers.authorization.slice(6)

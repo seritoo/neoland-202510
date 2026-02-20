@@ -14,11 +14,15 @@ export function Home({ onGoToAddPet, onGoToLogin, onGoToProfile, onGoToPetDetail
 
      const [feedback, setFeedback] = useState(null)
      const [name, setName] = useState(null)
+     const [image, setImage] = useState('https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZHc1YzJkenBiZGZrYnZkbzZrc3d1a29jaWNvbHRpd2diN3Y3NmF0NCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xdH0MjQ83lGFVv7gjR/giphy.gif')
 
      useEffect(() => {
         try {
             logic.getLoggedInUser()
-            .then(user => setName(user.name))
+            .then(user => {
+                setName(user.name)
+                setImage(user.image || image )
+            })
             .catch(error => setFeedback({ message: error.message, level: 'error' }))
 
         } catch (error) {
@@ -57,9 +61,10 @@ export function Home({ onGoToAddPet, onGoToLogin, onGoToProfile, onGoToPetDetail
     console.log('Home -> render')
 
     return <div className="p-4">
-        <h1 className="font-bold text-4xl text-green-500">MyPet</h1>
+        <h1 className="font-bold text-4xl text-green-500">MyPet </h1>
 
-        <h2 className="flex justify-center font-bold text-xl p-2 ">Welcome Home, {name}!</h2>
+        <h2 className="flex justify-center font-bold text-xm p-5 ">Welcome Home, {name}! <img className='rounded-full w-15 h-15 object-cover p-2' src={image} />
+ </h2>
 
         <div className="flex justify-between">
             <Anchor onClick={handleAddPetClick}>+ Pet</Anchor>

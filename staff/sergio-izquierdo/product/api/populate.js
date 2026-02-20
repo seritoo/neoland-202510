@@ -1,9 +1,9 @@
 const  { data, User, Pet} = require('./data')
 
-data.insertUser(new User('user-' + data.usersCount, 'Jack Skellington', 'jack@haloween.com', 'jack', '123123123', 'regular'))
-data.insertUser(new User('user-' + data.usersCount, 'Shally', 'shally@haloween.com', 'shally', '123123123', 'regular'))
-data.insertUser(new User('user-' + data.usersCount, 'Sandy Claws', 'sandy@christmas.com', 'claws', '123123123', 'regular'))
-data.insertUser(new User('user-' + data.usersCount, 'Oogie Boogie', 'oogie@boogie.com', 'oogieboogie', '123123123', 'regular'))
+data.insertUser(new User('user-' + data.usersCount, 'Jack Skellington', 'jack@haloween.com', 'jack', '123123123', null,'regular'))
+data.insertUser(new User('user-' + data.usersCount, 'Shally', 'shally@haloween.com', 'shally', '123123123', null, 'regular'))
+data.insertUser(new User('user-' + data.usersCount, 'Sandy Claws', 'sandy@christmas.com', 'claws', '123123123', null,'regular'))
+data.insertUser(new User('user-' + data.usersCount, 'Oogie Boogie', 'oogie@boogie.com', 'oogieboogie', '123123123', null, 'regular'))
 
 data.insertPet(new Pet('pet-' + data.petsCount, 'user-0', 'Zero', '2024-12-01', 0, 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXcxNWd0enZhZjBxMzB0NGhyNnFqN3ZhdHVyMXd3aWpmaXdicGlveCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Bo95o8mSV8jHW/giphy.gif'))
 data.insertPet(new Pet('pet-' + data.petsCount, 'user-0', 'Scraps', '2020-12-01', 1, 'https://imgs.search.brave.com/1VVPWkEK7nOD4Y0qAHwieXRR7edFknS3eBPyxpBdebk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9iLnRo/dW1icy5yZWRkaXRt/ZWRpYS5jb20vVkI4/dThyNkdpdUt6V2NM/aWZuQmcwSHk4RDA1/SE9CWlRNSHpCajFr/ekZ6VS5qcGc'))
