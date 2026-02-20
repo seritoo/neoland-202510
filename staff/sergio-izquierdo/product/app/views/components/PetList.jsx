@@ -59,7 +59,8 @@ export function PetList({ onGoToPetDetail }) {
 
     return <div>
         <ul className='flex flex-col gap-2 mt-2'>
-            {pets.map(pet => <li className="flex items-center border-2 border-black p-2 justify-between" onClick={() => handleGoToPetDetailClick(pet.id)}>
+            {pets.map(pet =>
+                 <li className="flex items-center border-2 border-black p-2 justify-between" onClick={() => handleGoToPetDetailClick(pet.id)}>
                 <div className="flex items-center gap-4">
                     <img src={pet.image} className="rounded-full w-10 h-10 object-cover" />
 

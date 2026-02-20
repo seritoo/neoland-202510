@@ -35,17 +35,14 @@ export function App() {
 
     return <>
 
-        {(view === 'landing' && <Landing onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} />)}
+        {view === 'landing' && <Landing onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} />}
 
-        {(view === 'login' && <Login onGoToHome={handleGoToHome} onGoToRegister={handleGoToRegister} />)
-        }
-        {(view === 'register' && <Register onGoToLogin={handleGoToLogin} />)
-        }
+        {view === 'login' && <Login onGoToHome={handleGoToHome} onGoToRegister={handleGoToRegister} />}
+        {view === 'register' && <Register onGoToLogin={handleGoToLogin} />}
 
-        {(view === 'home' && <Home onGoToAddPet={handleGoToAddPet} onGoToLogin={handleGoToLogin} onGoToProfile={handleGoToProfile} onGoToPetDetail={handleGoToPetDetail} />)
-        }
+        {view === 'home' && <Home onGoToAddPet={handleGoToAddPet} onGoToLogin={handleGoToLogin} onGoToProfile={handleGoToProfile} onGoToPetDetail={handleGoToPetDetail} />}
 
-        {(view === 'add-pet' && <AddPet onGoToHome={handleGoToHome} />)}
+        {view === 'add-pet' && <AddPet onGoToHome={handleGoToHome} />}
 
         { view === 'profile' && <Profile onGoToHome={handleGoToHome} /> }
 
