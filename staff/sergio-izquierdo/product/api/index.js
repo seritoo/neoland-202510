@@ -36,7 +36,7 @@ api.post('/users/auth', jsonBodyParser, (req, res) => {
     }
 })
 
-api.patch('/users/email', jsonBodyParser, (req, res) => {
+api.patch('/users/me/email', jsonBodyParser, (req, res) => {
 	try{
 		const userId = req.headers.authorization.slice(6)
 
@@ -50,7 +50,7 @@ api.patch('/users/email', jsonBodyParser, (req, res) => {
 	}
 })
 
-api.patch('/users/password', jsonBodyParser, (req, res) => {
+api.patch('/users/me/password', jsonBodyParser, (req, res) => {
 	try{
 		const userId = req.headers.authorization.slice(6)
 
@@ -62,6 +62,17 @@ api.patch('/users/password', jsonBodyParser, (req, res) => {
 	} catch (error) {
 		res.status(400).json({error: error.constructor.name, message: error.message})
 	}
+})
+api.get('/users/me', jsonBodyParser, (req, res) => {
+    try {
+        const userId = req.headers.authorization.slice(6)
+
+        const user = logic.getUser(userId)
+
+        res.json(user)
+    } catch (error) {
+        res.status(400).json({ error: error.constructor.name, message: error.message })
+    }
 })
 
 api.post('/pets', jsonBodyParser, (req, res) => {

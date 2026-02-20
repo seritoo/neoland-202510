@@ -114,6 +114,19 @@ class Logic {
 		user.password = newPassword
 	}
 
+    getUser(userId) {
+        if (typeof userId !== 'string') throw new Error('invalid userId type')
+        if (!USER_ID_REGEX.test(userId)) throw new Error('invalid userId format')
+
+        const user = data.findUserById(userId)
+        if (!user) throw new Error('user not found')
+
+        const { name, email, username, image } = user
+
+        return { name, email, username, image }
+    }
+
+
     addPet( userId, name, birthdate, weight, image) {
         if(typeof userId !== 'string') throw new Error ('invalid userID type')
         if(!USER_ID_REGEX.test(userId)) throw new Error ('invalid userID format')
