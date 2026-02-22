@@ -1,0 +1,77 @@
+import { useState } from 'react'
+
+import { Form } from './components/commons/Form'
+import { Field } from './components/commons/Field'
+import { PasswordField } from './components/commons/PasswordField'
+import { Button } from './components/commons/Button'
+import { Anchor } from './components/commons/Anchor'
+import { Feedback} from './components/commons/Feedback'
+
+
+import { logic } from '../logic'
+
+
+export function Register({ onGoToLogin }) {
+    console.log('Register -> call')
+
+     const [feedback, setFeedback] = useState(null)
+
+    const handleRegisterSubmit = event => {
+        event.preventDefault()
+
+        const form = event.target
+
+        const name = form.name.value
+        const email = form.email.value
+        const username = form.username.value
+        const password = form.password.value
+        const passwordRepeat = form.passwordRepeat.value
+
+        try {
+            logic.registerUser(name, email, username, password, passwordRepeat)
+                .then(() => {
+                    form.reset()
+
+                    setFeedback(null)
+
+                    onGoToLogin()
+
+                })
+                .catch(error => setFeedback({ message: error.message, level: 'error' }))
+        } catch (error) {
+            setFeedback({ message: error.message, level: 'error' })
+        }
+    }
+
+    const handleLoginClick = event => {
+        event.preventDefault()
+
+        onGoToLogin()
+    }
+
+    console.log('Register -> render')
+
+    return <div className="p-4">
+        <h1 className="font-bold text-green-500 text-4xl">MyPet</h1>
+
+        <h2 className="flex justify-center font-bold text-xl p-2">Register</h2>
+
+        <Form className="flex flex-col" onSubmit={handleRegisterSubmit}>
+            <Field alias="name" type="text">Name:</Field>
+
+            <Field alias="email" type="email">Email:</Field>
+
+            <Field alias="username" type="text">Username:</Field>
+
+            <PasswordField alias="password">Password:</PasswordField>
+
+            <PasswordField alias="passwordRepeat">Repeat Password</PasswordField>
+
+            <Button className="self-center" type="submit">Register</Button>
+        </Form>
+
+        <Anchor className="cursor-pointer underline font-bold" onClick={handleLoginClick}>Login</Anchor>
+
+        {feedback && <Feedback feedback={feedback} />}
+    </div>
+}
