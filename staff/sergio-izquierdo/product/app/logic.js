@@ -335,7 +335,6 @@ class Logic {
         if (data.getLoggedInUserId() === null) throw new Error('user not logged in')
 
         if (typeof petId !== 'string') throw new Error('invalid pet-id type')
-
         if (!PET_ID_REGEX.test(petId)) throw new Error('invalid pet-id format')
 
         return fetch('http://localhost:8080/pets/' + petId, { // construimos la la ruta con el petId
@@ -361,6 +360,51 @@ class Logic {
                     })
             })
     }
+
+    modifyPet(petId, name, birthdate, weight, image) {
+        if (data.getLoggedInUserId() === null) throw new Error('user not logged in') // solo validamos que el usuario este loguineado
+
+        if (typeof petId !== 'string') throw new Error('invalid pet-id type')
+        if (!PET_ID_REGEX.test(petId)) throw new Error('invalid pet-id format')
+
+        if (typeof name !== 'string') throw new Error('invalid name type')
+        if (name.length < 1) throw new Error('invalid name length')
+
+        if (typeof birthdate !== 'string') throw new Error('invalid birthdate type')
+
+        if (!ISODATE_REGEX.test(birthdate)) throw new Error('invalid birthdate format')
+
+        if (typeof weight !== 'number' || isNaN(weight)) throw new Error('invalid weight type')
+
+        if (typeof image !== 'string') throw new Error('invalid image type')
+
+        if (!URL_REGEX.test(image)) throw new Error('invalid image format')
+
+        return fetch('http://localhost:8080/pets/' + petId, {
+            method: 'PUT',
+            headers: {
+                Authorization: 'Basic ' + data.getLoggedInUserId(),
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, birthdate, weight, image })
+        })
+            .then(res => {
+
+                const { status } = res
+
+                if (status === 204)
+                    return
+
+                return res.json()
+                    .then(body => {
+
+                        const { error, message } = body
+
+                        throw new Error(message)
+                    })
+            })
+    }
+
 }
 
 
