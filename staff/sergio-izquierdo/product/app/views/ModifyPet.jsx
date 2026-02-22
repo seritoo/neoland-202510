@@ -5,6 +5,7 @@ import { Field } from './components/commons/Field'
 import { Button } from './components/commons/Button'
 import { Anchor } from './components/commons/Anchor'
 import { Feedback } from './components/commons/Feedback'
+import { Spinner} from './components/Spinner'
 
 
 import { logic } from '../logic'
@@ -16,13 +17,16 @@ export function ModifyPet({ petId, onGoBack }) {  // usamos petId para cuando ca
     const [pet, setPet] = useState(null)
 
         useEffect(() => {
+            setTimeout(() => {
             try {
+
                 logic.getPet(petId)
                     .then(pet => setPet(pet))
                     .catch(error => setFeedback({ message: error.message, level: 'error' }))
             } catch (error) {
                 setFeedback({ message: error.message, level: 'error' })
             }
+        },3000)
         }, [])
 
     const handleBackClick = event => {
@@ -71,7 +75,7 @@ export function ModifyPet({ petId, onGoBack }) {  // usamos petId para cuando ca
             <Field alias="image" type="url" defaultValue={pet.image}>Image</Field>
 
             <Button className="self-center mt-4" type="submit">Modify Pet</Button>
-        </Form> : <img className="w-10 h-10 object-cover" src="https://media1.tenor.com/m/spbyMFOhFZUAAAAC/spining-cat-meme.gif" /> }
+        </Form> : <Spinner/>}
 
         {feedback && <Feedback feedback={feedback} />}
     </div>
