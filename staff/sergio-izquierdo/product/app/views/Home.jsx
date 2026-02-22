@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 
 import { Anchor } from './components/commons/Anchor'
-import { Button } from './components/commons/Button'
+import { ButtonSecondary } from './components/commons/ButtonSecondary'
+import { Title } from './components/commons/Title'
+
 import { Feedback} from './components/commons/Feedback'
 import { Spinner } from './components/Spinner'
 
@@ -64,7 +66,7 @@ export function Home({ onGoToAddPet, onGoToLogin, onGoToProfile, onGoToPetDetail
     console.log('Home -> render')
 
     return <div className="p-4">
-        <h1 className="font-bold text-4xl text-green-500">MyPet </h1>
+        <Title>MyPet</Title>
 
     {name? <>
         <h2 className="flex justify-center font-bold text-xm p-5 ">Welcome Home, {name}! <img className='rounded-full w-15 h-15 object-cover p-2' src={image} /></h2>
@@ -74,7 +76,7 @@ export function Home({ onGoToAddPet, onGoToLogin, onGoToProfile, onGoToPetDetail
 
             <Anchor onClick={handleProfileClick}>Profile</Anchor>
 
-            <Button  type="button" onClick={handleLogoutClick}>Logout</Button>
+            <ButtonSecondary type="button" onClick={handleLogoutClick}>Logout</ButtonSecondary>
         </div>
 
         <PetList onGoToPetDetail={handleGoToPetDetail}/>

@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 
 import { Form } from './components/commons/Form'
 import { Field } from './components/commons/Field'
-import { Button } from './components/commons/Button'
+import { Title } from './components/commons/Title'
+import { ButtonSecondary } from './components/commons/ButtonSecondary'
 import { Anchor } from './components/commons/Anchor'
 import { Feedback } from './components/commons/Feedback'
 import { Spinner} from './components/Spinner'
@@ -57,7 +58,7 @@ export function ModifyPet({ petId, onGoBack }) {  // usamos petId para cuando ca
     console.log('ModifyPet -> render')
 
     return <div className="p-4">
-        <h1 className="font-bold text-xl">MyPet</h1>
+        <Title>MyPet</Title>
 
         <div className="flex justify-between">
             <h2 className="font-bold">Modify Pet</h2>
@@ -74,7 +75,7 @@ export function ModifyPet({ petId, onGoBack }) {  // usamos petId para cuando ca
 
             <Field alias="image" type="url" defaultValue={pet.image}>Image</Field>
 
-            <Button className="self-center mt-4" type="submit">Modify Pet</Button>
+            <ButtonSecondary className="self-center mt-4" type="submit">Modify Pet</ButtonSecondary>
         </Form> : <Spinner/>}
 
         {feedback && <Feedback feedback={feedback} />}

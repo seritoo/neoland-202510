@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { Form } from './components/commons/Form'
 import { Field } from './components/commons/Field'
+import { Title } from './components/commons/Title'
 import { Button } from './components/commons/Button'
 import { Anchor } from './components/commons/Anchor'
 import { Feedback } from './components/commons/Feedback'
@@ -46,10 +47,10 @@ export function AddPet({ onGoToHome }) {
     console.log('AddPet -> render')
 
     return <div className="p-4">
-        <h1 className="font-bold text-xl">MyPet</h1>
+        <Title>MyPet</Title>
 
         <div className="flex justify-between">
-            <h2 className="font-bold">Add Pet</h2>
+            {/*<h2 className="font-bold">Add Pet</h2>*/}
 
             <Anchor onClick={handleBackClick}>&lt; Back</Anchor>
         </div>

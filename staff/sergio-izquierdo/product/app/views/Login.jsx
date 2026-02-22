@@ -3,9 +3,11 @@ import { useState } from 'react'
 import { Form } from './components/commons/Form'
 import { Field } from './components/commons/Field'
 import { PasswordField } from './components/commons/PasswordField'
+import { Title } from './components/commons/Title'
 import { Button } from './components/commons/Button'
 import { Anchor } from './components/commons/Anchor'
 import { Feedback} from './components/commons/Feedback'
+
 
 
 
@@ -50,7 +52,7 @@ export function Login({ onGoToHome, onGoToRegister }) {
     console.log('Login -> render')
 
     return <div className="p-4">
-        <h1 className="font-bold text-green-500 text-4xl">MyPet</h1>
+        <Title>MyPet</Title>
 
         <h2 className="flex justify-center font-bold text-xl p-2">Login</h2>
 

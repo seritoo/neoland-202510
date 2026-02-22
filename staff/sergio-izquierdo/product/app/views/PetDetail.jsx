@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 
 import { Anchor } from './components/commons/Anchor'
 import { Feedback } from './components/commons/Feedback'
-import { Button } from './components/commons/Button'
+import { ButtonSecondary } from './components/commons/ButtonSecondary'
+import { Title } from './components/commons/Title'
 
 import { logic } from '../logic'
 
@@ -33,12 +34,11 @@ export function PetDetail({ onGoToHome, petId, onGoToModifyPet }) {
     console.log('PetDetail -> render')
 
     return <div className="p-4">
-        <h1 className="font-bold text-4xl text-green-600">MyPet</h1>
+        <Title>MyPet</Title>
 
         <div className="flex justify-between">
             <h2 className="font-bold text-2xl p-10">Pet:</h2>
-
-            <Anchor className="font-bold text-2xl p-10" onClick={handleBackClick}>&lt; Back</Anchor>
+            <Anchor onClick={handleBackClick}>&lt; Back</Anchor>
         </div>
 
         {pet && <div className="flex flex-col items-center gap-4">
@@ -50,7 +50,7 @@ export function PetDetail({ onGoToHome, petId, onGoToModifyPet }) {
 
             <p>{pet.birthdate}</p>
 
-            <Button onClick={handleGoToModifyPet}>Modify</Button>
+            <ButtonSecondary onClick={handleGoToModifyPet}>Modify</ButtonSecondary>
         </div>}
         {feedback && <Feedback feedback={feedback} />}
     </div>

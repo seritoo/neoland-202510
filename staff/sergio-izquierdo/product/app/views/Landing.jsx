@@ -1,4 +1,5 @@
 import { Anchor } from './components/commons/Anchor'
+import { Title } from './components/commons/Title'
 
 export function Landing({ onGoToLogin, onGoToRegister }) {   // con onGoToLogin y ToRegister se maneja desde la Landing a que vista ir
     console.log('Landing -> call')
@@ -17,8 +18,8 @@ export function Landing({ onGoToLogin, onGoToRegister }) {   // con onGoToLogin 
 
     console.log('Landing -> render')
 
-    return <div className="p-4">
-        <h1 className='font-bold text-green-500 text-4xl'>MyPet</h1>
+    return <div className="flex flex-col items-center justify-center p-20">
+        <Title>MyPet</Title>
         <p className='flex justify-center font-bold text-2xl p-4'>Welcome!</p>
 
         <nav>

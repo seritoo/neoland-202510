@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Anchor } from './components/commons/Anchor'
+import { Title } from './components/commons/Title'
 import { ChangeUserEmail } from './components/ChangeUserEmail'
 import { ChangeUserPassword } from './components/ChangeUserPassword'
 import { ChangeUserImage } from './components/ChangeUserImage'
@@ -36,7 +37,7 @@ export function Profile({ onGoToHome }) {
     console.log('Profile -> render')
 
     return <div className="p-4">
-            <h1 className="font-bold text-green-500 text-4xl">MyPet</h1>
+            <Title>MyPet</Title>
 
             <div>
                 <h2 className="flex justify-center font-bold text-xl p-2">Profile:</h2>
