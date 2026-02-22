@@ -19,7 +19,7 @@ export function Landing({ onGoToLogin, onGoToRegister }) {   // con onGoToLogin 
 
     return <div className="p-4">
         <h1 className='font-bold text-green-500 text-4xl'>MyPet</h1>
-        <p className='flex justify-center font-bold text-2xl p-2'>Welcome!</p>
+        <p className='flex justify-center font-bold text-2xl p-4'>Welcome!</p>
 
         <nav>
            <Anchor onClick={handleLoginClick}>Login</Anchor> or <Anchor onClick={handleRegisterClick}>Register</Anchor>

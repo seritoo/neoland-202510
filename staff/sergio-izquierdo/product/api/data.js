@@ -93,10 +93,10 @@ class Data {
         return pet || null
     }
 
-    updatePet(petId) {
-        const index = this.pets.findIndex(pet => pet.id === petId)
+    updatePet(updatedPet) {
+        const index = this.pets.findIndex(pet => pet.id === updatedPet.id)
 
-        this.pets[index] = this.updatePet
+        this.pets[index] = updatedPet
     }
 
     deletePet(petId) {
