@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 import { Button } from './commons/Button'
 import { Feedback } from './commons/Feedback'
+import { ButtonSecondary } from './commons/ButtonSecondary'
 
 import { logic } from '../../logic'
 
@@ -60,28 +61,28 @@ export function PetList({ onGoToPetDetail }) {
     return <div>
         <ul className='flex flex-col gap-2 mt-2'>
             {pets.map(pet =>
-                 <li className="flex items-center border-2 border-black p-2 justify-between" onClick={() => handleGoToPetDetailClick(pet.id)}>
+                 <li className="flex items-center border-3 bg-[#C7EFC0] border-[#4C9A2A] p-2 justify-between" onClick={() => handleGoToPetDetailClick(pet.id)}>
                 <div className="flex items-center gap-4">
-                    <img src={pet.image} className="rounded-full w-10 h-10 object-cover" />
+                    <img src={pet.image} className="rounded-full w-15 h-15 object-cover" />
 
                     <p>{pet.name}</p>
                 </div>
 
-                <Button className="justify-self-end !bg-black p-2" onClick={event => {
+                <ButtonSecondary onClick={event => {
                     event.stopPropagation()
 
                     handleRemovePetClick(pet.id)}
-                    }>🗑️</Button>
+                    }>🗑️</ButtonSecondary>
             </li>)}
         </ul>
 
         {petId && <div className="w-full h-full fixed top-0 left-0 bg-black/75 flex justify-center items-center">
             <div className="bg-white border-black border-2 p-2">
-                <p className="text-center">Delete Pet?</p>
+                <p className="font-bold text-center">Delete Pet?</p>
 
                 <div className="flex justify-center gap-2">
-                    <Button className="!bg-black"onClick={handleCancelRemovePetClick}>❌</Button>
-                    <Button className="!bg-black" onClick={handleConfirmRemovePetClick}>✅</Button>
+                    <ButtonSecondary onClick={handleCancelRemovePetClick}>❌</ButtonSecondary>
+                    <ButtonSecondary onClick={handleConfirmRemovePetClick}>✅</ButtonSecondary>
                 </div>
             </div>
         </div>}

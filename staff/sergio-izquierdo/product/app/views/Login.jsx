@@ -51,10 +51,10 @@ export function Login({ onGoToHome, onGoToRegister }) {
 
     console.log('Login -> render')
 
-    return <div className="p-4">
+    return <div className="p-6">
         <Title>MyPet</Title>
 
-        <h2 className="flex justify-center font-bold text-xl p-2">Login</h2>
+        {/*<h2 className="flex justify-center font-bold text-xl p-2">Login</h2>*/}
 
         <Form className="flex flex-col" onSubmit={handleLoginSubmit}>
             <Field alias="username" type="text">Username:</Field>
@@ -64,7 +64,7 @@ export function Login({ onGoToHome, onGoToRegister }) {
             <Button className="self-center" type="submit">Login</Button>
         </Form>
 
-        <Anchor className="cursor-pointer underline font-bold" onClick={handleRegisterClick}>Register</Anchor>
+        <Anchor className="cursor-pointer font-bold p-2" onClick={handleRegisterClick}>Register</Anchor>
 
         {feedback && <Feedback feedback={feedback} />}
     </div>

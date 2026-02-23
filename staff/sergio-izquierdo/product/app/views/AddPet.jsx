@@ -49,7 +49,7 @@ export function AddPet({ onGoToHome }) {
     return <div className="p-4">
         <Title>MyPet</Title>
 
-        <div className="flex justify-between">
+        <div className="flex justify-end p-4">
             {/*<h2 className="font-bold">Add Pet</h2>*/}
 
             <Anchor onClick={handleBackClick}>&lt; Back</Anchor>

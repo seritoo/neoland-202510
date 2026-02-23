@@ -36,22 +36,22 @@ export function PetDetail({ onGoToHome, petId, onGoToModifyPet }) {
     return <div className="p-4">
         <Title>MyPet</Title>
 
-        <div className="flex justify-between">
-            <h2 className="font-bold text-2xl p-10">Pet:</h2>
+        <div className="flex justify-end p-4">
+            {/*<h2 className="font-bold text-2xl text-[#D07F82] p-10">Pet:</h2>*/}
             <Anchor onClick={handleBackClick}>&lt; Back</Anchor>
         </div>
 
-        {pet && <div className="flex flex-col items-center gap-4">
-            <img src={pet.image} className="rounded-full w-40 h-40 object-cover" />
+        {pet && <div className="flex flex-col items-center border-3 border-[#4C9A2A] bg-[#C7EFC0] p-4">
+            <img src={pet.image} className="rounded-full w-40 h-40 object-cover border-3 border-[#4C9A2A]" />
 
             <p>{pet.name}</p>
 
             <p>{pet.weight}Kg</p>
 
             <p>{pet.birthdate}</p>
-
-            <ButtonSecondary onClick={handleGoToModifyPet}>Modify</ButtonSecondary>
         </div>}
+
+         <div className="p-4 flex justify-center"><ButtonSecondary onClick={handleGoToModifyPet}>Modify Pet</ButtonSecondary></div>
         {feedback && <Feedback feedback={feedback} />}
     </div>
 }

@@ -60,8 +60,8 @@ export function ModifyPet({ petId, onGoBack }) {  // usamos petId para cuando ca
     return <div className="p-4">
         <Title>MyPet</Title>
 
-        <div className="flex justify-between">
-            <h2 className="font-bold">Modify Pet</h2>
+        <div className="flex justify-end p-4">
+            {/*<h2 className="font-bold">Modify Pet</h2>*/}
 
             <Anchor onClick={handleBackClick}>&lt; Back</Anchor>
         </div>

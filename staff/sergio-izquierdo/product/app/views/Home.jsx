@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 import { Anchor } from './components/commons/Anchor'
-import { ButtonSecondary } from './components/commons/ButtonSecondary'
+import { Button } from './components/commons/Button'
 import { Title } from './components/commons/Title'
 
 import { Feedback} from './components/commons/Feedback'
@@ -69,17 +69,17 @@ export function Home({ onGoToAddPet, onGoToLogin, onGoToProfile, onGoToPetDetail
         <Title>MyPet</Title>
 
     {name? <>
-        <h2 className="flex justify-center font-bold text-xm p-5 ">Welcome Home, {name}! <img className='rounded-full w-15 h-15 object-cover p-2' src={image} /></h2>
+        <h2 className="flex justify-center font-bold text-xl p-5 ">Welcome Home, {name}! <img className='rounded-full w-15 h-15 object-cover p-2' src={image} /></h2>
 
         <div className="flex justify-between">
             <Anchor onClick={handleAddPetClick}>+ Pet</Anchor>
 
             <Anchor onClick={handleProfileClick}>Profile</Anchor>
-
-            <ButtonSecondary type="button" onClick={handleLogoutClick}>Logout</ButtonSecondary>
         </div>
 
         <PetList onGoToPetDetail={handleGoToPetDetail}/>
+
+         <div className="p-4 flex justify-center"><Button type="button" onClick={handleLogoutClick}>Logout</Button></div>
 
         {feedback && <Feedback feedback={feedback} />}
     </> : <Spinner/>}

@@ -20,9 +20,9 @@ export function Landing({ onGoToLogin, onGoToRegister }) {   // con onGoToLogin 
 
     return <div className="flex flex-col items-center justify-center p-20">
         <Title>MyPet</Title>
-        <p className='flex justify-center font-bold text-2xl p-4'>Welcome!</p>
+        <p className='font-bold text-2xl p-4'>Welcome!</p>
 
-        <nav>
+        <nav className='flex justify-between'>
            <Anchor onClick={handleLoginClick}>Login</Anchor> or <Anchor onClick={handleRegisterClick}>Register</Anchor>
         </nav>
     </div>

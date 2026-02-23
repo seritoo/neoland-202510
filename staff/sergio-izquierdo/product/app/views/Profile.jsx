@@ -42,7 +42,7 @@ export function Profile({ onGoToHome }) {
             <div>
                 <h2 className="flex justify-center font-bold text-xl p-2">Profile:</h2>
 
-                <Anchor className="flex justify-end" onClick={handleBackClick}>&lt; Back</Anchor>
+                <Anchor className="flex justify-end p-4" onClick={handleBackClick}>&lt; Back</Anchor>
             </div>
 
             <ul>
