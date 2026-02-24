@@ -22,7 +22,7 @@ export function Landing({ onGoToLogin, onGoToRegister }) {   // con onGoToLogin 
         <Title>MyPet</Title>
         <p className='font-bold text-2xl p-4'>Welcome!</p>
 
-        <nav className='flex justify-between'>
+        <nav className='flex justify-between gap-2 items-end'>
            <Anchor onClick={handleLoginClick}>Login</Anchor> or <Anchor onClick={handleRegisterClick}>Register</Anchor>
         </nav>
     </div>

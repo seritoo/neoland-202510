@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 
+import { useParams } from 'react-router'
+
 import { Form } from './components/commons/Form'
 import { Field } from './components/commons/Field'
 import { Title } from './components/commons/Title'
@@ -8,14 +10,15 @@ import { Anchor } from './components/commons/Anchor'
 import { Feedback } from './components/commons/Feedback'
 import { Spinner} from './components/Spinner'
 
-
 import { logic } from '../logic'
 
-export function ModifyPet({ petId, onGoBack }) {  // usamos petId para cuando carguemos esta vista, se traiga los datos y aparezcan precargados
+export function ModifyPet({ onGoBack }) {  // usamos petId para cuando carguemos esta vista, se traiga los datos y aparezcan precargados
     console.log('ModifyPet -> call')
 
     const [feedback, setFeedback] = useState(null)
     const [pet, setPet] = useState(null)
+
+    const { petId } = useParams()
 
         useEffect(() => {
             setTimeout(() => {
@@ -27,13 +30,13 @@ export function ModifyPet({ petId, onGoBack }) {  // usamos petId para cuando ca
             } catch (error) {
                 setFeedback({ message: error.message, level: 'error' })
             }
-        },3000)
+        },2000)
         }, [])
 
     const handleBackClick = event => {
         event.preventDefault()
 
-        onGoBack()
+        onGoBack(petId)
     }
 
     const handleModifyPetSubmit = event => {

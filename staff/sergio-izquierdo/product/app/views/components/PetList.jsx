@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 
-import { Button } from './commons/Button'
 import { Feedback } from './commons/Feedback'
 import { ButtonSecondary } from './commons/ButtonSecondary'
 

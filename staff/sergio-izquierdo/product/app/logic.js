@@ -87,7 +87,11 @@ class Logic {
     }
 
     logoutUser() {
-        data.setLoggedInUserId(null)
+        data.removeLoggedInUserId()
+    }
+
+    isUserLoggedIn() {
+        return !!data.getLoggedInUserId() //doble negación convierte a booleano algo que no lo es
     }
 
     changeUserEmail(email, newEmail, newEmailRepeat) {
@@ -186,7 +190,7 @@ class Logic {
 
                 if (status === 200)
                     return res.json()
-                      //.then(user => user)
+                //.then(user => user)
 
                 return res.json()
                     .then(body => {
@@ -257,7 +261,6 @@ class Logic {
             body: JSON.stringify({ name, birthdate, weight, image })
         })
             .then(res => {
-
                 const { status } = res
 
                 if (status === 201)
@@ -283,22 +286,19 @@ class Logic {
             }
         })
             .then(res => {
-
                 const { status } = res
 
                 if (status === 200)
                     return res.json()
-                        //.then(pets => pets)
+                //.then(pets => pets)
 
                 return res.json()
                     .then(body => {
-
                         const { error, message } = body
 
                         throw new Error(message)
                     })
             })
-
     }
 
     removePet(petId) {
@@ -315,7 +315,6 @@ class Logic {
             }
         })
             .then(res => {
-
                 const { status } = res
 
                 if (status === 204)
@@ -323,7 +322,6 @@ class Logic {
 
                 return res.json()
                     .then(body => {
-
                         const { error, message } = body
 
                         throw new Error(message)
@@ -344,12 +342,11 @@ class Logic {
             }
         })
             .then(res => {
-
                 const { status } = res
 
                 if (status === 200)
                     return res.json()
-                        //.then(pet => pet)
+                //.then(pet => pet)
 
                 return res.json()
                     .then(body => {
@@ -389,7 +386,6 @@ class Logic {
             body: JSON.stringify({ name, birthdate, weight, image })
         })
             .then(res => {
-
                 const { status } = res
 
                 if (status === 204)
@@ -397,14 +393,12 @@ class Logic {
 
                 return res.json()
                     .then(body => {
-
                         const { error, message } = body
 
                         throw new Error(message)
                     })
             })
     }
-
 }
 
 

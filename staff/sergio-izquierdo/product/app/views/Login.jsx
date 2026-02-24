@@ -8,16 +8,12 @@ import { Button } from './components/commons/Button'
 import { Anchor } from './components/commons/Anchor'
 import { Feedback} from './components/commons/Feedback'
 
-
-
-
 import { logic } from '../logic'
 
-export function Login({ onGoToHome, onGoToRegister }) {
+export function Login({ onUserLoggedIn, onGoToRegister }) {
     console.log('Login -> call')
 
      const [feedback, setFeedback] = useState(null)
-    const [passwordType, setPasswordType] = useState('password')
 
     const handleLoginSubmit = event => {
         event.preventDefault()
@@ -29,14 +25,7 @@ export function Login({ onGoToHome, onGoToRegister }) {
 
         try {
             logic.loginUser(username, password)
-                .then(() => {
-                    form.reset()
-
-                    setFeedback(null)
-                    setPasswordType('password')
-
-                    onGoToHome()
-                })
+                .then(() => onUserLoggedIn())
                 .catch(error => setFeedback({ message: error.message, level: 'error' }))
         } catch (error) {
             setFeedback({ message: error.message, level: 'error' })
@@ -52,7 +41,7 @@ export function Login({ onGoToHome, onGoToRegister }) {
     console.log('Login -> render')
 
     return <div className="p-6">
-        <Title>MyPet</Title>
+        <Title className="mb-4">MyPet</Title>
 
         {/*<h2 className="flex justify-center font-bold text-xl p-2">Login</h2>*/}
 
@@ -64,7 +53,7 @@ export function Login({ onGoToHome, onGoToRegister }) {
             <Button className="self-center" type="submit">Login</Button>
         </Form>
 
-        <Anchor className="cursor-pointer font-bold p-2" onClick={handleRegisterClick}>Register</Anchor>
+        <Anchor className="p-2" onClick={handleRegisterClick}>Register</Anchor>
 
         {feedback && <Feedback feedback={feedback} />}
     </div>
