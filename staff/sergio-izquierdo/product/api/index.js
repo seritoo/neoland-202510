@@ -1,8 +1,9 @@
-const express = require('express')
-const cors = require('cors')
-require('./populate')
+import express from 'express'
+import cors from 'cors'
+import './populate.js'
 
-const { logic } = require('./logic')
+import { logic } from './logic.js'
+import { DuplicityError, ExistenceError, OwnershipError, SystemError, ValidationError, CredentialError } from './errors.js'
 
 const api = express()
 
@@ -158,6 +159,28 @@ api.put('/pets/:petId', jsonBodyParser, (req, res) => {
 	} catch (error) {
 		res.status(400).json({error: error.constructor.name, message: error.message})
 	}
+})
+
+api.use((error, req, res, next) => {
+	let status = 500
+	let errorName = error.constructor.name
+
+	const { message } = error
+
+	if (error instanceof ValidationError)
+		status = 400
+	else if (error instanceof DuplicityError)
+		status = 409
+	else if (error instanceof ExistenceError)
+		status = 404
+	else if (error instanceof CredentialError)
+		status = 401
+	else if (error instanceof OwnershipError)
+		status = 403
+	else
+		errorName = SystemError.name
+
+		res.status(status).json({ error: errorName, message })
 })
 
 api.listen(8080, () => console.log('API listening on port 8080'))

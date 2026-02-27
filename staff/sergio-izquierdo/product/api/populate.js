@@ -1,4 +1,4 @@
-const  { data, User, Pet} = require('./data')
+import  { data, User, Pet} from './data.js'
 
 data.insertUser(new User('user-' + data.usersCount, 'Jack Skellington', 'jack@haloween.com', 'jack', '123123123', null,'regular'))
 data.insertUser(new User('user-' + data.usersCount, 'Shally', 'shally@haloween.com', 'shally', '123123123', null, 'regular'))
