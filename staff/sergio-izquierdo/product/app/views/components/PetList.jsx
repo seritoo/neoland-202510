@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react'
 
-import { Feedback } from './commons/Feedback'
 import { ButtonSecondary } from './commons/ButtonSecondary'
 
 import { logic } from '../../logic'
 
-export function PetList({ onGoToPetDetail }) {
+export function PetList({ onGoToPetDetail, onError }) {
     console.log('PetList -> call')
 
-    const [feedback, setFeedback] = useState(null)
     const [pets, setPets] = useState([])
     const [petId, setPetId] = useState(null)
 
@@ -18,12 +16,11 @@ export function PetList({ onGoToPetDetail }) {
         try {
             logic.getPets()
                 .then((pets) => { // recibe pets como parámetro porque este then recive lo que retorna el callback anterior (api)
-
                     setPets(pets)
                 })
-                .catch(error => setFeedback({ message: error.message, level: 'error' }))
+                .catch(error => onError(error))
         } catch (error) {
-            setFeedback({ message: error.message, level: 'error' })
+           onError(error)
         }
     }, [])
 
@@ -47,9 +44,9 @@ export function PetList({ onGoToPetDetail }) {
                     setPetId(null) // borra el pet
                     setPets(pets) // actualiza los pets
                 })
-                .catch(error => setFeedback({ message: error.message, level: 'error' }))
+                .catch(error => onError(error))
         } catch (error) {
-            setFeedback({ message: error.message, level: 'error' })
+            onError(error)
         }
     }
 
@@ -85,6 +82,5 @@ export function PetList({ onGoToPetDetail }) {
                 </div>
             </div>
         </div>}
-
-        {feedback && <Feedback feedback={feedback} />}    </div>
+  </div>
 }

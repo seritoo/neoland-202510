@@ -1,15 +1,15 @@
 // manager
 class Data {
-    setLoggedInUserId(userId) {  // para guardar el userID
-        sessionStorage.userId = userId
+    setToken(token) {  // para guardar el userID
+        sessionStorage.token = token
     }
 
-    getLoggedInUserId() {  // para cargar el user
-        return sessionStorage.userId
+    getLoggedInToken() {  // para cargar el user
+        return sessionStorage.token
     }
 
-    removeLoggedInUserId() {
-        delete sessionStorage.userId
+    removeLoggedInToken() {
+        delete sessionStorage.token
     }
 }
 // instance

@@ -27,8 +27,8 @@ class Logic {
         if (typeof password !== 'string') throw new ValidationError('invalid password type')
         if (password.length < 8) throw new ValidationError('invalid password length')
 
-        if (typeof passwordRepeat !== 'string') throw new ValidationError('invalid passwordRepeat type')
-        if (passwordRepeat.length < 8) throw new ValidationError('invalid passwordRepeat length')
+        if (typeof passwordRepeat !== 'string') throw new ValidationError('invalid password repeat type')
+        if (passwordRepeat.length < 8) throw new ValidationError('invalid password repeat length')
 
         if (password !== passwordRepeat) throw new ValidationError('passwords do not match')
 
@@ -74,8 +74,8 @@ class Logic {
         if (!EMAIL_REGEX.test(newEmail)) throw new ValidationError('invalid email format')
 
         if(typeof newEmailRepeat !== 'string') throw new ValidationError('invalid email type')
-        if(newEmailRepeat.length < 6) throw new ValidationError('invalid newEmailRepeat length')
-        if (!EMAIL_REGEX.test(newEmailRepeat)) throw new ValidationError('invalid newEmailRepeat format')
+        if(newEmailRepeat.length < 6) throw new ValidationError('invalid newEmail repeat length')
+        if (!EMAIL_REGEX.test(newEmailRepeat)) throw new ValidationError('invalid newEmail repeat format')
 
         if(newEmail !== newEmailRepeat) throw new ValidationError('newEmail and newEmailRepeat do not match')
 

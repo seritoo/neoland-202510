@@ -1,18 +1,13 @@
-import { useState } from 'react'
 
 import { Form } from './commons/Form'
 import { Field } from './commons/Field'
 import { Button } from './commons/Button'
-import { Feedback} from './commons/Feedback'
-
 
 import { logic } from '../../logic'
 
 
-export function ChangeUserImage({ }) {
+export function ChangeUserImage({ onError, onSuccess }) {
     console.log('ChangeUserEmail -> call')
-
-    const [feedback, setFeedback] = useState(null) // {message, level}
 
     const handleChangeImageSubmit = event => {
         event.preventDefault()
@@ -26,12 +21,12 @@ export function ChangeUserImage({ }) {
                 .then(() => {
                     form.reset()
 
-                    setFeedback({ message: 'user image successfully updated', level: 'success' })
+                    onSuccess('user image successfully updated')
                 })
-                .catch(error =>setFeedback({ message: error.message, level: 'error' }))
+                .catch(error => onError(error))
 
         } catch (error) {
-            setFeedback({ message: error.message, level: 'error' })
+            onError(error)
         }
     }
 
@@ -43,7 +38,5 @@ export function ChangeUserImage({ }) {
 
             <Button className="self-center mt-4" type="submit">Update image</Button>
         </Form>
-
-        {feedback && <Feedback feedback={feedback} />}
     </div>
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { Routes, Route, useNavigate, Navigate} from 'react-router'
 
@@ -13,6 +13,7 @@ import { ModifyPet } from './views/ModifyPet'
 import { Feedback } from './views/components/commons/Feedback'
 
 import { logic } from './logic'
+import { AuthError, ValidationError, ExistenceError, CredentialError, DuplicityError } from './errors'
 
 export function App() {
     console.log('App -> call')
@@ -28,44 +29,69 @@ export function App() {
             setFeedback({message: error.message, level: 'error'})
         }
 
-    const handleGoToLogin = () => navigate('/login')
+    const clearFeedbackAndNavigate = path => {
+        setFeedback(null)
+        navigate(path)
+    }
 
-    const handleGoToRegister = () => navigate('/register')
+    const handleGoToLogin = () => clearFeedbackAndNavigate('/login')
 
-    const handleGoToHome = () => navigate('/')
+    const handleGoToRegister = () => clearFeedbackAndNavigate('/register')
 
-    const handleGoToAddPet = () => navigate('/add-pet')
+    const handleGoToHome = () => clearFeedbackAndNavigate('/')
 
-    const handleGoToProfile = () => navigate('/profile')
+    const handleGoToAddPet = () => clearFeedbackAndNavigate('/add-pet')
 
-    const handleGoToPetDetail = petId => navigate(`/pets/${petId}/detail`)
+    const handleGoToProfile = () => clearFeedbackAndNavigate('/profile')
 
-    const handleGoToModifyPet = petId => navigate(`/pets/${petId}/edit`)
+    const handleGoToPetDetail = petId => clearFeedbackAndNavigate(`/pets/${petId}/detail`)
+
+    const handleGoToModifyPet = petId => clearFeedbackAndNavigate(`/pets/${petId}/edit`)
+
+    const handleError = error => {
+        if( error instanceof AuthError) {
+            try {
+                logic.logoutUser()
+
+                setFeedback({message: 'wrong session. Please, login again', level: 'error'})
+                navigate('/login')
+            } catch (error) {
+                setFeedback({ message: 'sorry! there was an error on logout. Please, try it later', level: 'error' })
+            }
+        }
+        else if (error instanceof ValidationError)
+            setFeedback({message: error.message, level: 'warn'})
+        else if (error instanceof ExistenceError || error instanceof CredentialError || error instanceof DuplicityError)
+            setFeedback({ message: error.message, level: 'danger'})
+        else
+            setFeedback({ message: 'sorry, something failed. Please, try again later'})
+    }
+     const handleSuccess = message => setFeedback({ message, level: 'succes'})
+
+     const handleClear = () => setFeedback(null)
 
     console.log('App -> render')
 
     return <>
+        {feedback && <Feedback feedback={feedback} />}
 
         <Routes>
             <Route path="/" element={!loggedIn ?
             <Landing onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister}/>
             :
-            <Home onGoToAddPet={handleGoToAddPet} onUserLoggedOut={handleGoToLogin} onGoToProfile={handleGoToProfile} onGoToPetDetail={handleGoToPetDetail} />}/>
+            <Home onGoToAddPet={handleGoToAddPet} onUserLoggedOut={handleGoToLogin} onGoToProfile={handleGoToProfile} onGoToPetDetail={handleGoToPetDetail} onError={handleError} />}/>
 
-            <Route path="/login" element= {!loggedIn ? <Login onUserLoggedIn={handleGoToHome} onGoToRegister={handleGoToRegister} /> : <Navigate to="/" />} />
+            <Route path="/login" element= {!loggedIn ? <Login onUserLoggedIn={handleGoToHome} onGoToRegister={handleGoToRegister} onError={handleError} /> : <Navigate to="/" />} />
 
             <Route path="/register" element= {!loggedIn ? <Register onGoToLogin={handleGoToLogin} /> : <Navigate to="/" />} />
 
-            <Route path="/add-pet" element= {loggedIn ? <AddPet onGoToHome={handleGoToHome} /> : <Navigate to="/login" />} />
+            <Route path="/add-pet" element= {loggedIn ? <AddPet onGoToHome={handleGoToHome} onError={handleError}/> : <Navigate to="/login" />} />
 
-            <Route path="/profile" element={loggedIn ? <Profile onGoToHome={handleGoToHome} /> : <Navigate to="/login" />} />
+            <Route path="/profile" element={loggedIn ? <Profile onGoToHome={handleGoToHome} onError={handleError} onSuccess={handleSuccess} onClear={handleClear}/> : <Navigate to="/login" />} />
 
             <Route path="/pets/:petId/detail" element={loggedIn ? <PetDetail onGoToHome={handleGoToHome} onGoToModifyPet={handleGoToModifyPet}/> : <Navigate to="/login" />} />
 
-            <Route path="/pets/:petId/edit" element={loggedIn ? <ModifyPet onGoBack={handleGoToPetDetail}/>  : <Navigate to="/login" />} />
+            <Route path="/pets/:petId/edit" element={loggedIn ? <ModifyPet onGoBack={handleGoToPetDetail} onError={handleError} onSuccess={handleSuccess} />  : <Navigate to="/login" />} />
         </Routes>
-
-        {feedback && <Feedback feedback={feedback} />}
-
     </>
 }

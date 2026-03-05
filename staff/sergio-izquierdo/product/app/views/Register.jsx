@@ -1,4 +1,3 @@
-import { useState } from 'react'
 
 import { Form } from './components/commons/Form'
 import { Field } from './components/commons/Field'
@@ -6,16 +5,11 @@ import { PasswordField } from './components/commons/PasswordField'
 import { Title } from './components/commons/Title'
 import { Button } from './components/commons/Button'
 import { Anchor } from './components/commons/Anchor'
-import { Feedback} from './components/commons/Feedback'
-
 
 import { logic } from '../logic'
 
-
-export function Register({ onGoToLogin }) {
+export function Register({ onGoToLogin, onError }) {
     console.log('Register -> call')
-
-     const [feedback, setFeedback] = useState(null)
 
     const handleRegisterSubmit = event => {
         event.preventDefault()
@@ -38,9 +32,9 @@ export function Register({ onGoToLogin }) {
                     onGoToLogin()
 
                 })
-                .catch(error => setFeedback({ message: error.message, level: 'error' }))
+                .catch(error => onError(error))
         } catch (error) {
-            setFeedback({ message: error.message, level: 'error' })
+          onError(error)
         }
     }
 
@@ -72,7 +66,5 @@ export function Register({ onGoToLogin }) {
         </Form>
 
         <Anchor className="cursor-pointer underline font-bold" onClick={handleLoginClick}>Login</Anchor>
-
-        {feedback && <Feedback feedback={feedback} />}
     </div>
 }

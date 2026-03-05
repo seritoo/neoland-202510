@@ -1,9 +1,16 @@
 import express from 'express'
 import cors from 'cors'
+import morganBody from 'morgan-body'
+import jwt from 'jsonwebtoken'
+
 import './populate.js'
 
 import { logic } from './logic.js'
-import { DuplicityError, ExistenceError, OwnershipError, SystemError, ValidationError, CredentialError } from './errors.js'
+import { DuplicityError, ExistenceError, OwnershipError, SystemError, ValidationError, CredentialError, AuthError } from './errors.js'
+
+const { JsonWebTokenError} = jwt
+
+const JWT_SECRET = 'a superman le puede la kriptonita'
 
 const api = express()
 
@@ -11,9 +18,16 @@ const jsonBodyParser = express.json()
 
 api.use(cors())
 
+api.use(jsonBodyParser)
+
+morganBody(api, {
+	logAllReqHeader: true,
+	logAllResHeader: true
+})
+
 api.get('/', (req, res) => res.json({ message: 'Hello! from API ;)'}))
 
-api.post('/users', jsonBodyParser, (req, res) => {
+api.post('/users', (req, res, next) => {
     try {
         const { name, email, username, password, passwordRepeat } = req.body
 
@@ -21,25 +35,29 @@ api.post('/users', jsonBodyParser, (req, res) => {
 
         res.status(201).send()
     } catch (error) {
-        res.status(400).json({ error: error.constructor.name, message: error.message })
+        next(error)
     }
 })
 
-api.post('/users/auth', jsonBodyParser, (req, res) => {
+api.post('/users/auth', jsonBodyParser, (req, res, next) => {
     try {
         const { username, password } = req.body
 
 		const userId = logic.authenticateUser(username, password)
 
-        res.json(userId)
+		const token = jwt.sign({ sub: userId}, JWT_SECRET, { expiresIn: '1h'})
+
+        res.json(token)
     } catch (error) {
-        res.status(400).json({ error: error.constructor.name, message: error.message })
+        next(error)
     }
 })
 
-api.patch('/users/me/email', jsonBodyParser, (req, res) => {
+api.patch('/users/me/email', jsonBodyParser, (req, res, next) => {
 	try{
-		const userId = req.headers.authorization.slice(6)
+		const token = req.headers.authorization.slice(7)
+
+		const { sub: userId} = jwt.verify(token, JWT_SECRET)
 
 		const { email, newEmail, newEmailRepeat } = req.body
 
@@ -47,13 +65,15 @@ api.patch('/users/me/email', jsonBodyParser, (req, res) => {
 
 		res.status(204).send()
 	} catch (error) {
-		res.status(400).json({error: error.constructor.name, message: error.message})
+		next(error)
 	}
 })
 
-api.patch('/users/me/password', jsonBodyParser, (req, res) => {
+api.patch('/users/me/password', jsonBodyParser, (req, res, next) => {
 	try{
-		const userId = req.headers.authorization.slice(6)
+		const token = req.headers.authorization.slice(7)
+
+		const { sub: userId} = jwt.verify(token, JWT_SECRET)
 
 		const { password, newPassword, newPasswordRepeat} = req.body
 
@@ -61,24 +81,28 @@ api.patch('/users/me/password', jsonBodyParser, (req, res) => {
 
 		res.status(204).send()
 	} catch (error) {
-		res.status(400).json({error: error.constructor.name, message: error.message})
+		next(error)
 	}
 })
-api.get('/users/me', jsonBodyParser, (req, res) => {
+api.get('/users/me', jsonBodyParser, (req, res, next) => {
     try {
-        const userId = req.headers.authorization.slice(6)
+        const token = req.headers.authorization.slice(7)
+
+		const { sub: userId} = jwt.verify(token, JWT_SECRET)
 
         const user = logic.getUser(userId)
 
         res.json(user)
     } catch (error) {
-        res.status(400).json({ error: error.constructor.name, message: error.message })
+        next(error)
     }
 })
 
-api.patch('/users/me/image', jsonBodyParser, (req, res) => {
+api.patch('/users/me/image', jsonBodyParser, (req, res, next) => {
 	try{
-		const userId = req.headers.authorization.slice(6)
+		const token = req.headers.authorization.slice(7)
+
+		const { sub: userId} = jwt.verify(token, JWT_SECRET)
 
 		const { image } = req.body
 
@@ -86,13 +110,15 @@ api.patch('/users/me/image', jsonBodyParser, (req, res) => {
 
 		res.status(204).send()
 	} catch (error) {
-		res.status(400).json({error: error.constructor.name, message: error.message})
-	}
+		next(error)
+		}
 })
 
-api.post('/pets', jsonBodyParser, (req, res) => {
+api.post('/pets', (req, res, next) => {
 	try{
-		const userId = req.headers.authorization.slice(6)
+		const token = req.headers.authorization.slice(7)
+
+		const { sub: userId} = jwt.verify(token, JWT_SECRET)
 
 		const {name, birthdate, weight, image} = req.body
 
@@ -100,26 +126,29 @@ api.post('/pets', jsonBodyParser, (req, res) => {
 
 		res.status(201).send()
 	} catch (error) {
-		res.status(400).json({error: error.constructor.name, message: error.message})
+		next(error)
 	}
 })
 
-api.get('/pets', (req, res) => {  // no hay jsonBodyParser porque estoy pidiendo datos
+api.get('/pets', (req, res, next) => {  // no hay jsonBodyParser porque estoy pidiendo datos
 	try {
-		const userId = req.headers.authorization.slice(6)
+		const token = req.headers.authorization.slice(7)
+
+		const { sub: userId} = jwt.verify(token, JWT_SECRET)
 
 		const pets = logic.getPets(userId)
 
 		res.json(pets)
 	}catch (error){
-		res.status(400).json({error: error.constructor.name, message: error.message})
-
+		next(error)
 	}
 })
 
-api.delete('/pets/:petId', (req, res) => {  // usamos :petId como variable dinámica, indicamos que se borra un pet pero no sabemos cual
+api.delete('/pets/:petId', (req, res, next) => {  // usamos :petId como variable dinámica, indicamos que se borra un pet pero no sabemos cual
 	try{
-		const userId = req.headers.authorization.slice(6)
+		const token = req.headers.authorization.slice(7)
+
+		const { sub: userId} = jwt.verify(token, JWT_SECRET)
 
 		const { petId } = req.params
 
@@ -127,13 +156,15 @@ api.delete('/pets/:petId', (req, res) => {  // usamos :petId como variable diná
 
 		res.status(204).send()
 	} catch (error) {
-		res.status(400).json({error: error.constructor.name, message: error.message})
+		next(error)
 	}
 })
 
-api.get('/pets/:petId', (req, res) => {
+api.get('/pets/:petId', (req, res, next) => {
 	try{
-		const userId = req.headers.authorization.slice(6)
+		const token = req.headers.authorization.slice(7)
+
+		const { sub: userId} = jwt.verify(token, JWT_SECRET)
 
 		const { petId } = req.params
 
@@ -141,13 +172,15 @@ api.get('/pets/:petId', (req, res) => {
 
 		res.json(pet)
 	} catch (error) {
-		res.status(400).json({error: error.constructor.name, message: error.message})
+		next(error)
 	}
 })
 
-api.put('/pets/:petId', jsonBodyParser, (req, res) => {
+api.put('/pets/:petId', (req, res, next) => {
 	try{
-		const userId = req.headers.authorization.slice(6)
+		const token = req.headers.authorization.slice(7)
+
+		const { sub: userId} = jwt.verify(token, JWT_SECRET)
 
 		const { petId } = req.params
 
@@ -157,7 +190,7 @@ api.put('/pets/:petId', jsonBodyParser, (req, res) => {
 
 		res.status(204).send()
 	} catch (error) {
-		res.status(400).json({error: error.constructor.name, message: error.message})
+		next(error)
 	}
 })
 
@@ -177,10 +210,13 @@ api.use((error, req, res, next) => {
 		status = 401
 	else if (error instanceof OwnershipError)
 		status = 403
-	else
+	else if (error instanceof JsonWebTokenError) {
+		status = 401
+		errorName = AuthError.name
+	} else
 		errorName = SystemError.name
 
-		res.status(status).json({ error: errorName, message })
+	res.status(status).json({ error: errorName, message })
 })
 
 api.listen(8080, () => console.log('API listening on port 8080'))
