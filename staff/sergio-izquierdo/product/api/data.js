@@ -7,7 +7,7 @@
         this.email = email
         this.username = username
         this.password = password
-        this.imgage = image
+        this.image = image
         this.role = role
     }
 }
@@ -63,9 +63,9 @@ class Data {
     }
 
     updateUser(updatedUser) {
-        const index = this.users.findIndex(user => user.id === updatedUser.userId)
+        const index = this.users.findIndex(user => user.id === updatedUser.id)
 
-        this.users[index] = this.updateUser
+        this.users[index] = updatedUser
     }
 
     setLoggedInUserId(userId) {

@@ -1,6 +1,6 @@
 import  { data, User, Pet} from './data.js'
 
-data.insertUser(new User('user-' + data.usersCount, 'Jack Skellington', 'jack@haloween.com', 'jack', '123123123', null,'regular'))
+data.insertUser(new User('user-' + data.usersCount, 'Jack Skellington', 'jack@haloween.com', 'jack', '123123123', 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnliYm5zbHhtcGVobG8zeGdjeDA3Ynd4ZWk1MXBwa3c4aG1nOGx4OCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/K4Ov4XqbqUSf6/giphy.gif','regular'))
 data.insertUser(new User('user-' + data.usersCount, 'Shally', 'shally@haloween.com', 'shally', '123123123', null, 'regular'))
 data.insertUser(new User('user-' + data.usersCount, 'Sandy Claws', 'sandy@christmas.com', 'claws', '123123123', null,'regular'))
 data.insertUser(new User('user-' + data.usersCount, 'Oogie Boogie', 'oogie@boogie.com', 'oogieboogie', '123123123', null, 'regular'))

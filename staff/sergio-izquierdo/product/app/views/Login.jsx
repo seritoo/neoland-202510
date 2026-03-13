@@ -8,7 +8,7 @@ import { Anchor } from './components/commons/Anchor'
 
 import { logic } from '../logic'
 
-export function Login({ onUserLoggedIn, onGoToRegister }) {
+export function Login({ onUserLoggedIn, onGoToRegister, onError }) {
     console.log('Login -> call')
 
     const handleLoginSubmit = event => {
@@ -22,9 +22,9 @@ export function Login({ onUserLoggedIn, onGoToRegister }) {
         try {
             logic.authenticateUser(username, password)
                 .then(() => onUserLoggedIn())
-                .catch(error => onerror(error))
+                .catch(error => onError(error))
         } catch (error) {
-           onerror(error)
+           onError(error)
         }
     }
 

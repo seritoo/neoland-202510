@@ -4,6 +4,7 @@ export class DuplicityError extends Error {}
 export class CredentialError extends Error {}
 export class OwnershipError extends Error {}
 export class SystemError extends Error {}
+export class AuthError extends Error {}
 
 export const errorMap = {
 	ValidationError,
@@ -11,6 +12,7 @@ export const errorMap = {
 	DuplicityError,
 	CredentialError,
 	OwnershipError,
-	SystemError
+	SystemError,
+	AuthError
 }
 

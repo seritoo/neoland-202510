@@ -4,11 +4,11 @@ class Data {
         sessionStorage.token = token
     }
 
-    getLoggedInToken() {  // para cargar el user
+    getToken() {  // para cargar el user
         return sessionStorage.token
     }
 
-    removeLoggedInToken() {
+    removeToken() {
         delete sessionStorage.token
     }
 }
