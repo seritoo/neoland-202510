@@ -27,8 +27,6 @@ export function Register({ onGoToLogin, onError }) {
                 .then(() => {
                     form.reset()
 
-                    setFeedback(null)
-
                     onGoToLogin()
 
                 })

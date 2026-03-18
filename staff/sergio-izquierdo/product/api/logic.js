@@ -5,9 +5,6 @@ import { validate } from './validate.js'
 
 
 class Logic {
-    constructor() {
-    }
-
     registerUser(name, email, username, password, passwordRepeat) {
         validate.name(name)
         validate.email(email)
@@ -16,17 +13,19 @@ class Logic {
         validate.password(passwordRepeat, 'passwordRepeat')
         validate.match(password, passwordRepeat, 'password', 'passwordRepeat')
 
-        let user = data.findUserByEmail(email)
+        return data.findUserByEmail(email)
+            .then(user => {
+                if (user !== null) throw new DuplicityError('user already exists')
 
-        if (user !== null) throw new DuplicityError('user already exists')
+				return data.findUserByUsername(username)
+            })
+			.then(user => {
+				if (user !== null) throw new DuplicityError('user username already exists')
 
-        user = data.findUserByUsername(username)
+				user = new User(null, name, email, username, password, null, 'regular')
 
-        if (user !== null) throw new DuplicityError('user username already exists')
-
-        user = new User('user-' + data.usersCount, name, email, username, password, null, 'regular')
-
-        data.insertUser(user)
+				return data.insertUser(user)
+			})
     }
 
     authenticateUser(username, password) {
