@@ -47,11 +47,13 @@ database.connect('mongodb://localhost:27017/product')
 			try {
 				const { username, password } = req.body
 
-				const userId = logic.authenticateUser(username, password)
+				logic.authenticateUser(username, password)
+					.then(userId => {
+						const token = jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '1h' })
 
-				const token = jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '1h' })
-
-				res.json(token)
+						res.json(token)
+					})
+					.catch(error => next(error))
 			} catch (error) {
 				next(error)
 			}
@@ -66,8 +68,8 @@ database.connect('mongodb://localhost:27017/product')
 				const { email, newEmail, newEmailRepeat } = req.body
 
 				logic.changeUserEmail(userId, email, newEmail, newEmailRepeat)
-
-				res.status(204).send()
+					.then(() => res.status(204).send())
+					.catch(error => next(error))
 			} catch (error) {
 				next(error)
 			}
@@ -94,9 +96,9 @@ database.connect('mongodb://localhost:27017/product')
 
 				const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-				const user = logic.getUser(userId)
-
-				res.json(user)
+				logic.getUser(userId)
+					.then(user => res.json(user))
+					.catch(error => next(error))
 			} catch (error) {
 				next(error)
 			}
@@ -111,8 +113,8 @@ database.connect('mongodb://localhost:27017/product')
 				const { image } = req.body
 
 				logic.changeUserImage(userId, image)
-
-				res.status(204).send()
+					.then(() => res.status(204).send())
+					.catch(error => next(error))
 			} catch (error) {
 				next(error)
 			}

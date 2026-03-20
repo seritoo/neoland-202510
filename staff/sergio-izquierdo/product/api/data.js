@@ -69,15 +69,21 @@ class Data {
     }
 
     findUserById(userId) {
-       const user = this.users.find(user => user.id === userId)
+       return UserModel.findById({ userId })
+            .catch(error => { throw new SystemError(error.message)})
+            .then(userModel => {
+                if(!userModel) return null
 
-       return user || null
+                const {id, name, email, username, password, image, role} = userModel
+
+                return new User( id, name, email, username, password, image, role)
+            })
     }
 
-    updateUser(updatedUser) {
-        const index = this.users.findIndex(user => user.id === updatedUser.id)
-
-        this.users[index] = updatedUser
+    updateUser(user) {
+        return new UserModel.updateOne({ _id: user.id}, user)
+            .catch(error => { throw new SystemError(error.message)})
+            .then(userModel => { })
     }
 
     setLoggedInUserId(userId) {

@@ -43,7 +43,7 @@ class Logic {
             })
     }
 
-    authenticateUser(username, password) {
+    loginUser(username, password) {
         validate.username(username)
         validate.password(password)
 
@@ -293,9 +293,9 @@ class Logic {
     removePet(petId) {
         if (data.getToken() === null) throw new AuthError('user not logged in')
 
-        validate.petId(petId)
+        validate.id(petId, 'petId')
 
-        return fetch('http://localhost:8080/pets/' + petId, { // construimos la la ruta con el petId
+        return fetch(`http://localhost:8080/pets/${petId}`, { // construimos la la ruta con el petId
             method: 'DELETE',
             headers: {
                 Authorization: 'Bearer ' + data.getToken()
@@ -323,9 +323,9 @@ class Logic {
     getPet(petId) {
         if (data.getToken() === null) throw new AuthError('user not logged in')
 
-        validate.petId(petId)
+        validate.id(petId, 'petId')
 
-        return fetch('http://localhost:8080/pets/' + petId, { // construimos la la ruta con el petId
+        return fetch(`http://localhost:8080/pets/${petId}`, { // construimos la la ruta con el petId
             //method: 'GET',  el método GET se puede omitir, el fetch lo reconocerá como tal
             headers: {
                 Authorization: 'Bearer ' + data.getToken()
@@ -354,7 +354,7 @@ class Logic {
     modifyPet(petId, name, birthdate, weight, image) {
         if (data.getToken() === null) throw new AuthError('user not logged in') // solo validamos que el usuario este loguineado
 
-        validate.petId(petId)
+        validate.id(petId, 'petId')
         validate.name(name)
         validate.date(birthdate, 'birthdate')
         validate.number(weight, 'weight')
