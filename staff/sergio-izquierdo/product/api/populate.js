@@ -1,12 +1,12 @@
 import { database, UserModel, PetModel} from './models.js'
 
 database.connect('mongodb://localhost:27017/product')
-
-const jack = new UserModel({ name: 'Jack Skellington', email: 'jack@halloween.com', username: 'Jack', password: '123123123'})
+	.then(() => {
+		const jack = new UserModel({ name: 'Jack Skellington', email: 'jack@halloween.com', username: 'Jack', password: '123123123'})
 
 const sally = new UserModel({ name: 'Sally Skellington', email: 'sally@halloween.com', username: 'Sally', password: '123123123'})
 
-Promise.all([jack.save(), sally.save()])
+return Promise.all([jack.save(), sally.save()])
 	.then(([jack, sally]) => {
 		console.log(jack, sally)
 
@@ -19,4 +19,7 @@ Promise.all([jack.save(), sally.save()])
 		return Promise.all([zero.save(), scraps.save(), sparky.save()])
 	})
 	.then(([zero, scraps, sparky]) => console.log(zero, scraps, sparky))
-	.catch(error => console.error(error))
+
+})
+.catch(error => console.error(error))
+.finally(() => database.disconnect())

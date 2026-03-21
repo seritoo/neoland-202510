@@ -1,10 +1,10 @@
 import { SystemError } from './errors.js'
-import { UserModel, PetModel} from './models.js'
+import { UserModel, PetModel } from './models.js'
 
 
 // models
 
- export class User {
+export class UserData {
     constructor(id, name, email, username, password, image, role) {
         this.id = id
         this.name = name
@@ -16,18 +16,13 @@ import { UserModel, PetModel} from './models.js'
     }
 }
 
-export class Pet {
-    constructor(id, userId, /*chip,*/ name, /*gender,*/ birthdate, weight, /*species, race, colors,*/ image) {
+export class PetData {
+    constructor(id, ownerId, name, birthdate, weight, image) {
         this.id = id
-        this.userId = userId
-        // this.chip = chip
+        this.ownerId = ownerId
         this.name = name
-        // this.gender = gender
         this.birthdate = birthdate
         this.weight = weight
-        // this.species = species
-        // this.race = race
-        // this.colors = colors
         this.image = image
     }
 }
@@ -37,52 +32,52 @@ export class Pet {
 class Data {
 
     insertUser(user) {
-       const userModel = new UserModel(user)
+        const userModel = new UserModel(user)
 
-       return userModel.save()
-        .catch(error => {throw new SystemError(error.message)})
-        .then(userModel => {}) // no devolvemos el modelo
+        return userModel.save()
+            .catch(error => { throw new SystemError(error.message) })
+            .then(userModel => { }) // no devolvemos el modelo
     }
 
     findUserByEmail(email) {
         return UserModel.findOne({ email })
-            .catch(error => { throw new SystemError(error.message)})
+            .catch(error => { throw new SystemError(error.message) })
             .then(userModel => {
-                if(!userModel) return null
+                if (!userModel) return null
 
-                const {id, name, email, username, password} = userModel
+                const { id, name, email, username, password } = userModel
 
-                return new User( id, name, email, username, password)
+                return new UserData(id, name, email, username, password)
             })
     }
 
     findUserByUsername(username) {
-       return UserModel.findOne({ username })
-            .catch(error => { throw new SystemError(error.message)})
+        return UserModel.findOne({ username })
+            .catch(error => { throw new SystemError(error.message) })
             .then(userModel => {
-                if(!userModel) return null
+                if (!userModel) return null
 
-                const {id, name, email, username, password} = userModel
+                const { id, name, email, username, password } = userModel
 
-                return new User( id, name, email, username, password)
+                return new UserData(id, name, email, username, password)
             })
     }
 
     findUserById(userId) {
-       return UserModel.findById({ userId })
-            .catch(error => { throw new SystemError(error.message)})
+        return UserModel.findById(userId)
+            .catch(error => { throw new SystemError(error.message) })
             .then(userModel => {
-                if(!userModel) return null
+                if (!userModel) return null
 
-                const {id, name, email, username, password, image, role} = userModel
+                const { id, name, email, username, password, image, role } = userModel
 
-                return new User( id, name, email, username, password, image, role)
+                return new UserData(id, name, email, username, password, image, role)
             })
     }
 
     updateUser(user) {
-        return new UserModel.updateOne({ _id: user.id}, user)
-            .catch(error => { throw new SystemError(error.message)})
+        return new UserModel.updateOne({ _id: user.id }, user)
+            .catch(error => { throw new SystemError(error.message) })
             .then(userModel => { })
     }
 
@@ -94,21 +89,35 @@ class Data {
         return this.loggedInUserId
     }
 
-    insertPet(pet) {
-        this.pets.push(pet)
-        this.petsCount++
+    insertPet(petData) {
+        const { ownerId, name, birthdate, weight, image } = petData
+
+        const petModel = new PetModel({ owner: ownerId, name, birthdate, weight, image })
+
+        return petModel.save()
+            .catch(error => { throw new SystemError(error.message) })
+            .then(petModel => { }) // no devolvemos el modelo
     }
 
     findPetsByUserId(userId) {
-        const foundPets = this.pets.filter(pet => pet.userId === userId)
+        return PetModel.find({ owner: userId})
+            .then(petModels => petModels.map(petModel => {
+                const { id, owner, name, birthdate, weight, image } = petModel
 
-        return foundPets
+                return new PetData(id, owner.toString(), name, birthdate, weight, image)
+            }))
     }
 
     findPetById(petId) {
-        const pet = this.pets.find(pet => pet.id === petId)
+        return PetModel.findById({ petId })
+            .catch(error => { throw new SystemError(error.message) })
+            .then(petModel => {
+                if (!petModel) return null
 
-        return pet || null
+                const { id, owner, name, birthdate, weight, image } = petModel
+
+                return new PetData(id, owner.tostring(), name, birthdate, weight, image)
+            })
     }
 
     updatePet(updatedPet) {
@@ -118,9 +127,9 @@ class Data {
     }
 
     deletePet(petId) {
-        const index = this.pets.findIndex(pet => pet.id === petId)
-
-        data.pets.splice(index, 1)
+        return PetModel.deleteOne({ _id: petId })
+            .catch(erro => { throw new SystemError(error.message) })
+            .then(result => { })
     }
 
 }

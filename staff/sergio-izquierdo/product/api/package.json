@@ -8,7 +8,8 @@
     "start": "node index.js",
     "watch": "node --watch index.js",
     "inspect": "node --inspect-brk index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "populate": "node populate.js"
   },
   "keywords": [],
   "author": "",

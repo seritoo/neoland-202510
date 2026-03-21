@@ -129,8 +129,8 @@ database.connect('mongodb://localhost:27017/product')
 				const { name, birthdate, weight, image } = req.body
 
 				logic.addPet(userId, name, birthdate, weight, image)
-
-				res.status(201).send()
+					.then(() => res.status(201).send())
+					.catch(error => next(error))
 			} catch (error) {
 				next(error)
 			}
@@ -142,9 +142,9 @@ database.connect('mongodb://localhost:27017/product')
 
 				const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-				const pets = logic.getPets(userId)
-
-				res.json(pets)
+				logic.getPets(userId)
+					.then(pets => res.json(pets))
+					.catch(error => next(error))
 			} catch (error) {
 				next(error)
 			}
@@ -159,8 +159,8 @@ database.connect('mongodb://localhost:27017/product')
 				const { petId } = req.params
 
 				logic.removePet(userId, petId)
-
-				res.status(204).send()
+					.then(() => res.status(204).send())
+					.catch(error => next(error))
 			} catch (error) {
 				next(error)
 			}
