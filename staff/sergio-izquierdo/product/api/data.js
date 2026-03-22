@@ -90,7 +90,7 @@ class Data {
     }
 
     insertPet(petData) {
-        const { ownerId, name, birthdate, weight, image } = petData
+        const { ownerId, name, birthdate, weight, image } = pet
 
         const petModel = new PetModel({ owner: ownerId, name, birthdate, weight, image })
 
@@ -109,27 +109,29 @@ class Data {
     }
 
     findPetById(petId) {
-        return PetModel.findById({ petId })
+        return PetModel.findById(petId)
             .catch(error => { throw new SystemError(error.message) })
             .then(petModel => {
                 if (!petModel) return null
 
                 const { id, owner, name, birthdate, weight, image } = petModel
 
-                return new PetData(id, owner.tostring(), name, birthdate, weight, image)
+                return new PetData(id, owner.toString(), name, birthdate, weight, image)
             })
     }
 
-    updatePet(updatedPet) {
-        const index = this.pets.findIndex(pet => pet.id === updatedPet.id)
+    updatePet(petData) {
+        const { id, ownerId, name, birthdate, weight, image} = petData
 
-        this.pets[index] = updatedPet
+        return PetModel.updateOne({ _id: id}, { $set: { owner: ownerId, name, birthdate, weight, image}})
+            .catch(error => { throw new SystemError(error.message)})
+            .then(result => { })
     }
 
     deletePet(petId) {
         return PetModel.deleteOne({ _id: petId })
-            .catch(erro => { throw new SystemError(error.message) })
-            .then(result => { })
+            .catch(error => { throw new SystemError(error.message) })
+            .then(result => { }) // si todo va bien recibimos un resultado que no devuelve nada
     }
 
 }
