@@ -201,7 +201,7 @@ class Logic {
                 Authorization: 'Bearer ' + data.getToken(),
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ image })
+            body: JSON.stringify({image} )
         })
             .catch(error => { throw new SystemError('connection error')})
             .then(res => {
@@ -224,6 +224,44 @@ class Logic {
             })
     }
 
+    changeUserName(name) {
+        if (data.getToken() === null) throw new AuthError('user not logged in')
+
+        validate.name(name)
+
+        return fetch('http://localhost:8080/users/me/name', {
+            method: 'PATCH',
+            headers: {
+                Authorization: 'Bearer ' + data.getToken(),
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name} )
+        })
+            .catch(error => { throw new SystemError('connection error')})
+            .then(res => {
+
+                const { status } = res // manejamos el status
+
+                if (status === 204)
+                    return
+
+                return res.json()
+                    .catch(error => {throw new SystemError('json error')})
+                    .then(body => {
+
+                        const { error, message } = body
+
+                        const constructor = errorMap[error] || SystemError
+
+                        throw new constructor(message)
+                    })
+            })
+    }
+
+    
+
+
+
 
 
     addPet(name, birthdate, weight, image) {
@@ -232,7 +270,7 @@ class Logic {
         validate.name(name)
         validate.date(birthdate, 'birthdate')
         validate.number(weight, 'weight')
-        validate.url(image, 'image')
+        validate.url(name, 'name')
 
         return fetch('http://localhost:8080/pets', {
             method: 'POST',

@@ -19,7 +19,6 @@ export function ModifyPet({ onGoBack, onError, onSuccess }) {  // usamos petId p
     const { petId } = useParams()
 
         useEffect(() => {
-            setTimeout(() => {
             try {
 
                 logic.getPet(petId)
@@ -28,7 +27,6 @@ export function ModifyPet({ onGoBack, onError, onSuccess }) {  // usamos petId p
             } catch (error) {
                 onError(error)
             }
-        },2000)
         }, [])
 
     const handleBackClick = event => {
@@ -67,16 +65,23 @@ export function ModifyPet({ onGoBack, onError, onSuccess }) {  // usamos petId p
             <Anchor onClick={handleBackClick}>&lt; Back</Anchor>
         </div>
 
-        {pet ? <Form onSubmit={handleModifyPetSubmit}>
+        {pet ? (() => {
+            const zuluDate = new Date(pet.birthdate)
+            const offsetMillis = zuluDate.getTimezoneOffset() * 60 * 1000
+            const localDate = new Date(zuluDate.getTime() - offsetMillis)
+            const localDateString = localDate.toISOString().split('T')[0]
+
+        return <Form onSubmit={handleModifyPetSubmit}>
             <Field alias="name" type="text" defaultValue={pet.name}>Name</Field>
 
-            <Field alias="birthdate" type="date" defaultValue={pet.birthdate}>Birthdate</Field>
+            <Field alias="birthdate" type="date" defaultValue={localDateString}>Birthdate</Field>
 
-            <Field alias="weight" type="number" defaultValue={pet.weight}>Weight (kg)</Field>
+            <Field alias="weight" type="number" defaultValue={pet.weight} step= "0.1">Weight (kg)</Field>
 
             <Field alias="image" type="url" defaultValue={pet.image}>Image</Field>
 
             <ButtonSecondary className="self-center mt-4" type="submit">Modify Pet</ButtonSecondary>
-        </Form> : <Spinner/>}
+        </Form>
+         })() : <Spinner/>}
     </div>
 }   // usamos la propiedad defaultValue para traernos los datos
