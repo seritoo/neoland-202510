@@ -61,6 +61,7 @@ class Logic {
 
                 if (status === 200)
                     return res.json()
+                        .catch(error => { throw new SystemError('json error') })
                         .then( token  => data.setToken(token))
 
                 return res.json()
@@ -175,7 +176,8 @@ class Logic {
 
                 if (status === 200)
                     return res.json()
-                //.then(user => user)
+                        .catch(error => { throw new SystemError('json error') })
+                        .then(user => user)
 
                 return res.json()
                     .catch(error => { throw new SystemError('json error') })
@@ -258,12 +260,6 @@ class Logic {
             })
     }
 
-    
-
-
-
-
-
     addPet(name, birthdate, weight, image) {
         if (data.getToken() === null) throw new AuthError('user not logged in') // solo validamos que el usuario este loguineado
 
@@ -314,7 +310,8 @@ class Logic {
 
                 if (status === 200)
                     return res.json()
-                //.then(pets => pets)
+                        .catch(error => { throw new SystemError('json error') })
+                        .then(pets => pets)
 
                 return res.json()
                     .then(body => {
@@ -375,7 +372,8 @@ class Logic {
 
                 if (status === 200)
                     return res.json()
-                //.then(pet => pet)
+                        .catch(error => { throw new SystemError('json error') })
+                        .then(pet => pet)
 
                 return res.json()
                     .then(body => {

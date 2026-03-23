@@ -7,10 +7,14 @@ import { ButtonSecondary } from './components/commons/ButtonSecondary'
 import { Title } from './components/commons/Title'
 import { Spinner } from './components/Spinner'
 
+import { useContext } from '../context'
+
 import { logic } from '../logic'
 
-export function PetDetail({ onGoToHome, onGoToModifyPet, onError }) {
+export function PetDetail({ onGoToHome, onGoToModifyPet}) {
     console.log('PetDetail -> call')
+
+    const { onError } = useContext()
 
     const [pet, setPet] = useState(null)
 

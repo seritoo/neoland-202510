@@ -9,10 +9,14 @@ import { ButtonSecondary } from './components/commons/ButtonSecondary'
 import { Anchor } from './components/commons/Anchor'
 import { Spinner} from './components/Spinner'
 
+import { useContext } from '../context'
+
 import { logic } from '../logic'
 
-export function ModifyPet({ onGoBack, onError, onSuccess }) {  // usamos petId para cuando carguemos esta vista, se traiga los datos y aparezcan precargados
+export function ModifyPet({ onGoBack }) {  // usamos petId para cuando carguemos esta vista, se traiga los datos y aparezcan precargados
     console.log('ModifyPet -> call')
+
+    const { onSuccess, onError } = useContext()
 
     const [pet, setPet] = useState(null)
 

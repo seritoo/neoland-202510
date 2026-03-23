@@ -1,10 +1,12 @@
+import bcrypt from 'bcryptjs'
+
 import { database, UserModel, PetModel} from './models.js'
 
 database.connect('mongodb://localhost:27017/product')
-	.then(() => {
-		const jack = new UserModel({ name: 'Jack Skellington', email: 'jack@halloween.com', username: 'Jack', password: '123123123'})
-
-const sally = new UserModel({ name: 'Sally Skellington', email: 'sally@halloween.com', username: 'Sally', password: '123123123'})
+	 .then(() => bcrypt.hash('123123123', 10))
+    .then(hash => {
+        const wendy = new UserModel({ name: 'Jack Skellington', email: 'jack@halloween', username: 'Jack', password: hash })
+        const peter = new UserModel({ name: 'Sally Skellington', email: 'sally@halloween', username: 'Sally', password: hash })
 
 return Promise.all([jack.save(), sally.save()])
 	.then(([jack, sally]) => {

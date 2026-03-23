@@ -6,10 +6,14 @@ import { Title } from './components/commons/Title'
 import { Button } from './components/commons/Button'
 import { Anchor } from './components/commons/Anchor'
 
+import { useContext } from '../context'
+
 import { logic } from '../logic'
 
-export function Register({ onGoToLogin, onError }) {
+export function Register({ onGoToLogin}) {
     console.log('Register -> call')
+
+    const { onError } = useContext()
 
     const handleRegisterSubmit = event => {
         event.preventDefault()

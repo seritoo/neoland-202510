@@ -6,10 +6,14 @@ import { Title } from './components/commons/Title'
 
 import { PetList } from './components/PetList'
 
+import { useContext } from '../context'
+
 import { logic } from '../logic'
 
-export function Home({ onGoToAddPet, onUserLoggedOut, onGoToProfile, onGoToPetDetail, onError }) {
+export function Home({ onGoToAddPet, onUserLoggedOut, onGoToProfile, onGoToPetDetail }) {
     console.log('Home -> call')
+
+    const { onError } = useContext()
 
      const [name, setName] = useState(null)
      const [image, setImage] = useState('https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZHc1YzJkenBiZGZrYnZkbzZrc3d1a29jaWNvbHRpd2diN3Y3NmF0NCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xdH0MjQ83lGFVv7gjR/giphy.gif')

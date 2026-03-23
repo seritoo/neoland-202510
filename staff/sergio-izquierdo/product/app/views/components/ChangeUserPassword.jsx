@@ -5,8 +5,12 @@ import { PasswordField } from './commons/PasswordField'
 import { Button } from './commons/Button'
 import { logic } from '../../logic'
 
-export function ChangeUserPassword({ onError, onSuccess }) {
+import { useContext } from '../../context'
+
+export function ChangeUserPassword() {
     console.log('ChangeUserPassword -> call')
+
+    const { onSuccess, onError } = useContext()
 
     const handleChangePasswordSubmit = event => {
         event.preventDefault()
