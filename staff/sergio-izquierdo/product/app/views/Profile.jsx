@@ -13,7 +13,7 @@ import { useContext } from '../context'
 export function Profile({ onGoToHome }) {
     console.log('Profile -> call')
 
-    const { onClear } = useContext
+    const { onClear } = useContext()
 
     const [view, setView] = useState(null)
 

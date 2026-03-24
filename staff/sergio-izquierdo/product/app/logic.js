@@ -97,7 +97,7 @@ class Logic {
         return fetch('http://localhost:8080/users/me/email', {
             method: 'PATCH',
             headers: {
-                Authorization: 'Bearer ' + data.getToken(),
+                Authorization: `Bearer ${data.getToken()}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ email, newEmail, newEmailRepeat })
@@ -134,7 +134,7 @@ class Logic {
         return fetch('http://localhost:8080/users/me/password', {
             method: 'PATCH',
             headers: {
-                Authorization: 'Bearer ' + data.getToken(),
+                Authorization: `Bearer ${data.getToken()}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ password, newPassword, newPasswordRepeat })
@@ -166,7 +166,7 @@ class Logic {
         return fetch('http://localhost:8080/users/me', {
             method: 'GET',
             headers: {
-                Authorization: 'Bearer ' + data.getToken() // enviamos el id del usuario conectado al sistema. Esto está en la capa de datos del front
+                Authorization: `Bearer ${data.getToken()}` // enviamos el id del usuario conectado al sistema. Esto está en la capa de datos del front
             }
         })
             .catch(error => { throw new SystemError('connection error') })
@@ -200,7 +200,7 @@ class Logic {
         return fetch('http://localhost:8080/users/me/image', {
             method: 'PATCH',
             headers: {
-                Authorization: 'Bearer ' + data.getToken(),
+                Authorization: `Bearer ${data.getToken()}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({image} )
@@ -234,7 +234,7 @@ class Logic {
         return fetch('http://localhost:8080/users/me/name', {
             method: 'PATCH',
             headers: {
-                Authorization: 'Bearer ' + data.getToken(),
+                Authorization: `Bearer ${data.getToken()}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({name} )
@@ -260,6 +260,38 @@ class Logic {
             })
     }
 
+    changeUserUsername(username) {
+        if (data.getToken() === null) throw new AuthError('user not logged in')
+
+        validate.username(username)
+
+        return fetch('http://localhost:8080/users/me/username', {
+            method: 'PATCH',
+            headers: {
+                Authorization: `Bearer ${data.getToken()}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username })
+        })
+            .catch(error => { throw new SystemError('connection error') })
+            .then(res => {
+                const { status } = res
+
+                if (status === 204)
+                    return
+
+                return res.json()
+                    .catch(error => { throw new SystemError('json error') })
+                    .then(body => {
+                        const { error, message } = body
+
+                        const constructor = errorMap[error] || SystemError
+
+                        throw new constructor(message)
+                    })
+            })
+    }
+
     addPet(name, birthdate, weight, image) {
         if (data.getToken() === null) throw new AuthError('user not logged in') // solo validamos que el usuario este loguineado
 
@@ -271,7 +303,7 @@ class Logic {
         return fetch('http://localhost:8080/pets', {
             method: 'POST',
             headers: {
-                Authorization: 'Bearer ' + data.getToken(),
+                Authorization: `Bearer ${data.getToken()}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ name, birthdate, weight, image })
@@ -301,7 +333,7 @@ class Logic {
         return fetch('http://localhost:8080/pets', {
             method: 'GET',
             headers: {
-                Authorization: 'Bearer ' + data.getToken() // enviamos el id del usuario conectado al sistema. Esto está en la capa de datos del front
+                Authorization: `Bearer ${data.getToken()}` // enviamos el id del usuario conectado al sistema. Esto está en la capa de datos del front
             }
         })
             .catch(error => { throw new SystemError('connection error') })
@@ -333,7 +365,7 @@ class Logic {
         return fetch(`http://localhost:8080/pets/${petId}`, { // construimos la la ruta con el petId
             method: 'DELETE',
             headers: {
-                Authorization: 'Bearer ' + data.getToken()
+                Authorization: `Bearer ${data.getToken()}`
             }
         })
             .catch(error => { throw new SystemError('connection error') })
@@ -363,7 +395,7 @@ class Logic {
         return fetch(`http://localhost:8080/pets/${petId}`, { // construimos la la ruta con el petId
             //method: 'GET',  el método GET se puede omitir, el fetch lo reconocerá como tal
             headers: {
-                Authorization: 'Bearer ' + data.getToken()
+                Authorization: `Bearer ${data.getToken()}`
             }
         })
             .catch(error => { throw new SystemError('connection error') })
@@ -399,7 +431,7 @@ class Logic {
         return fetch('http://localhost:8080/pets/' + petId, {
             method: 'PUT',
             headers: {
-                Authorization: 'Bearer ' + data.getToken(),
+                Authorization: `Bearer ${data.getToken()}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ name, birthdate, weight, image })
