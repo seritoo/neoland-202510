@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs' 
+
 import { data, UserData, PetData } from './data.js'
 import { validate } from './validate.js'
 
