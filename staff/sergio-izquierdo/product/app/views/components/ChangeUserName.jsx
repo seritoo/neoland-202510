@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 
 import { Form } from './commons/Form'
 import { Field } from './commons/Field'
@@ -8,13 +8,15 @@ import { useContext } from '../../context'
 
 import { logic } from '../../logic'
 
+import { logger } from '../../logger'
+
 
 export function ChangeUserName() {
-    console.log('ChangeUserName -> call')
+    logger.debug('ChangeUserName -> call')
 
     const { onSuccess, onError } = useContext()
 
-     const [name, setName] = useState('')
+    const [name, setName] = useState('')
 
     useEffect(() => {
         try {
@@ -39,15 +41,15 @@ export function ChangeUserName() {
                 .then(() => onSuccess('user name successfully updated'))
                 .catch(error => onError(error))
         } catch (error) {
-           onError(error)
+            onError(error)
         }
     }
 
-    console.log('ChangeUserName -> render')
+    logger.debug('ChangeUserName -> render')
 
     return <div>
         <Form onSubmit={handleChangeNameSubmit}>
-            <Field alias="name" type="text"  defaultValue={name}>Name</Field>
+            <Field alias="name" type="text" defaultValue={name}>Name</Field>
 
             <Button className="self-center mt-4" type="submit">Update name</Button>
         </Form>

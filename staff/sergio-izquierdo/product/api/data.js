@@ -45,9 +45,9 @@ class Data {
             .then(userModel => {
                 if (!userModel) return null
 
-                const { id, name, email, username, password } = userModel
+                const { id, name, email, username, password, image, role } = userModel
 
-                return new UserData(id, name, email, username, password)
+                return new UserData(id, name, email, username, password, image, role)
             })
     }
 
@@ -57,9 +57,9 @@ class Data {
             .then(userModel => {
                 if (!userModel) return null
 
-                const { id, name, email, username, password } = userModel
+                const { id, name, email, username, password, image, role } = userModel
 
-                return new UserData(id, name, email, username, password)
+                return new UserData(id, name, email, username, password, image, role)
             })
     }
 
@@ -76,9 +76,15 @@ class Data {
     }
 
     updateUser(user) {
-        return UserModel.updateOne({ _id: user.id }, user)
+        return UserModel.updateOne({ _id: user.id }, {$set: user})
             .catch(error => { throw new SystemError(error.message) })
             .then(userModel => { })
+    }
+
+    deleteAllUsers() {
+        return UserModel.deleteMany()
+            .catch(error => { throw new SystemError(error.message) })
+            .then(result => { })
     }
 
     setLoggedInUserId(userId) {
@@ -134,6 +140,11 @@ class Data {
             .then(result => { }) // si todo va bien recibimos un resultado que no devuelve nada
     }
 
+     deleteAllPets() {
+        return PetModel.deleteMany()
+            .catch(error => { throw new SystemError(error.message) })
+            .then(result => { })
+    }
 }
 
 

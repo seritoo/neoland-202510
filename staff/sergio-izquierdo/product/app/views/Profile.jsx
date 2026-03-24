@@ -10,8 +10,11 @@ import { ChangeUserUsername } from './components/ChangeUserUsername'
 
 import { useContext } from '../context'
 
+import { logger } from '../logger'
+
+
 export function Profile({ onGoToHome }) {
-    console.log('Profile -> call')
+    logger.debug('Profile -> call')
 
     const { onClear } = useContext()
 
@@ -57,33 +60,33 @@ export function Profile({ onGoToHome }) {
         setView('change-image')
     }
 
-    console.log('Profile -> render')
+    logger.debug('Profile -> render')
 
     return <div className="p-4">
-            <Title>MyPet</Title>
+        <Title>MyPet</Title>
 
-            <div>
-                <h2 className="flex justify-center font-bold text-xl p-2">Profile:</h2>
+        <div>
+            <h2 className="flex justify-center font-bold text-xl p-2">Profile:</h2>
 
-                <Anchor className="flex justify-end p-4" onClick={handleBackClick}>&lt; Back</Anchor>
-            </div>
-
-            <ul>
-                <li><Anchor onClick={handleChangeNameClick}>Change name</Anchor></li>
-                <li><Anchor onClick={handleChangeEmailClick}>Change e-mail</Anchor></li>
-                <li><Anchor onClick={handleChangeUsernameClick}>Change username</Anchor></li>
-                <li><Anchor onClick={handlePasswordClick}>Change password</Anchor></li>
-                <li><Anchor onClick={handleImageClick}>Change image</Anchor></li>
-            </ul>
-
-            {view === 'change-name' && <ChangeUserName /> }
-
-            {view === 'change-email' && <ChangeUserEmail />}
-
-            {view === 'change-username' && <ChangeUserUsername />}
-
-            {view === 'change-password' && <ChangeUserPassword />}
-
-            {view === 'change-image' && <ChangeUserImage />}
+            <Anchor className="flex justify-end p-4" onClick={handleBackClick}>&lt; Back</Anchor>
         </div>
+
+        <ul>
+            <li><Anchor onClick={handleChangeNameClick}>Change name</Anchor></li>
+            <li><Anchor onClick={handleChangeEmailClick}>Change e-mail</Anchor></li>
+            <li><Anchor onClick={handleChangeUsernameClick}>Change username</Anchor></li>
+            <li><Anchor onClick={handlePasswordClick}>Change password</Anchor></li>
+            <li><Anchor onClick={handleImageClick}>Change image</Anchor></li>
+        </ul>
+
+        {view === 'change-name' && <ChangeUserName />}
+
+        {view === 'change-email' && <ChangeUserEmail />}
+
+        {view === 'change-username' && <ChangeUserUsername />}
+
+        {view === 'change-password' && <ChangeUserPassword />}
+
+        {view === 'change-image' && <ChangeUserImage />}
+    </div>
 }

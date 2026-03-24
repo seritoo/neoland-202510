@@ -4,12 +4,17 @@ import { ButtonSecondary } from './commons/ButtonSecondary'
 
 import { PetItem } from './PetItem'
 
+import { useContext } from '../../context'
+
 import { logic } from '../../logic'
 
-import { useContext} from '../../context'
+import { logger } from '../../logger'
+
+
+
 
 export function PetList({ onGoToPetDetail }) {
-    console.log('PetList -> call')
+    logger.debug('PetList -> call')
 
     const { onError } = useContext()
 
@@ -17,7 +22,7 @@ export function PetList({ onGoToPetDetail }) {
     const [petId, setPetId] = useState(null)
 
     useEffect(() => {
-        console.log('Home -> useEffect')
+        logger.debug('Home -> useEffect')
 
         try {
             logic.getPets()
@@ -26,7 +31,7 @@ export function PetList({ onGoToPetDetail }) {
                 })
                 .catch(error => onError(error))
         } catch (error) {
-           onError(error)
+            onError(error)
         }
     }, [])
 
@@ -56,11 +61,11 @@ export function PetList({ onGoToPetDetail }) {
         }
     }
 
-    console.log('PetList -> render')
+    logger.debug('PetList -> render')
 
     return <div>
         <ul className='flex flex-col gap-2 mt-2'>
-             {pets.map(pet => <PetItem key={pet.id} pet={pet} onGoToPetDetail={onGoToPetDetail} onRemovePetClick={handleRemovePetClick} />)}
+            {pets.map(pet => <PetItem key={pet.id} pet={pet} onGoToPetDetail={onGoToPetDetail} onRemovePetClick={handleRemovePetClick} />)}
         </ul>
 
         {petId && <div className="w-full h-full fixed top-0 left-0 bg-black/75 flex justify-center items-center">
@@ -73,5 +78,5 @@ export function PetList({ onGoToPetDetail }) {
                 </div>
             </div>
         </div>}
-  </div>
+    </div>
 }

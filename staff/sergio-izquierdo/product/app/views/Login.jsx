@@ -10,8 +10,11 @@ import { useContext } from '../context'
 
 import { logic } from '../logic'
 
+import { logger } from '../logger'
+
+
 export function Login({ onUserLoggedIn, onGoToRegister }) {
-    console.log('Login -> call')
+    logger.debug('Login -> call')
 
     const { onError } = useContext()
 
@@ -28,7 +31,7 @@ export function Login({ onUserLoggedIn, onGoToRegister }) {
                 .then(() => onUserLoggedIn())
                 .catch(error => onError(error))
         } catch (error) {
-           onError(error)
+            onError(error)
         }
     }
 
@@ -38,7 +41,7 @@ export function Login({ onUserLoggedIn, onGoToRegister }) {
         onGoToRegister()
     }
 
-    console.log('Login -> render')
+    logger.debug('Login -> render')
 
     return <div className="p-6">
         <Title className="mb-4">MyPet</Title>

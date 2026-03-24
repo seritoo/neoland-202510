@@ -3,12 +3,17 @@ import { useState } from 'react'
 import { Form } from './commons/Form'
 import { PasswordField } from './commons/PasswordField'
 import { Button } from './commons/Button'
-import { logic } from '../../logic'
 
 import { useContext } from '../../context'
 
+import { logic } from '../../logic'
+
+import { logger } from '../../logger'
+
+
+
 export function ChangeUserPassword() {
-    console.log('ChangeUserPassword -> call')
+    logger.debug('ChangeUserPassword -> call')
 
     const { onSuccess, onError } = useContext()
 
@@ -23,18 +28,18 @@ export function ChangeUserPassword() {
 
         try {
             logic.changeUserPassword(password, newPassword, newPasswordRepeat)
-            .then(() => {
-                form.reset()
+                .then(() => {
+                    form.reset()
 
-                onSuccess ('user password successfully updated')
-            })
-            .catch(error => onError(error))
+                    onSuccess('user password successfully updated')
+                })
+                .catch(error => onError(error))
         } catch (error) {
-           onError(error)
+            onError(error)
         }
     }
 
-    console.log('ChangeUserPassword -> render')
+    logger.debug('ChangeUserPassword -> render')
 
     return <div>
         <Form onSubmit={handleChangePasswordSubmit}>

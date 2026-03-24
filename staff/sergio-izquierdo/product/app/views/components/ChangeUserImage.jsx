@@ -8,9 +8,12 @@ import { useContext } from '../../context'
 
 import { logic } from '../../logic'
 
+import { logger } from '../../logger'
+
+
 
 export function ChangeUserImage() {
-    console.log('ChangeUserImage -> call')
+    logger.debug('ChangeUserImage -> call')
 
     const { onSuccess, onError } = useContext()
 
@@ -42,11 +45,11 @@ export function ChangeUserImage() {
         }
     }
 
-    console.log('ChangeUserIMage -> render')
+    logger.debug('ChangeUserIMage -> render')
 
     return <div>
         <Form onSubmit={handleChangeImageSubmit}>
-            <Field alias="image" type="url"  defaultValue={image}>Image</Field>
+            <Field alias="image" type="url" defaultValue={image}>Image</Field>
 
             <Button className="self-center mt-4" type="submit">Update image</Button>
         </Form>
