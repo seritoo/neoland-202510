@@ -4,7 +4,7 @@ import { data, UserData, PetData } from './data.js'
 
 import { validate, DuplicityError, ExistenceError, CredentialError, OwnershipError, SystemError } from 'com'
 
-class User {
+export class User {
     constructor(id, name, email, username, image, role) {
         this.id = id
         this.name = name
@@ -15,7 +15,7 @@ class User {
     }
 }
 
-class Pet {
+export class Pet {
     constructor(id, ownerId, name, birthdate, weight, image) {
         this.id = id
         this.ownerId = ownerId
@@ -37,7 +37,7 @@ class Logic {
 
         return data.findUserByEmail(email)
             .then(userData => {
-                if (userData !== null) throw new DuplicityError('user already exists')
+                if (userData !== null) throw new DuplicityError('user email already exists')
 
                 return data.findUserByUsername(username)
             })

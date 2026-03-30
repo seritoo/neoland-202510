@@ -87,14 +87,6 @@ class Data {
             .then(result => { })
     }
 
-    setLoggedInUserId(userId) {
-        this.loggedInUserId = userId
-    }
-
-    getLoggedInUserId() {
-        return this.loggedInUserId
-    }
-
     insertPet(petData) {
         const { ownerId, name, birthdate, weight, image } = petData
 
@@ -127,9 +119,7 @@ class Data {
     }
 
     updatePet(petData) {
-        const { id, ownerId, name, birthdate, weight, image} = petData
-
-        return PetModel.updateOne({ _id: id}, { $set: { owner: ownerId, name, birthdate, weight, image}})
+        return PetModel.updateOne({ _id: petData.id}, { $set: petData})
             .catch(error => { throw new SystemError(error.message)})
             .then(result => { })
     }
