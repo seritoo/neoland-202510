@@ -1,9 +1,6 @@
-import { ValidationError } from "./errors.js"
+import { ValidationError } from './errors.js'
 
-const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-const URL_REGEX = /(www|http:|https:)+[^\s]+[\w]/
-const ISODATE_REGEX = /^\d{4}-\d{2}-\d{2}$/
-const ID_REGEX = /^[a-fA-F0-9]{24}$/
+import { EMAIL_REGEX, URL_REGEX, ISODATE_REGEX, ID_REGEX } from './regex.js'
 class Validate {
 	name(name) {
 		if (typeof name !== 'string') throw new ValidationError('invalid name type')

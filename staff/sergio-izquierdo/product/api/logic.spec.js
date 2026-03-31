@@ -1,10 +1,10 @@
 import { expect } from 'chai'
 import bcrypt from 'bcryptjs'
 
-import { database } from './models.js'
+import { database } from './models/index.js'
 
-import { logic, User, Pet } from './logic.js'
-import { data, UserData, PetData } from './data.js'
+import { logic, User, Pet } from './logic/index.js'
+import { data, UserData, PetData } from './data/index.js'
 import { CredentialError, DuplicityError, ExistenceError, OwnershipError } from 'com'
 
 describe('logic', () => {

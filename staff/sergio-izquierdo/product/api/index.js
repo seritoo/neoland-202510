@@ -3,10 +3,10 @@ import cors from 'cors'
 import morganBody from 'morgan-body'
 import jwt from 'jsonwebtoken'
 
-import { logic } from './logic.js'
+import { logic } from './logic/index.js'
 import { DuplicityError, ExistenceError, OwnershipError, SystemError, ValidationError, CredentialError, AuthError } from 'com'
 
-import { database } from './models.js'
+import { database } from './models/index.js'
 
 database.connect(process.env.DB_URL)
 	.then(() => {
@@ -134,21 +134,21 @@ database.connect(process.env.DB_URL)
 			}
 		})
 
-		 api.patch('/users/me/username', (req, res, next) => {
-            try {
-                const token = req.headers.authorization.slice(7)
+		api.patch('/users/me/username', (req, res, next) => {
+			try {
+				const token = req.headers.authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, process.env.JWT_SECRET)
+				const { sub: userId } = jwt.verify(token, process.env.JWT_SECRET)
 
-                const { username } = req.body
+				const { username } = req.body
 
-                logic.changeUserUsername(userId, username)
-                    .then(() => res.status(204).send())
-                    .catch(error => next(error))
-            } catch (error) {
-                next(error)
-            }
-        })
+				logic.changeUserUsername(userId, username)
+					.then(() => res.status(204).send())
+					.catch(error => next(error))
+			} catch (error) {
+				next(error)
+			}
+		})
 
 		api.post('/pets', (req, res, next) => {
 			try {
