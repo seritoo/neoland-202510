@@ -1,6 +1,6 @@
 import { ExistenceError, validate } from 'com'
 import { data } from '../data/index.js'
-import { User } from './User.js'
+import { User } from './models/index.js'
 
 export function getUser(userId) {  // permite recuperara un usuario por id
 	validate.id(userId, 'userId')

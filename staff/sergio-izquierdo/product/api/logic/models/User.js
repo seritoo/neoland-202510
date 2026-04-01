@@ -1,5 +1,3 @@
-
-
 export class User {
 	constructor(id, name, email, username, image, role) {
 		this.id = id

@@ -1,5 +1,5 @@
 import { SystemError } from 'com'
-import { PetModel } from '../models/index.js'
+import { PetModel } from '../mongoose/models/index.js'
 
 export function deleteAllPets() {
 	return PetModel.deleteMany()

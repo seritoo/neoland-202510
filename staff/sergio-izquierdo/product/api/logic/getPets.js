@@ -1,6 +1,6 @@
 import { ExistenceError, validate } from 'com'
 import { data } from '../data/index.js'
-import { Pet } from './Pet.js'
+import { Pet } from './models/index.js'
 
 export function getPets(userId) {
 	validate.id(userId, 'userId')

@@ -6,9 +6,9 @@ import jwt from 'jsonwebtoken'
 import { logic } from './logic/index.js'
 import { DuplicityError, ExistenceError, OwnershipError, SystemError, ValidationError, CredentialError, AuthError } from 'com'
 
-import { database } from './models/index.js'
+import { connect } from './mongoose/index.js'
 
-database.connect(process.env.DB_URL)
+connect(process.env.DB_URL)
 	.then(() => {
 		console.log('DB connected')
 

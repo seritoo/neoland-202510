@@ -1,5 +1,4 @@
-export * from './User.js'
-export * from './Pet.js'
+export * from './models/index.js'
 
 
 import {registerUser} from './registerUser.js'

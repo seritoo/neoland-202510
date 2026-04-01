@@ -1,6 +1,6 @@
 import { SystemError } from 'com'
-import { PetModel } from '../models/index.js'
-import { PetData } from './PetData.js'
+import { PetModel } from '../mongoose/index.js'
+import { PetData } from './models/index.js'
 
 
 export function findPetsByUserId(userId) {
