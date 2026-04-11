@@ -56,19 +56,25 @@ export function App() {
             try {
                 logic.logoutUser()
 
+                logger.error(error)
                 setFeedback({ message: 'wrong session. Please, login again', level: 'error' })
                 navigate('/login')
             } catch (error) {
+                logger.fatal(error)
                 setFeedback({ message: 'sorry! there was an error on logout. Please, try it later', level: 'error' })
             }
-        }
-        else if (error instanceof ValidationError)
+        } else if (error instanceof ValidationError) {
+            logger.warn(error)
             setFeedback({ message: error.message, level: 'warn' })
-        else if (error instanceof ExistenceError || error instanceof CredentialError || error instanceof DuplicityError)
+        } else if (error instanceof ExistenceError || error instanceof CredentialError || error instanceof DuplicityError) {
+            logger.error(error)
             setFeedback({ message: error.message, level: 'danger' })
-        else
+        } else {
+            logger.fatal(error)
             setFeedback({ message: 'sorry, something failed. Please, try again later' })
+        }
     }
+
     const handleSuccess = message => setFeedback({ message, level: 'success' })
 
     const handleClear = () => setFeedback(null)
