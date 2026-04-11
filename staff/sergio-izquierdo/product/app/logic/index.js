@@ -1,5 +1,5 @@
 
-import { addPet } from './addpet'
+import { addPet } from './addPet'
 import { changeUserEmail } from './changeUserEmail'
 import { changeUserImage } from './changeUserImage'
 import { changeUserName } from './changeUserName'

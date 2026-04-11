@@ -2,7 +2,7 @@ import { logic } from '../../logic/index.js'
 
 export const getPetsHandler = (req, res, next) => {  // no hay jsonBodyParser porque estoy pidiendo datos
 	try {
-		const { userId } = rep
+		const { userId } = req
 
 		logic.getPets(userId)
 			.then(pets => res.json(pets))
