@@ -20,17 +20,18 @@ Artist
 - register
 - login
 - logout
-- upload content
-- public profile
--private archive
+- create content
+- share public profile
+- manage private archive
 
 Guest
+- see diferent content
 - filter to artist
 - filter to categories
-- see diferent content
+
 
 ### UI/UX design
 
-[Figma]
+[Figma](https://www.figma.com/design/DILuhWXcqfurXML03D21W4/AppasionArte?node-id=0-1&p=f&t=XZuLs56Z2YOtm1k9-0)
 
 
