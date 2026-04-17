@@ -26,7 +26,7 @@ connect(process.env.DB_URL)
 			logAllResHeader: true
 		})
 
-		api.get('/', (req, res) => res.jason({ message: 'Hi from API' }))
+		api.get('/', (req, res) => res.json({ message: 'Hi from API' }))
 
 		api.use('/users', userRouter)
 

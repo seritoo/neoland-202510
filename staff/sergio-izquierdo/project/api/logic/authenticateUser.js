@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs'
-import {ExistenceError, SystemError, CredentialError} from 'com'
+import {ExistenceError, SystemError, CredentialError, validate} from 'com'
 import { data } from '../data/index.js'
 
 export function authenticateUser (username, password) {

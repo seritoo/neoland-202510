@@ -6,8 +6,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "debug": "node --inspect-brk index.js"
+    "start": "node --env-file=.env index.js",
+    "watch": "node --env-file=.env --watch index.js",
+    "inspect": "node --env-file=.env --inspect-brk index.js"
   },
   "keywords": [],
   "author": "",
