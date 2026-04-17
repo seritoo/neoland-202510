@@ -30,6 +30,14 @@ export class SystemError extends Error {
     }
 }
 
+export class CredentialError extends Error {
+	constructor(message) {
+		super(message)
+
+		this.name = this.constructor.name
+	}
+}
+
 export class AuthError extends Error {
     constructor(message) {
         super(message)
