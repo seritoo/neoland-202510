@@ -1,14 +1,98 @@
-import { Routes, Route } from 'react-router'
+import { useState, useEffect } from 'react'
+
+import { Routes, Route, useNavigate, Navigate } from 'react-router'
 
 import { Landing } from './views/Landing'
 import { Login } from './views/Login'
+import { Register } from './views/Register'
+import { ArtistHome } from './views/ArtistHome'
+import { Feedback } from './views/components/commons/Feedback'
+import { Context } from './context'
 
+import { AuthError, ValidationError, ExistenceError, CredentialError, DuplicityError } from 'com'
+import { logic } from './logic'
+
+import { logger } from './logger'
 
 export function App() {
-	return (
+	logger.debug('App -> call')
+
+	const [feedback, setFeedback] = useState(null)
+	let loggedIn = false
+
+	const navigate = useNavigate()
+
+	try {
+		loggedIn = logic.isUserLoggedIn()
+	} catch (error) {
+		setFeedback({ message: error.message })
+	}
+
+	const clearFeedbackAndNavigate = path => {
+		setFeedback(null)
+		navigate(path)
+	}
+
+	const handleGoToLogin = () => clearFeedbackAndNavigate('/login')
+	const handleGoToRegister = () => clearFeedbackAndNavigate('/register')
+	const handleGoToShortStories = () => clearFeedbackAndNavigate('/shortStories')
+	const handleGoToArtistHome = () => clearFeedbackAndNavigate('/')
+	const handleGoToProfile = () => clearFeedbackAndNavigate('/profile')
+	const handleGoToAddArt = () => clearFeedbackAndNavigate('/addArt')
+
+	const handleError = error => {
+		if (error instanceof AuthError) {
+			try {
+				logic.logoutUser()
+
+				logger.error(error)
+				setFeedback({ message: 'Oops! Login failed. Please, log in again', level: 'error' })
+				navigate('/login')
+			} catch (error) {
+				logger.fatal(error)
+				setFeedback({ message: 'sorry! there was an error on logout. Please, try it later!', level: 'error' })
+			}
+		} else if (error instanceof ValidationError) {
+			logger.warn(error)
+			setFeedback({ message: error.message, level: 'warn' })
+		} else if (error instanceof ExistenceError || error instanceof CredentialError || error instanceof DuplicityError) {
+			logger.error(error)
+			setFeedback({ message: error.message, level: 'danger' })
+		} else {
+			logger.fatal(error)
+			setFeedback({ message: 'sorry, something failed. Please, try again later' })
+		}
+	}
+
+	const handleSuccess = message => setFeedback({ message, level: 'success' })
+
+	const handleClear = () => setFeedback(null)
+
+	logger.debug('App -> render')
+
+	const contextValue = {
+		onSuccess: handleSuccess,
+		onError: handleError,
+		onClear: handleClear
+	}
+
+
+
+
+	return <Context.Provider value={contextValue}>
+
+		{feedback && <Feedback feedback={feedback} />}
+
 		<Routes>
-			<Route path="/" element={<Landing />} />
-			<Route path="/login" element={<Login />} />
+			<Route path="/" element={!loggedIn ?
+				<Landing onGoToShortStories={handleGoToShortStories} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} />
+				:
+				<ArtistHome onGoToProfile={handleGoToProfile} onGoToAddArt={handleGoToAddArt} onGoToShortStories={handleGoToShortStories} onUserLoggedOut={handleGoToLogin} /> } />
+
+			<Route path="/login" element={!loggedIn ? <Login onUserLoggedIn={handleGoToArtistHome} onGoToRegister={handleGoToRegister} /> : <Navigate to="/" />} />
+
+			<Route path="/register" element={!loggedIn ? <Register onGoToLogin={handleGoToLogin}/> : <Navigate to="/" />} />
+
 		</Routes>
-	)
+	</Context.Provider>
 }

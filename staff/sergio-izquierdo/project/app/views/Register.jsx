@@ -1,6 +1,5 @@
 import { Layout } from './components/commons/Layout'
 import { Header } from './components/commons/Header'
-import { Paragraph } from './components/commons/Paragraph'
 import { Form } from './components/commons/Form'
 import { Field } from './components/commons/Field'
 import { PasswordField } from './components/commons/PasswordField'
@@ -14,51 +13,62 @@ import { logic } from '../logic'
 
 import { logger } from '../logger'
 
-export function Login({ onUserLoggedIn, onGoToRegister }) {
-	logger.debug('Login -> call')
+export function Register({ onGoToLogin }) {
+	logger.debug('Register -> call')
 
 	const { onError } = useContext()
 
-	const handleLoginSubmit = event => {
+	const handleRegisterSubmit = event => {
 		event.preventDefault()
 
 		const form = event.target
 
+		const name = form.name.value
+		const email = form.email.value
 		const username = form.username.value
 		const password = form.password.value
+		const passwordRepeat = form.passwordRepeat.value
 
 		try {
-			logic.loginUser(username, password)
-				.then(() => onUserLoggedIn())
+			logic.registerUser(name, email, username, password, passwordRepeat)
+				.then(() => {
+					form.reset()
+
+					onGoToLogin()
+				})
 				.catch(error => onError(error))
 		} catch (error) {
 			onError(error)
-
 		}
 	}
 
-	const handleRegisterClick = event => {
+	const handleLoginClick = event => {
 		event.preventDefault()
 
-		onGoToRegister()
+		onGoToLogin()
 	}
 
-	logger.debug('Login -> render')
+	logger.debug('Register -> render')
 
 	return <Layout>
-		<Header title='Login'></Header>
+		<Header title='Register'></Header>
 
-		<Form onSubmit={handleLoginSubmit}>
-			<Field alias='username' type='text'>Username:</Field>
+		<Form onSubmit={handleRegisterSubmit}>
+			<Field alias='name' type='text'>Name:</Field>
+
+			<Field alias='email' type='email'>Email:</Field>
+
+			<Field alias='username' type='username'>Username:</Field>
 
 			<PasswordField alias='password'>Password:</PasswordField>
 
-			<Button>Login</Button>
+			<PasswordField alias='passwordRepeat'> Repeat Password:</PasswordField>
+
+			<Button>Register</Button>
 		</Form>
 
 		<Footer>
-			<Anchor onClick={handleRegisterClick}>Register</Anchor>
+			<Anchor onClick={handleLoginClick}>Login</Anchor>
 		</Footer>
 	</Layout>
-
 }

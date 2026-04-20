@@ -1,8 +1,24 @@
-
-
-
-
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Italianno&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Italianno&display=swap');
 @import "tailwindcss";
 
+html, body {
+  /* Bloquea el scroll horizontal */
+  overflow-x: hidden;
+  /* Fija el ancho al 100% de la pantalla visible */
+  width: 100%;
+  position: relative;
+  /* Elimina márgenes fantasma */
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* * {
+  background: rgba(255, 0, 0, 0.1) !important;
+  outline: 1px solid red !important;
+} */
