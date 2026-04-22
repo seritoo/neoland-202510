@@ -1,14 +1,18 @@
 import { registerUser } from './registerUser'
-import { loginUser} from './loginUser'
+import { loginUser } from './loginUser'
 import { isUserLoggedIn } from './isUserLoggedIn'
-import { logout } from './logout'
+import { logoutUser } from './logoutUser'
 import { getLoggedInUser } from './getLoggedInUser'
+import { createStory } from './createStory'
+import { getMyStories } from './getMyStories'
 
 
 export const logic = {
 	registerUser,
 	loginUser,
 	isUserLoggedIn,
-	logout,
-	getLoggedInUser
+	logoutUser,
+	getLoggedInUser,
+	createStory,
+	getMyStories
 }

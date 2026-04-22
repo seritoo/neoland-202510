@@ -7,7 +7,7 @@ import { userRouter} from './routers/index.js'
 import { errorHandler } from './middlewares/index.js'
 
 import { connect } from './mongoose/index.js'
-
+import { storyRouter } from './routers/storyRouter.js'
 
 connect(process.env.DB_URL)
 	.then(() => {
@@ -29,6 +29,7 @@ connect(process.env.DB_URL)
 		api.get('/', (req, res) => res.json({ message: 'Hi from API' }))
 
 		api.use('/users', userRouter)
+		api.use('/stories', storyRouter)
 
 		api.use(errorHandler)
 

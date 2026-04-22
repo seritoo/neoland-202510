@@ -46,10 +46,19 @@ export class AuthError extends Error {
     }
 }
 
+export class OwnershipError extends Error {
+	constructor(message) {
+		super(message)
+
+		this.name = this.constructor.name
+	}
+}
+
 export const errorMap = {
 	ValidationError,
 	ExistenceError,
 	DuplicityError,
 	SystemError,
-	AuthError
+	AuthError,
+	OwnershipError
 }

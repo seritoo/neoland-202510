@@ -29,7 +29,7 @@ class Validate {
 	}
 
 	match(value, newValue, explain = 'value', explainNew = 'newValue') {
-		if (value !== newValue) throw new ValidationError(`${explain} and ${explainNew} do not match'`)
+		if (value !== newValue) throw new ValidationError(`${explain} and ${explainNew} do not match`)
 	}
 
 	url(url, explain = 'url') {
@@ -44,6 +44,12 @@ class Validate {
 
 	number(number, explain = 'number') {
 		if (typeof number !== 'number' || isNaN(number)) throw new ValidationError(`invalid ${explain} type`)
+	}
+
+	text(text) {
+		if (typeof text !== 'string') throw new ValidationError('invalid text type')
+		if (text.length < 1) throw new ValidationError('text cannot be empty')
+		if (text.length > 5000) throw new ValidationError('text is too long')
 	}
 }
 

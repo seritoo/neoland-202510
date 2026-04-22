@@ -1,5 +1,5 @@
 import { data } from '../data'
 
-export function logout() {
+export function logoutUser() {
 	return data.removeToken()
 }

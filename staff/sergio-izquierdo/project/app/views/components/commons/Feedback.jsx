@@ -1,14 +1,17 @@
-export function Feedback ({feedback}) {
-	return <p className={`text-center py-6 px-4${feedback.level === 'success' ? 'text-green-600 font-bold text-2xl'
-		:
-		feedback.level === 'warn' ?
-			'text-yellow-500 font-bold text-2xl'
+export function Feedback({ feedback }) {
+	return
+	<p className={`text-center text-white text-sm py-2
+		${feedback.level === 'success' ? 'bg-green-600 font-bold'
 			:
-			feedback.level === 'danger' ?
-				'text-orange-600 font-bold text-2xl'
+			feedback.level === 'warn' ?
+				'bg-yellow-500 font-bold'
 				:
-		 		feedback.level === 'error' ?
-					'text-red-500 font-bold text-2xl'
-					: ''
-		}`}>{feedback.message}</p>
+				feedback.level === 'danger' ?
+					'bg-orange-600 font-bold'
+					:
+					feedback.level === 'error' ?
+						'bg-red-500 font-bold'
+						: ''
+		}`}>{feedback.message}
+	</p>
 }

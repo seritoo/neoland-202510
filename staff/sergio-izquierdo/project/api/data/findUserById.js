@@ -2,7 +2,7 @@ import { SystemError } from 'com'
 import { UserModel } from '../mongoose/index.js'
 import { UserData } from './models/index.js'
 
-export function findUserbyId(userId) {
+export function findUserById(userId) {
 	return UserModel.findById(userId)
 		.catch(error => { throw new SystemError(error.message)})
 		.then(userModel => {

@@ -6,6 +6,7 @@ import { Landing } from './views/Landing'
 import { Login } from './views/Login'
 import { Register } from './views/Register'
 import { ArtistHome } from './views/ArtistHome'
+import { AddArt } from './views/AddArt'
 import { Feedback } from './views/components/commons/Feedback'
 import { Context } from './context'
 
@@ -35,10 +36,10 @@ export function App() {
 
 	const handleGoToLogin = () => clearFeedbackAndNavigate('/login')
 	const handleGoToRegister = () => clearFeedbackAndNavigate('/register')
-	const handleGoToShortStories = () => clearFeedbackAndNavigate('/shortStories')
+	const handleGoToShortStories = () => clearFeedbackAndNavigate('/short-stories')
 	const handleGoToArtistHome = () => clearFeedbackAndNavigate('/')
 	const handleGoToProfile = () => clearFeedbackAndNavigate('/profile')
-	const handleGoToAddArt = () => clearFeedbackAndNavigate('/addArt')
+	const handleGoToAddArt = () => clearFeedbackAndNavigate('/add-art')
 
 	const handleError = error => {
 		if (error instanceof AuthError) {
@@ -87,11 +88,13 @@ export function App() {
 			<Route path="/" element={!loggedIn ?
 				<Landing onGoToShortStories={handleGoToShortStories} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} />
 				:
-				<ArtistHome onGoToProfile={handleGoToProfile} onGoToAddArt={handleGoToAddArt} onGoToShortStories={handleGoToShortStories} onUserLoggedOut={handleGoToLogin} /> } />
+				<ArtistHome onGoToProfile={handleGoToProfile} onGoToAddArt={handleGoToAddArt} onGoToShortStories={handleGoToShortStories} onUserLoggedOut={handleGoToLogin} />} />
 
 			<Route path="/login" element={!loggedIn ? <Login onUserLoggedIn={handleGoToArtistHome} onGoToRegister={handleGoToRegister} /> : <Navigate to="/" />} />
 
-			<Route path="/register" element={!loggedIn ? <Register onGoToLogin={handleGoToLogin}/> : <Navigate to="/" />} />
+			<Route path="/register" element={!loggedIn ? <Register onGoToLogin={handleGoToLogin} /> : <Navigate to="/" />} />
+
+			<Route path="/add-art" element={loggedIn ? <AddArt onGoToArtistHome={handleGoToArtistHome} /> : <Navigate to="/login" />} />
 
 		</Routes>
 	</Context.Provider>
