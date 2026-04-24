@@ -8,7 +8,7 @@ export const authenticateUserHandler = (req, res, next) => {
 
 		logic.authenticateUser(username, password)
 			.then(userId => {
-				const token = jwt.sign({ sub: userId }, process.env.JWT_SECRET, { expiresIn: '1h' })
+				const token = jwt.sign({ sub: userId }, process.env.JWT_SECRET, { expiresIn: '7h' })
 
 				res.json(token)
 			})

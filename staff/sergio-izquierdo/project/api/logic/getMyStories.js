@@ -14,11 +14,11 @@ export function getMyStories(userId) {
 		.then(storiesData => {
 			return storiesData.map(storyData => {
 
-				const { id, owner, title, shortStory, storyDate} = storyData
+				const { id, ownerId, title, shortStory, storyDate} = storyData
 
 				const isOwner = true
 
-				return new Story(id, owner, title, shortStory, storyDate, isOwner)
+				return new Story(id, ownerId, null, title, shortStory, storyDate, isOwner)
 			})
 		})
 }

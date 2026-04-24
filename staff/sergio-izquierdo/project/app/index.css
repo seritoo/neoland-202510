@@ -2,6 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Italianno&display=swap');
 @import "tailwindcss";
 
+@layer components {
+  .nav-gradient-artist {
+    @apply bg-gradient-to-r from-[#E94E77] from-30% via-[#D16BA5] to-[#A29BFE];
+  }
+}
+
+
 html, body {
   /* Bloquea el scroll horizontal */
   overflow-x: hidden;

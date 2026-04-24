@@ -35,5 +35,11 @@ export const userSchema = new Schema({
 		type: String,
 		match: URL_REGEX,
 		default: null
+	},
+
+	description: {
+		type: String,
+		maxLength: 300,
+		default: 'Hi! Tell us about you...'
 	}
 })

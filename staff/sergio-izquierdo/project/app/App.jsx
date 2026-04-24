@@ -7,6 +7,7 @@ import { Login } from './views/Login'
 import { Register } from './views/Register'
 import { ArtistHome } from './views/ArtistHome'
 import { AddArt } from './views/AddArt'
+import { Profile } from './views/Profile'
 import { Feedback } from './views/components/commons/Feedback'
 import { Context } from './context'
 
@@ -40,6 +41,7 @@ export function App() {
 	const handleGoToArtistHome = () => clearFeedbackAndNavigate('/')
 	const handleGoToProfile = () => clearFeedbackAndNavigate('/profile')
 	const handleGoToAddArt = () => clearFeedbackAndNavigate('/add-art')
+	const handleGoToLanding = () => clearFeedbackAndNavigate('/landing')
 
 	const handleError = error => {
 		if (error instanceof AuthError) {
@@ -88,14 +90,22 @@ export function App() {
 			<Route path="/" element={!loggedIn ?
 				<Landing onGoToShortStories={handleGoToShortStories} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} />
 				:
-				<ArtistHome onGoToProfile={handleGoToProfile} onGoToAddArt={handleGoToAddArt} onGoToShortStories={handleGoToShortStories} onUserLoggedOut={handleGoToLogin} />} />
+				<ArtistHome onGoToProfile={handleGoToProfile} onGoToAddArt={handleGoToAddArt} onGoToLanding={handleGoToLanding} onUserLoggedOut={handleGoToLogin} />} />
 
 			<Route path="/login" element={!loggedIn ? <Login onUserLoggedIn={handleGoToArtistHome} onGoToRegister={handleGoToRegister} /> : <Navigate to="/" />} />
 
 			<Route path="/register" element={!loggedIn ? <Register onGoToLogin={handleGoToLogin} /> : <Navigate to="/" />} />
 
-			<Route path="/add-art" element={loggedIn ? <AddArt onGoToArtistHome={handleGoToArtistHome} /> : <Navigate to="/login" />} />
+			<Route path="/add-art" element={loggedIn ? <AddArt onGoToArtistHome={handleGoToArtistHome} onGoToProfile={handleGoToProfile} onGoToLanding={handleGoToLanding} /> : <Navigate to="/login" />} />
 
+			<Route path="/landing" element={<Landing
+				onGoToShorStories={handleGoToShortStories} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} onGoToArtistHome={handleGoToArtistHome} loggedIn={loggedIn} />} />
+
+			<Route path="/profile" element={loggedIn ?
+				<Profile onGoToLanding={handleGoToLanding} onGoToArtistHome={handleGoToArtistHome} onGoToAddArt={handleGoToAddArt} onUserLoggedOut={handleGoToLogin}/>
+				:
+				<Navigate to="/login" />
+			} />
 		</Routes>
 	</Context.Provider>
 }

@@ -2,10 +2,11 @@ import { SystemError } from 'com'
 import { StoryModel } from '../mongoose/index.js'
 
 export function insertStory(storyData) {
-	return new StoryModel({
-		owner: storyData.ownerId,
-		title: storyData.title,
-		shortStory: storyData.shortStory,
-		storyDate: storyData.storyDate
-	}).save()
+const { ownerId, title, shortStory, storyDate} = storyData
+
+	const storyModel = new StoryModel({ owner: ownerId, title, shortStory, storyDate})
+
+	return storyModel.save()
+		.catch(error => {throw new SystemError(error.message)})
+		.then(storyModel => {})
 }

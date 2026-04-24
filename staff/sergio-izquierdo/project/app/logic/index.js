@@ -5,6 +5,7 @@ import { logoutUser } from './logoutUser'
 import { getLoggedInUser } from './getLoggedInUser'
 import { createStory } from './createStory'
 import { getMyStories } from './getMyStories'
+import { modifyUserDescription } from './modifyUserDescription'
 
 
 export const logic = {
@@ -14,5 +15,6 @@ export const logic = {
 	logoutUser,
 	getLoggedInUser,
 	createStory,
-	getMyStories
+	getMyStories,
+	modifyUserDescription
 }
