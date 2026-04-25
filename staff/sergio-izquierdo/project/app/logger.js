@@ -10,23 +10,23 @@ class Logger {
     }
 
     debug(message) {
-        this.level <= Logger.DEBUG && console.debug(`%cDEBUG%c ${new Date().toISOString()} %c${message}`, 'color: lightgreen;', 'font-size: 0.5rem', 'color: lightgreen;')
+        this.level <= Logger.DEBUG && console.debug(`%cDEBUG%c %c${message}`, 'color: lightgreen;', 'font-size: 0.5rem', 'color: lightgreen;')
     }
 
     info(message) {
-        this.level <= Logger.INFO && console.info(`%cINFO%c ${new Date().toISOString()} %c${message}`, 'color: dodgerblue;', 'font-size: 0.5rem', 'color: dodgerblue;')
+        this.level <= Logger.INFO && console.info(`%cINFO%c %c${message}`, 'color: dodgerblue;', 'font-size: 0.5rem', 'color: dodgerblue;')
     }
 
     warn(message) {
-        this.level <= Logger.WARN && console.warn(`%cWARN%c ${new Date().toISOString()} %c${message}`, 'color: gold;', 'font-size: 0.5rem', 'color: gold;')
+        this.level <= Logger.WARN && console.warn(`%cWARN%c %c${message}`, 'color: gold;', 'font-size: 0.5rem', 'color: gold;')
     }
 
     error(message) {
-        this.level <= Logger.ERROR && console.error(`%cERROR%c ${new Date().toISOString()} %c${message}`, 'color: tomato;', 'font-size: 0.5rem', 'color: tomato;')
+        this.level <= Logger.ERROR && console.error(`%cERROR%c %c${message}`, 'color: tomato;', 'font-size: 0.5rem', 'color: tomato;')
     }
 
     fatal(message) {
-        this.level <= Logger.FATAL && console.error(`%cFATAL%c ${new Date().toISOString()} %c${message}`, 'font-weight: bold; color: white; background-color: tomato;', 'font-size: 0.5rem', 'font-weight: bold; color: white; background-color: tomato;')
+        this.level <= Logger.FATAL && console.error(`%cFATAL%c %c${message}`, 'font-weight: bold; color: white; background-color: tomato;', 'font-size: 0.5rem', 'font-weight: bold; color: white; background-color: tomato;')
     }
 
 }

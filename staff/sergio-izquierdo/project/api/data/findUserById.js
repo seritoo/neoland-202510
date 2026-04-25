@@ -8,8 +8,8 @@ export function findUserById(userId) {
 		.then(userModel => {
 			if (!userModel) return null
 
-			const { id, name, email, username, password, image} = userModel
+			const { id, name, email, username, password, image, description} = userModel
 
-			return new UserData(id, name, email, username, password, image)
+			return new UserData(id, name, email, username, password, image, description)
 		})
 }

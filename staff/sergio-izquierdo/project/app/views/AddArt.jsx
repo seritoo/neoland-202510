@@ -6,24 +6,26 @@ import { Form } from './components/commons/Form'
 import { Field } from './components/commons/Field'
 import { Label } from './components/commons/Label'
 import { Button } from './components/commons/Button'
-import { BackButton } from './components/lucide/BackButton'
-import { ProfileButton } from './components/lucide/ProfileButton'
-import { LandingButton } from './components/lucide/LandinButton'
-import { LogoutButton } from './components/lucide/LogoutButton'
+import { BackButton } from './components/commons/lucide/BackButton'
+import { ProfileButton } from './components/commons/lucide/ProfileButton'
+import { LandingButton } from './components/commons/lucide/LandinButton'
+import { LogoutButton } from './components/commons/lucide/LogoutButton'
+import { Avatar } from './components/commons/Avatar'
+import { BarraNav } from './components/commons/BarraNav'
 
 import { useContext } from '../context'
 
 import { logic } from '../logic'
 
 import { logger } from '../logger'
+import { FieldTextTareaCharCounter } from './components/commons/FieldTextTareaCharCounter'
 
 export function AddArt({ onGoToArtistHome, onGoToProfile, onGoToLanding }) {
 	logger.debug('AddArt -> call')
 
-	const [charCount, setCharCount] = useState(0)
-	const MAX_CHARS = 5000
+	const [shortStory, setShortStory] = useState('')
 	const [username, setUsername] = useState(null)
-	const [image, setImage] = useState('https://imgs.search.brave.com/OaxMCLDxZ_2g_boMXm52qKq51mlF4w5QwOl6HIHuHYM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9oaXBz/LmhlYXJzdGFwcHMu/Y29tL2VzLmgtY2Ru/LmNvL2ZvdG9lcy9p/bWFnZXMvbm90aWNp/YXMtY2luZS9wb3It/cXVlLXN0ZXBoZW4t/a2luZy15LXN0ZXZl/bi1zcGllbGJlcmct/bm8tdHJhYmFqYXJv/bi1qdW50b3MtZW4t/cG9sdGVyZ2Vpc3Qv/MTM3OTgwMzY0LTEt/ZXNsLUVTL0xhLWlu/Y3JlaWJsZS1yYXpv/bi1wb3ItbGEtcXVl/LVN0ZXZlbi1TcGll/bGJlcmcteS1TdGVw/aGVuLUtpbmctbm8t/dHJhYmFqYXJvbi1q/dW50b3MtZW4tUG9s/dGVyZ2Vpc3QuanBn/P2Nyb3A9MS4wMHh3/OjAuNjQ2eGg7MCww/LjAyNjl4aCZyZXNp/emU9NjQwOio')
+	const [image, setImage] = useState(null)
 
 	useEffect(() => {
 		logger.debug('ArtistHome -> useEffect')
@@ -92,45 +94,38 @@ export function AddArt({ onGoToArtistHome, onGoToProfile, onGoToLanding }) {
 
 	}
 
-	const handleCharCountChange = event => setCharCount(event.target.value.length)
+	const handleCharCountChange = event => setShortStory(event.target.value)
 
+	logger.debug('ArtistHome -> render')
 	return <Layout>
 		<Header title='Share your art!'>
-			<nav className='flex justify-between w-full nav-gradient-artist h-10 px-15 mt-5'>
+			<BarraNav>
 				<LandingButton onClick={handleLandingClick} />
 				<ProfileButton onClick={handleProfileClick} />
 				<BackButton onClick={handleBackClick} />
 				<LogoutButton onClick={handleLogoutClick} />
-			</nav>
+			</BarraNav>
 			<div className="flex justify-start items-center w-full gap-3 p-3 bg-[#E5D6D6]">
-				<img
-					className="rounded-full w-12 h-12 object-cover border border-[#3F295F]"
-					src={image}
-					alt="avatar" />
+				<Avatar />
 				<h2 className="font-['Inknut_Antiqua'] text-[#3F295F] text-xl">
 					Hola, {username || 'Artist'}!
 				</h2>
 			</div>
 		</Header>
 		<main className='flex flex-col items-center w-full'>
-				<Form onSubmit={handleShareArtSubmit} className='w-full'>
-					<Field alias='title' type='text'>Title:</Field>
+			<Form onSubmit={handleShareArtSubmit} className='w-full'>
+				<Field alias='title' type='text'>Title:</Field>
+			<FieldTextTareaCharCounter
+			label= 'Short Story:'
+			name='shorStory'
+			value={shortStory}
+			onChange={handleCharCountChange}
+			maxLength={5000}
+			className='border border-black bg-white min-h-30 focus:ring-[#E94E77]' />
 
-					<div className='flex flex-col w-full mt-2'>
-						<Label className="font-['Inknut_Antiqua'] text-[#3F295F]">Short Story:</Label>
-						<textarea
-							name='shortStory'
-							onChange={handleCharCountChange}
-							maxLength={MAX_CHARS}
-							className='w-full border border-black bg-white min-h-30 focus:outline-none focus:ring-2 focus:ring-[#E94E77] resize-none'
-						/>
-						<span className={`text-[10px] self-end mt-1 font-['Inknut_Antiqua'] ${charCount >= MAX_CHARS ? 'text-red-500' : 'opacity-50'}`}>
-							{charCount} / {MAX_CHARS} caracteres
-						</span>
-					</div>
 
-					<Button type='submit' className='self-center'>Share!</Button>
-				</Form>
-		</main>
-	</Layout>
+			<Button type='submit' className='self-center'>Share!</Button>
+		</Form>
+	</main>
+	</Layout >
 }

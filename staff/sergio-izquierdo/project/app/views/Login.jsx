@@ -46,7 +46,9 @@ export function Login({ onUserLoggedIn, onGoToRegister }) {
 	logger.debug('Login -> render')
 
 	return <Layout>
-		<Header title='Login'></Header>
+		<Header title='Login'>
+			
+		</Header>
 
 		<Form onSubmit={handleLoginSubmit}>
 			<Field alias='username' type='text'>Username:</Field>

@@ -6,7 +6,7 @@ import { Anchor } from './components/commons/Anchor'
 import { Footer } from './components/commons/Footer'
 
 import { logger } from '../logger'
-import { BackArtistHomeButton } from './components/lucide/BackArtistHomeButton'
+import { BackArtistHomeButton } from './components/commons/lucide/BackArtistHomeButton'
 
 export function Landing({ onGoToShorStories, onGoToLogin, onGoToRegister, onGoToArtistHome, loggedIn }) {
 	logger.debug('Landing -> call')

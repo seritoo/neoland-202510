@@ -2,19 +2,22 @@ import { useState, useEffect } from 'react'
 
 import { Layout } from "./components/commons/Layout"
 import { Header } from "./components/commons/Header"
-import { ProfileButton } from "./components/lucide/ProfileButton"
-import { LandingButton } from "./components/lucide/LandinButton"
-import { LogoutButton } from "./components/lucide/LogoutButton"
+import { ProfileButton } from "./components/commons/lucide/ProfileButton"
+import { LandingButton } from "./components/commons/lucide/LandinButton"
+import { LogoutButton } from "./components/commons/lucide/LogoutButton"
+import { BackButton } from './components/commons/lucide/BackButton'
+import { BarraNav } from './components/commons/BarraNav'
+import { BackArtistHomeNavButton } from './components/commons/lucide/BackArtistHomeNavButton'
+import { FieldTextTareaCharCounter } from './components/commons/FieldTextTareaCharCounter'
 
 import { logger } from "../logger"
-import { BackButton } from './components/lucide/BackButton'
-import { BackArtistHomeNavButton } from './components/lucide/BackArtistHomeNavButton'
 
 import { useContext } from '../context'
 
 import { logic } from '../logic'
 
 export function Profile({ onGoToLanding, onGoToArtistHome, onGoToAddArt, onUserLoggedOut }) {
+	logger.debug('Profile -> call')
 
 	const speciality = 'Creador en AppasionArte'
 
@@ -33,6 +36,7 @@ export function Profile({ onGoToLanding, onGoToArtistHome, onGoToAddArt, onUserL
 				.then(user => {
 					setUsername(user.username)
 					setImage(user.image || image)
+					setDescription(user.description || '')
 				})
 				.catch(error => onError(error))
 		} catch (error) {
@@ -73,7 +77,7 @@ export function Profile({ onGoToLanding, onGoToArtistHome, onGoToAddArt, onUserL
 			logic.modifyUserDescription(description)
 				.then(() => {
 					setIsEditing(false)
-					onSuccess('Profile updated!')
+					onSuccess('Description updated!')
 				})
 				.catch(error => onError(error))
 		} catch (error) {
@@ -81,18 +85,21 @@ export function Profile({ onGoToLanding, onGoToArtistHome, onGoToAddArt, onUserL
 		}
 	}
 
+	const handleCharCountChange = event => setDescription(event.target.value)
+
+	logger.debug('Profile -> render')
 	return (
 		<Layout className="h-screen flex flex-col overflow-hidden">
 			<div className='w-full bg-[#E5D6D6] z-50 shadow-sm'>
 				<Header title='My Profile'>
-					<nav className='flex justify-between w-full nav-gradient-artist h-10 px-10 mt-5'>
 
+					<BarraNav>
 						<LandingButton onClick={handleLandingClick} />
 						<BackArtistHomeNavButton onClick={handleBackArtistHomeClick} />
 						<BackButton onClick={handleBackClick} />
 						<LogoutButton onClick={handleLogoutClick} />
+					</BarraNav>
 
-					</nav>
 				</Header>
 			</div>
 
@@ -126,12 +133,13 @@ export function Profile({ onGoToLanding, onGoToArtistHome, onGoToAddArt, onUserL
 						</button>
 					</div>
 					{isEditing ? (
-						<textarea
-							value={description}
-							onChange={(event) => setDescription(event.target.value)}
-							className="w-full text-sm leading-relaxed p-2 border border-dashed border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-purple-400 min-h-35 resize-none font-sans"
-							autoFocus
-						/>
+
+						<FieldTextTareaCharCounter
+						name='description'
+						value={description}
+						onChange={handleCharCountChange}
+						maxLength={300}
+						className='border border-black bg-white min-h-30 focus:ring-[#E94E77]'/>
 					) : (
 						<p className="text-sm leading-relaxed text-[#3F295F] text-justify opacity-90">
 							{description || 'Tell us about you...'}

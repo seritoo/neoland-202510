@@ -9,8 +9,8 @@ export function getUser(userId) {
 		.then(userData => {
 			if (!userData) throw new ExistenceError('user not found')
 
-			const { name, email, username, image } = userData
+			const { name, email, username, image, description } = userData
 
-			return new User(userId, name, email, username, image)
+			return new User(userId, name, email, username, image, description)
 		})
 }
