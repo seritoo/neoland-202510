@@ -24,7 +24,7 @@ import { logger } from '../logger'
 
 
 
-export function ArtistHome({ onUserLoggedOut, onGoToProfile, onGoToAddArt, onGoToShortStories, onGoToLanding }) {
+export function ArtistHome({ onUserLoggedOut, onGoToProfile, onGoToAddArt, onGoToShortStories, onGoToLanding, onGoToShortStoryDetail }) {
 	logger.debug('ArtistHome -> call')
 
 	const { onError } = useContext()
@@ -71,7 +71,7 @@ export function ArtistHome({ onUserLoggedOut, onGoToProfile, onGoToAddArt, onGoT
 	}
 
 	const handleLogoutClick = event => {
-		event.preventDefault
+		event.preventDefault()
 
 		try {
 			logic.logoutUser()
@@ -86,6 +86,12 @@ export function ArtistHome({ onUserLoggedOut, onGoToProfile, onGoToAddArt, onGoT
 		event.preventDefault()
 
 		onGoToLanding()
+	}
+
+	const handleShortStoryDetailClick = event => {
+		event.preventDefault()
+
+		onGoToShortStoryDetail()
 	}
 
 	return <Layout className="h-screen overflow-hidden flex flex-col">
@@ -121,7 +127,7 @@ export function ArtistHome({ onUserLoggedOut, onGoToProfile, onGoToAddArt, onGoT
 								{new Date(story.storyDate).toLocaleDateString()}
 							</time></p>
 
-						<StoryDetailButton />
+						<StoryDetailButton onClick={handleShortStoryDetailClick} />
 					</article>
 					))
 				)}

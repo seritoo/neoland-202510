@@ -61,7 +61,7 @@ export function AddArt({ onGoToArtistHome, onGoToProfile, onGoToLanding }) {
 		onGoToLanding()
 	}
 	const handleLogoutClick = event => {
-		event.preventDefault
+		event.preventDefault()
 
 		try {
 			logic.logoutUser()

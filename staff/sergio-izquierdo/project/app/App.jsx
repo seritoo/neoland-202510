@@ -8,6 +8,7 @@ import { Register } from './views/Register'
 import { ArtistHome } from './views/ArtistHome'
 import { AddArt } from './views/AddArt'
 import { Profile } from './views/Profile'
+import { ShortStoryDetail } from './views/ShortStoryDetail'
 import { Feedback } from './views/components/commons/Feedback'
 import { Context } from './context'
 
@@ -42,6 +43,7 @@ export function App() {
 	const handleGoToProfile = () => clearFeedbackAndNavigate('/profile')
 	const handleGoToAddArt = () => clearFeedbackAndNavigate('/add-art')
 	const handleGoToLanding = () => clearFeedbackAndNavigate('/landing')
+	const handleGoToShortStoryDetail = () => clearFeedbackAndNavigate('/stories/storyId:')
 
 	const handleError = error => {
 		if (error instanceof AuthError) {
@@ -90,7 +92,7 @@ export function App() {
 			<Route path="/" element={!loggedIn ?
 				<Landing onGoToShortStories={handleGoToShortStories} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} />
 				:
-				<ArtistHome onGoToProfile={handleGoToProfile} onGoToAddArt={handleGoToAddArt} onGoToLanding={handleGoToLanding} onUserLoggedOut={handleGoToLogin} />} />
+				<ArtistHome onGoToProfile={handleGoToProfile} onGoToAddArt={handleGoToAddArt} onGoToLanding={handleGoToLanding} onGoToShortStoryDetail={handleGoToShortStoryDetail} onUserLoggedOut={handleGoToLogin} />} />
 
 			<Route path="/login" element={!loggedIn ? <Login onUserLoggedIn={handleGoToArtistHome} onGoToRegister={handleGoToRegister} /> : <Navigate to="/" />} />
 
@@ -98,14 +100,19 @@ export function App() {
 
 			<Route path="/add-art" element={loggedIn ? <AddArt onGoToArtistHome={handleGoToArtistHome} onGoToProfile={handleGoToProfile} onGoToLanding={handleGoToLanding} /> : <Navigate to="/login" />} />
 
-			<Route path="/landing" element={<Landing
-				onGoToShorStories={handleGoToShortStories} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} onGoToArtistHome={handleGoToArtistHome} loggedIn={loggedIn} />} />
+			<Route path="/landing" element={<Landing loggedIn={loggedIn}
+				onGoToShorStories={handleGoToShortStories} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} onGoToArtistHome={handleGoToArtistHome}  />} />
 
 			<Route path="/profile" element={loggedIn ?
-				<Profile onGoToLanding={handleGoToLanding} onGoToArtistHome={handleGoToArtistHome} onGoToAddArt={handleGoToAddArt} onUserLoggedOut={handleGoToLogin}/>
+				<Profile onGoToLanding={handleGoToLanding} onGoToArtistHome={handleGoToArtistHome} onGoToAddArt={handleGoToAddArt} onUserLoggedOut={handleGoToLogin} />
 				:
-				<Navigate to="/login" />
-			} />
+				<Navigate to="/login" />} />
+
+			<Route
+				path="/stories/:storyId"
+				element={
+					<ShortStoryDetail loggedIn={loggedIn} onGoToArtistHome={handleGoToArtistHome} onGoToAddArt={handleGoToAddArt} onGoToProfile={handleGoToProfile} onUserLoggedOut={handleGoToLogin} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} /> } />
+
 		</Routes>
 	</Context.Provider>
 }
