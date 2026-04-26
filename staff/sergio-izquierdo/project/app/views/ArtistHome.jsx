@@ -88,11 +88,8 @@ export function ArtistHome({ onUserLoggedOut, onGoToProfile, onGoToAddArt, onGoT
 		onGoToLanding()
 	}
 
-	const handleShortStoryDetailClick = event => {
-		event.preventDefault()
+	const handleShortStoryDetailClick = (storyId) => onGoToShortStoryDetail(storyId)
 
-		onGoToShortStoryDetail()
-	}
 
 	return <Layout className="h-screen overflow-hidden flex flex-col">
 
@@ -127,7 +124,7 @@ export function ArtistHome({ onUserLoggedOut, onGoToProfile, onGoToAddArt, onGoT
 								{new Date(story.storyDate).toLocaleDateString()}
 							</time></p>
 
-						<StoryDetailButton onClick={handleShortStoryDetailClick} />
+						<StoryDetailButton onClick={() => handleShortStoryDetailClick(story.id)} />
 					</article>
 					))
 				)}

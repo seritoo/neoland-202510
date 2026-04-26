@@ -7,6 +7,8 @@ import { findUserById } from './findUserById.js'
 import { insertStory } from './insertStory.js'
 import { findStoriesByOwnerId } from './findStoriesByOwnerId.js'
 import { updateUserDescription } from './updateUserDescription.js'
+import { findStoryById } from './findStoryById.js'
+import { updateShortStory } from './updateShortStory.js'
 
 export const data = {
 	findUserByEmail,
@@ -15,6 +17,8 @@ export const data = {
 	findUserById,
 	insertStory,
 	findStoriesByOwnerId,
-	updateUserDescription
+	updateUserDescription,
+	findStoryById,
+	updateShortStory
 }
 

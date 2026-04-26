@@ -43,7 +43,7 @@ export function App() {
 	const handleGoToProfile = () => clearFeedbackAndNavigate('/profile')
 	const handleGoToAddArt = () => clearFeedbackAndNavigate('/add-art')
 	const handleGoToLanding = () => clearFeedbackAndNavigate('/landing')
-	const handleGoToShortStoryDetail = () => clearFeedbackAndNavigate('/stories/storyId:')
+	const handleGoToShortStoryDetail = storyId => clearFeedbackAndNavigate(`/stories/${storyId}`)
 
 	const handleError = error => {
 		if (error instanceof AuthError) {

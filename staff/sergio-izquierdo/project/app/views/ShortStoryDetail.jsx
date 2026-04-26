@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 
+import { useParams } from 'react-router'
+
 import { Layout } from "./components/commons/Layout"
 import { Header } from "./components/commons/Header"
 import { BarraNav } from "./components/commons/BarraNav"
@@ -10,26 +12,27 @@ import { BackButton } from "./components/commons/lucide/BackButton"
 import { LogoutButton } from "./components/commons/lucide/LogoutButton"
 import { FieldTextTareaCharCounter } from "./components/commons/FieldTextTareaCharCounter"
 
-import { logger } from "../logger"
-
 import { useContext } from '../context'
 
 import { logic } from '../logic'
 
-
-
+import { logger } from "../logger"
 
 export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome, onUserLoggedOut }) {
 	logger.debug('ShortStoryDetail -> call')
 
 	const { onError, onSuccess } = useContext()
 
-	const [shortStory, setShortStory] = useState('')
+	const [shortStory, setShortStory] = useState(null)
+
+	const [storyText, setStoryText] = useState(null)
 	const [isEditing, setIsEditing] = useState(false)
 
 
 	const [username, setUsername] = useState(null)
 	const [image, setImage] = useState(null)
+
+	const { storyId } = useParams()
 
 	useEffect(() => {
 		logger.debug('ArtistHome -> useEffect')
@@ -44,6 +47,19 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 			onError(error)
 		}
 	}, [])
+
+	useEffect(() => {
+		try {
+			logic.getMyStory(storyId)
+				.then(story => {
+					setShortStory(story)
+					setStoryText(story.shortStory)
+				})
+				.catch(error => onError(error))
+		} catch (error) {
+			onError(error)
+		}
+	}, [storyId])
 
 	const handleAddArtClick = event => {
 		event.preventDefault()
@@ -76,16 +92,8 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 	}
 	const handleCharCountChange = event => setShortStory(event.target.value)
 
-	const handleSaveDescription = () => {
-		try {
-			logic.modifyUserShortStory(shortStory)
-			.then(() => {
-				setIsEditing(false)
-				onSuccess('Your Short story have been updated')
-			})
-		} catch (error) {
+	const handleSaveShortStory = () => {
 
-		}
 	}
 
 	logger.debug('ShortStoryDetail -> render')
@@ -106,31 +114,27 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 					Hola, {username || 'Artist'}!
 				</h2>
 			</div>
-			<main>
-				<section className="w-full bg-white p-6 rounded-2xl shadow-sm border border-black/5">
-					<div className="flex justify-between items-center mb-3">
-						<button onClick={isEditing ? handleSaveDescription : () => setIsEditing(true)}
-							className="text-[10px] text-purple-600 font-bold hover:underline">
-							{isEditing ? 'GUARDAR' : 'EDITAR'}
-						</button>
-					</div>
-					{isEditing ? (
-						<FieldTextTareaCharCounter
-							name='shorStory'
-							value={shortStory}
-							onChange={handleCharCountChange}
-							maxLength={5000}
-							className='bg-white min-h-30 focus:ring-[#E94E77]' />
-						) : (
-							<p className="text-sm leading-relaxed text-[#3F295F] text-justify opacity-90">
-							{shortStory}
-						</p>
-						)
-					}
-				</section>
-			</main>
-
 		</div>
-
+		<main className="flex-1 overflow-y-auto p-6 bg-[#E5D6D6]">
+			<h1 className="font-['Inknut_Antiqua'] text-[#3F295F] text-2xl mb-6 px-2">
+				{shortStory?.title || 'Cargando título...'}
+			</h1>
+			<section className="w-full bg-white p-6 rounded-2xl shadow-sm border border-black/5">
+				<div className="flex justify-between items-center mb-3">
+					<button onClick={isEditing ? handleSaveShortStory : () => setIsEditing(true)}
+						className="text-[10px] text-purple-600 font-bold hover:underline">
+						{isEditing ? 'GUARDAR' : 'EDITAR'}
+					</button>
+				</div>
+				{isEditing ? (
+					<FieldTextTareaCharCounter
+						name='storyText'
+						value={storyText}
+						onChange={handleCharCountChange}
+						maxLength={5000}
+						className='bg-white min-h-30 focus:ring-[#E94E77]' />) :
+					(<p className="text-sm leading-relaxed text-[#3F295F] text-justify opacity-90">{storyText}</p>)}
+			</section>
+		</main>
 	</Layout >
 }

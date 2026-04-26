@@ -4,7 +4,7 @@
 
 @layer components {
   .nav-gradient-artist {
-    @apply bg-gradient-to-r from-[#E94E77] from-30% via-[#D16BA5] to-[#A29BFE];
+    @apply bg-linear-to-r from-[#E94E77] from-30% via-[#D16BA5] to-[#A29BFE];
   }
 }
 

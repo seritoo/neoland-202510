@@ -2,7 +2,7 @@ import { data } from '../data'
 
 import { validate, AuthError, SystemError, errorMap} from 'com'
 
-export function getStory(storyId) {
+export function getMyStory(storyId) {
 	if(!data.getToken()) throw new AuthError('user not logged in')
 
 	validate.id(storyId, 'storyId')
