@@ -77,7 +77,7 @@ export function Profile({ onGoToLanding, onGoToArtistHome, onGoToAddArt, onUserL
 			logic.modifyUserDescription(description)
 				.then(() => {
 					setIsEditing(false)
-					onSuccess('Description updated!')
+					onSuccess('Description updated successfully!')
 				})
 				.catch(error => onError(error))
 		} catch (error) {

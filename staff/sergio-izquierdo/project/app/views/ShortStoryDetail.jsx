@@ -23,9 +23,8 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 
 	const { onError, onSuccess } = useContext()
 
-	const [shortStory, setShortStory] = useState(null)
-
-	const [storyText, setStoryText] = useState(null)
+	const [title, setTitle] = useState('')
+	const [storyText, setStoryText] = useState('')
 	const [isEditing, setIsEditing] = useState(false)
 
 
@@ -49,10 +48,11 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 	}, [])
 
 	useEffect(() => {
+		logger.debug('ShortStoryDetail -> useEffect')
 		try {
 			logic.getMyStory(storyId)
 				.then(story => {
-					setShortStory(story)
+					setTitle(story.title)
 					setStoryText(story.shortStory)
 				})
 				.catch(error => onError(error))
@@ -90,15 +90,26 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 			onError(error)
 		}
 	}
-	const handleCharCountChange = event => setShortStory(event.target.value)
+	const handleCharCountChange = event => setStoryText(event.target.value)
+
+	const handleTitleChange = (event) => setTitle(event.target.value)
 
 	const handleSaveShortStory = () => {
-
+		try {
+			logic.modifyShortStory(storyId, title, storyText)
+				.then(() => {
+					setIsEditing(false)
+					onSuccess('Short story updated successfully!!')
+				})
+				.catch(error => onError(error))
+		} catch (error) {
+			onError(error)
+		}
 	}
 
 	logger.debug('ShortStoryDetail -> render')
 
-	return <Layout className="h-screen overflow-hidden flex flex-col">
+	return <Layout className="h-screen overflow-hidden flex flex-col items-stretch">
 		<div className='sticky top-0 z-50 w-full bg-[#E5D6D6] shadow-sm'>
 			<Header title='Short Story'>
 				<BarraNav>
@@ -115,16 +126,35 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 				</h2>
 			</div>
 		</div>
-		<main className="flex-1 overflow-y-auto p-6 bg-[#E5D6D6]">
-			<h1 className="font-['Inknut_Antiqua'] text-[#3F295F] text-2xl mb-6 px-2">
-				{shortStory?.title || 'Cargando título...'}
-			</h1>
-			<section className="w-full bg-white p-6 rounded-2xl shadow-sm border border-black/5">
-				<div className="flex justify-between items-center mb-3">
-					<button onClick={isEditing ? handleSaveShortStory : () => setIsEditing(true)}
-						className="text-[10px] text-purple-600 font-bold hover:underline">
-						{isEditing ? 'GUARDAR' : 'EDITAR'}
-					</button>
+		<main className="flex-1 overflow-y-auto p-6 bg-[#E5D6D6] flex flex-col items-stretch">
+			<section className="min-w-full bg-white p-6 rounded-2xl shadow-sm border border-black/5 min-h-112">
+
+				<div className="flex flex-col items-end mb-10">
+					<div className="flex justify-between items-center mb-4 w-full">
+						<button
+							onClick={isEditing ? handleSaveShortStory : () => setIsEditing(true)}
+							className="text-[10px] text-purple-600 font-bold hover:underline"
+						>
+							{isEditing ? 'GUARDAR' : 'EDITAR'}
+						</button>
+
+						{/* Aquí irá tu botón de DELETE más tarde */}
+						<button
+							className="text-[10px] text-red-500 font-bold hover:underline"
+						>
+							BORRAR
+						</button>
+					</div>
+					{isEditing ? (
+						<input
+							type="text"
+							value={title}
+							onChange={handleTitleChange}
+							className="font-['Inknut_Antiqua'] text-[#3F295F] text-2xl mb-6 px-2 bg-white/50 border-b border-[#3F295F] focus:outline-none w-full"
+							placeholder="Short story title" />)
+						:
+						(<h1 className="font-['Inknut_Antiqua'] text-[#3F295F] text-2xl mb-6 px-2 w-full text-left">
+							{title || 'Cargando título...'} </h1>)}
 				</div>
 				{isEditing ? (
 					<FieldTextTareaCharCounter
