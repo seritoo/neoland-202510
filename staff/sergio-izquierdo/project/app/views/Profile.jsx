@@ -6,6 +6,8 @@ import { ProfileButton } from "./components/commons/lucide/ProfileButton"
 import { LandingButton } from "./components/commons/lucide/LandinButton"
 import { LogoutButton } from "./components/commons/lucide/LogoutButton"
 import { BackButton } from './components/commons/lucide/BackButton'
+import { SaveButton } from './components/commons/lucide/SaveButton'
+import { EditButton } from './components/commons/lucide/EditButton'
 import { BarraNav } from './components/commons/BarraNav'
 import { BackArtistHomeNavButton } from './components/commons/lucide/BackArtistHomeNavButton'
 import { FieldTextTareaCharCounter } from './components/commons/FieldTextTareaCharCounter'
@@ -127,19 +129,24 @@ export function Profile({ onGoToLanding, onGoToArtistHome, onGoToAddArt, onUserL
 						<h3 className="font-['Inknut_Antiqua'] text-[#3F295F] text-xs uppercase tracking-widest">
 							About me
 						</h3>
-						<button onClick={isEditing ? handleSaveDescription : () => setIsEditing(true)}
-							className="text-[10px] text-purple-600 font-bold hover:underline">
-							{isEditing ? 'GUARDAR' : 'EDITAR'}
-						</button>
+						<div className="flex items-center min-w-8">
+							{isEditing ? (
+								// Cuando editamos, mostramos el de GUARDAR
+								<SaveButton onClick={handleSaveDescription} />
+							) : (
+								// Cuando no editamos, mostramos el de EDITAR
+								<EditButton onClick={() => setIsEditing(true)} />
+							)}
+						</div>
 					</div>
 					{isEditing ? (
 
 						<FieldTextTareaCharCounter
-						name='description'
-						value={description}
-						onChange={handleCharCountChange}
-						maxLength={300}
-						className='border border-black bg-white min-h-30 focus:ring-[#E94E77]'/>
+							name='description'
+							value={description}
+							onChange={handleCharCountChange}
+							maxLength={300}
+							className='border border-black bg-white min-h-30 focus:ring-[#E94E77]' />
 					) : (
 						<p className="text-sm leading-relaxed text-[#3F295F] text-justify opacity-90">
 							{description || 'Tell us about you...'}

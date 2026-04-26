@@ -1,7 +1,7 @@
 export function Header({ children, title, isLanding = false, className, ...props }) {
 	return <header className={`flex flex-col items-center w-full ${className}`} {...props} >
 		{isLanding ? (
-			<h1 className="font-['Italianno'] font-bold text-[#3F295F] text-6xl w-full text-center block mb-10 ">
+			<h1 className="font-['Italianno'] font-bold text-[#3F295F] text-6xl w-full mr-5 block mb-5 ">
 				AppassionArte
 			</h1>) : (
 			<>

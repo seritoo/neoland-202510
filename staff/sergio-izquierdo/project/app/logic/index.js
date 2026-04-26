@@ -8,6 +8,7 @@ import { getMyStories } from './getMyStories'
 import { modifyUserDescription } from './modifyUserDescription'
 import { getMyStory } from './getMyStory'
 import { modifyShortStory } from './modifyShortStory'
+import { removeShortStory } from './removeShortStory'
 
 
 export const logic = {
@@ -20,5 +21,6 @@ export const logic = {
 	getMyStories,
 	modifyUserDescription,
 	getMyStory,
-	modifyShortStory
+	modifyShortStory,
+	removeShortStory
 }

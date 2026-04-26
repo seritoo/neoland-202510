@@ -6,10 +6,14 @@ import { Layout } from "./components/commons/Layout"
 import { Header } from "./components/commons/Header"
 import { BarraNav } from "./components/commons/BarraNav"
 import { Avatar } from "./components/commons/Avatar"
+import { ConfirmDeleteModal } from "./components/ConfirmDeleteModal"
 import { AddArtButton } from "./components/commons/lucide/AddArtButton"
 import { ProfileButton } from "./components/commons/lucide/ProfileButton"
 import { BackButton } from "./components/commons/lucide/BackButton"
 import { LogoutButton } from "./components/commons/lucide/LogoutButton"
+import { EditButton } from "./components/commons/lucide/EditButton"
+import { SaveButton } from "./components/commons/lucide/SaveButton"
+import { DeleteShortStoryButton } from "./components/commons/lucide/DeleteShortStoryButton"
 import { FieldTextTareaCharCounter } from "./components/commons/FieldTextTareaCharCounter"
 
 import { useContext } from '../context'
@@ -30,6 +34,8 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 
 	const [username, setUsername] = useState(null)
 	const [image, setImage] = useState(null)
+
+	const [isConfirmingDelete, setIsConfirmingDelete] = useState(false)
 
 	const { storyId } = useParams()
 
@@ -107,6 +113,25 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 		}
 	}
 
+	const handleAskDeleteClick = () => setIsConfirmingDelete(true)
+
+	const handleCancelDeleteClick = () => setIsConfirmingDelete(false)
+
+	const handleConfirmDeleteClick = () => {
+		setIsConfirmingDelete(false) // Cerramos el modal
+		try {
+			logic.removeShortStory(storyId)
+				.then(() => {
+					onSuccess('Relato eliminado')
+					onGoToArtistHome()
+				})
+				.catch(error => onError(error))
+		} catch (error) {
+			onError(error)
+		}
+	}
+
+
 	logger.debug('ShortStoryDetail -> render')
 
 	return <Layout className="h-screen overflow-hidden flex flex-col items-stretch">
@@ -127,24 +152,20 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 			</div>
 		</div>
 		<main className="flex-1 overflow-y-auto p-6 bg-[#E5D6D6] flex flex-col items-stretch">
-			<section className="min-w-full bg-white p-6 rounded-2xl shadow-sm border border-black/5 min-h-112">
+			<section className="min-w-full bg-white p-6 rounded-2xl shadow-sm border border-black/5">
 
-				<div className="flex flex-col items-end mb-10">
+				<div className="flex flex-col items-stretch mb-10">
 					<div className="flex justify-between items-center mb-4 w-full">
-						<button
-							onClick={isEditing ? handleSaveShortStory : () => setIsEditing(true)}
-							className="text-[10px] text-purple-600 font-bold hover:underline"
-						>
-							{isEditing ? 'GUARDAR' : 'EDITAR'}
-						</button>
-
-						{/* Aquí irá tu botón de DELETE más tarde */}
-						<button
-							className="text-[10px] text-red-500 font-bold hover:underline"
-						>
-							BORRAR
-						</button>
+						<div className="flex items-center min-w-8">
+							{isEditing ? (
+								<SaveButton onClick={handleSaveShortStory} />
+							) : (
+								<EditButton onClick={() => setIsEditing(true)} />
+							)}
+						</div>
+						<DeleteShortStoryButton onClick={handleAskDeleteClick} />
 					</div>
+
 					{isEditing ? (
 						<input
 							type="text"
@@ -166,5 +187,12 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 					(<p className="text-sm leading-relaxed text-[#3F295F] text-justify opacity-90">{storyText}</p>)}
 			</section>
 		</main>
+		{isConfirmingDelete && (
+			<ConfirmDeleteModal
+				message='Are you sure!!??'
+				onConfirm={handleConfirmDeleteClick}
+				onCancel={handleCancelDeleteClick}
+			/>
+		)}
 	</Layout >
 }
