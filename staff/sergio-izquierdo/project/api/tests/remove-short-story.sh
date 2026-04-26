@@ -1,0 +1,1 @@
+curl -X DELETE -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWU2NGE1ZjQ5ZGE5ZTkwZjRkZmYyOWIiLCJpYXQiOjE3NzcyMTgxNzgsImV4cCI6MTc3NzI0MzM3OH0.7dNnltNnVclMfel1YxhzkcPnqhoxSkkdmqTxKLunOXg' http://localhost:8080/stories/69ea4ac05a35dcf1ca30f36b -v

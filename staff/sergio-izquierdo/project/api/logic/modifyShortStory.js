@@ -9,7 +9,7 @@ export function modifyShortStory(userId, storyId, title, shortStory) {
 
 	return data.findStoryById(storyId)
 		.then(storyData => {
-			if (storyData.ownerId.toString() !== userId.toString()) throw new OwnershipError('This Short Story do not belong to user')
+			if (storyData.ownerId.toString() !== userId.toString()) throw new OwnershipError('Short Story do not belong user')
 
 			return data.updateShortStory(storyId, title, shortStory)
 		})

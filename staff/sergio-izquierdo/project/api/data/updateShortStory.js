@@ -6,6 +6,6 @@ export function updateShortStory(storyId, title, shortStory) {
 		.catch(error => { throw new SystemError(error.message)})
 		.then(result => {
 			if(result.matchedCount === 0)
-				throw new ExistenceError('Short Story not found')
+				throw new ExistenceError('Short story not found')
 		})
 }
