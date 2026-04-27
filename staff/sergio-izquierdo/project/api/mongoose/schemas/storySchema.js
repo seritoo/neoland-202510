@@ -22,6 +22,7 @@ export const storySchema = new Schema({
 	},
 	storyDate: {
 		type: Date,
-		required: true
+		required: true,
+		default: Date.now
 	}
 })

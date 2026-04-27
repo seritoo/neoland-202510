@@ -9,13 +9,11 @@ export function createStory(userId, title, shortStory) {
 	validate.text(title, 'title')
 	validate.text(shortStory, 'shortStory')
 
-	const storyDate = new Date()
-
 	return data.findUserById(userId)
 		.then(userData => {
 			if (!userData) throw new ExistenceError('user not found')
 
-			const story = new StoryData(null, userId, title, shortStory, storyDate)
+			const story = new StoryData(null, userId,null, title, shortStory)
 
 			return data.insertStory(story)
 		})

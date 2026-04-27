@@ -1,8 +1,7 @@
 export class StoryData {
-	constructor(id, ownerId,authorName, title, shortStory, storyDate ) {
-		this.id= id
-		this.ownerId = ownerId
-		this.authorName = authorName
+	constructor(id, author, title, shortStory, storyDate) {
+		this.id = id
+		this.author = author
 		this.title = title
 		this.shortStory = shortStory
 		this.storyDate = storyDate

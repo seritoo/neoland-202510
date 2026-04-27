@@ -2,11 +2,10 @@ import { SystemError } from 'com'
 import { StoryModel } from '../mongoose/index.js'
 import { StoryData } from './models/index.js'
 
-export function findStoryById(storyId) {
-	return StoryModel.findById(storyId).populate('owner').lean()
+export function findAllStories() {
+	return StoryModel.find().populate('owner', 'username name').lean()
 		.catch(error => { throw new SystemError(error.message) })
-		.then(storyModel => {
-			if (!storyModel) return null
+		.then(storiesModel => storiesModel.map(storyModel => {
 			const { _id, owner, title, shortStory, storyDate } = storyModel
 
 			const author = {
@@ -14,8 +13,6 @@ export function findStoryById(storyId) {
 				username: owner.username,
 				name: owner.name
 			}
-
-			return new StoryData(_id, author, title, shortStory, storyDate)
-		})
+			return new StoryData(_id.toString(), author, title, shortStory, storyDate)
+		}))
 }
-

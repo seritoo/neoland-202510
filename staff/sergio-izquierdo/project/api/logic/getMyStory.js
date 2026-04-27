@@ -17,8 +17,8 @@ export function getMyStory(userId, storyId) {
 
 			if (storyData.ownerId.toString() !== userId.toString()) throw new OwnershipError('This Short Story do not belong to user')
 
-			const { id, ownerId, title, shortStory, storyDate} = storyData
+			const { id, author, title, shortStory, storyDate} = storyData
 
-			return new Story(id, ownerId, null, title, shortStory, storyDate, true)
+			return new Story(id, author, title, shortStory, storyDate, true)
 		})
 }
