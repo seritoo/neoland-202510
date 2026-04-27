@@ -9,6 +9,7 @@ import { ArtistHome } from './views/ArtistHome'
 import { AddArt } from './views/AddArt'
 import { Profile } from './views/Profile'
 import { ShortStoryDetail } from './views/ShortStoryDetail'
+import { ShortStories } from './views/ShortStories'
 import { Feedback } from './views/components/commons/Feedback'
 import { Context } from './context'
 
@@ -101,17 +102,16 @@ export function App() {
 			<Route path="/add-art" element={loggedIn ? <AddArt onGoToArtistHome={handleGoToArtistHome} onGoToProfile={handleGoToProfile} onGoToLanding={handleGoToLanding} /> : <Navigate to="/login" />} />
 
 			<Route path="/landing" element={<Landing loggedIn={loggedIn}
-				onGoToShorStories={handleGoToShortStories} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} onGoToArtistHome={handleGoToArtistHome}  />} />
+				onGoToShortStories={handleGoToShortStories} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} onGoToArtistHome={handleGoToArtistHome}  />} />
 
 			<Route path="/profile" element={loggedIn ?
 				<Profile onGoToLanding={handleGoToLanding} onGoToArtistHome={handleGoToArtistHome} onGoToAddArt={handleGoToAddArt} onUserLoggedOut={handleGoToLogin} />
 				:
 				<Navigate to="/login" />} />
 
-			<Route
-				path="/stories/:storyId"
-				element={
-					<ShortStoryDetail loggedIn={loggedIn} onGoToArtistHome={handleGoToArtistHome} onGoToAddArt={handleGoToAddArt} onGoToProfile={handleGoToProfile} onUserLoggedOut={handleGoToLogin} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} /> } />
+			<Route path="/stories/:storyId" element={ <ShortStoryDetail loggedIn={loggedIn} onGoToArtistHome={handleGoToArtistHome} onGoToAddArt={handleGoToAddArt} onGoToProfile={handleGoToProfile} onUserLoggedOut={handleGoToLogin} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} /> } />
+
+			<Route path="/short-stories" element={ <ShortStories loggedIn={loggedIn} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} onGoToShortStoryDetail={handleGoToShortStoryDetail} onGoToLanding={handleGoToLanding} onGoToArtistHome={handleGoToArtistHome}/>} />
 
 		</Routes>
 	</Context.Provider>

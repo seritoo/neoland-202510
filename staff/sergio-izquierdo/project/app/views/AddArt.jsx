@@ -10,7 +10,7 @@ import { BackButton } from './components/commons/lucide/BackButton'
 import { ProfileButton } from './components/commons/lucide/ProfileButton'
 import { LandingButton } from './components/commons/lucide/LandinButton'
 import { LogoutButton } from './components/commons/lucide/LogoutButton'
-import { Avatar } from './components/commons/Avatar'
+import { AvatarSalute } from './components/commons/AvatarSalute'
 import { BarraNav } from './components/commons/BarraNav'
 
 import { useContext } from '../context'
@@ -97,7 +97,8 @@ export function AddArt({ onGoToArtistHome, onGoToProfile, onGoToLanding }) {
 	const handleCharCountChange = event => setShortStory(event.target.value)
 
 	logger.debug('ArtistHome -> render')
-	return <Layout>
+	return <Layout  className="h-screen overflow-hidden flex flex-col items-stretch">
+		<div className='sticky top-0 z-50 w-full bg-[#E5D6D6] shrink-0 shadow-md'>
 		<Header title='Share your art!'>
 			<BarraNav>
 				<LandingButton onClick={handleLandingClick} />
@@ -105,14 +106,11 @@ export function AddArt({ onGoToArtistHome, onGoToProfile, onGoToLanding }) {
 				<BackButton onClick={handleBackClick} />
 				<LogoutButton onClick={handleLogoutClick} />
 			</BarraNav>
-			<div className="flex justify-start items-center w-full gap-3 p-3 bg-[#E5D6D6]">
-				<Avatar />
-				<h2 className="font-['Inknut_Antiqua'] text-[#3F295F] text-xl">
-					Hola, {username || 'Artist'}!
-				</h2>
-			</div>
+
+			<AvatarSalute username={username}/>
 		</Header>
-		<main className='flex flex-col items-center w-full'>
+		</div>
+		<main className='flex-1 overflow-y-auto pt-2 px-6 bg-[#E5D6D6]'>
 			<Form onSubmit={handleShareArtSubmit} className='w-full'>
 				<Field alias='title' type='text'>Title:</Field>
 			<FieldTextTareaCharCounter
@@ -124,7 +122,7 @@ export function AddArt({ onGoToArtistHome, onGoToProfile, onGoToLanding }) {
 			className='border border-black bg-white min-h-30 focus:ring-[#E94E77]' />
 
 
-			<Button type='submit' className='self-center'>Share!</Button>
+			<Button type='submit' className='self-center'>Share, please!</Button>
 		</Form>
 	</main>
 	</Layout >

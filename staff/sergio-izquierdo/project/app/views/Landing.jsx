@@ -6,15 +6,15 @@ import { Anchor } from './components/commons/Anchor'
 import { Footer } from './components/commons/Footer'
 
 import { logger } from '../logger'
-import { BackArtistHomeButton } from './components/commons/lucide/BackArtistHomeButton'
+import { BackArtistHomeNavButton } from './components/commons/lucide/BackArtistHomeNavButton'
 
-export function Landing({ onGoToShorStories, onGoToLogin, onGoToRegister, onGoToArtistHome, loggedIn }) {
+export function Landing({ onGoToShortStories, onGoToLogin, onGoToRegister, onGoToArtistHome, loggedIn }) {
 	logger.debug('Landing -> call')
 
 	const handleStoriesClick = event => {
 		event.preventDefault()
 
-		onGoToShorStories()
+		onGoToShortStories()
 	}
 
 	const handleLoginClick = event => {
@@ -52,7 +52,9 @@ export function Landing({ onGoToShorStories, onGoToLogin, onGoToRegister, onGoTo
 				</>
 			) : (
 				<Anchor onClick={handleBackToArtistHomeClick}>
-					<BackArtistHomeButton />
+					<div className="fixed bottom-5 left-5 z-50">
+						<BackArtistHomeNavButton />
+					</div>
 				</Anchor>
 			)}
 		</Footer>

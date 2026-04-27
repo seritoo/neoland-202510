@@ -92,7 +92,7 @@ export function Profile({ onGoToLanding, onGoToArtistHome, onGoToAddArt, onUserL
 	logger.debug('Profile -> render')
 	return (
 		<Layout className="h-screen flex flex-col overflow-hidden">
-			<div className='w-full bg-[#E5D6D6] z-50 shadow-sm'>
+			<div className='sticky top-0 z-50 w-full bg-[#E5D6D6] shrink-0 shadow-md'>
 				<Header title='My Profile'>
 
 					<BarraNav>

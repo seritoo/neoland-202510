@@ -11,7 +11,7 @@ import { StoryDetailButton } from './components/commons/lucide/StoryDetailButton
 import { LandingButton } from './components/commons/lucide/LandinButton'
 import { Footer } from './components/commons/Footer'
 import { Anchor } from './components/commons/Anchor'
-import { Avatar } from './components/commons/Avatar'
+import { AvatarSalute } from './components/commons/AvatarSalute'
 import { BarraNav } from './components/commons/BarraNav'
 
 import { useContext } from '../context'
@@ -24,7 +24,7 @@ import { logger } from '../logger'
 
 
 
-export function ArtistHome({ onUserLoggedOut, onGoToProfile, onGoToAddArt, onGoToShortStories, onGoToLanding, onGoToShortStoryDetail }) {
+export function ArtistHome({ onUserLoggedOut, onGoToProfile, onGoToAddArt, onGoToLanding, onGoToShortStoryDetail }) {
 	logger.debug('ArtistHome -> call')
 
 	const { onError } = useContext()
@@ -102,12 +102,8 @@ export function ArtistHome({ onUserLoggedOut, onGoToProfile, onGoToAddArt, onGoT
 					<LogoutButton onClick={handleLogoutClick} />
 				</BarraNav>
 			</Header>
-			<div className="flex justify-start items-center w-full gap-3 p-3 bg-[#E5D6D6]">
-				<Avatar/>
-				<h2 className="font-['Inknut_Antiqua'] text-[#3F295F] text-xl">
-					Hola, {username || 'Artist'}!
-				</h2>
-			</div>
+
+			<AvatarSalute username={username}/>
 
 		</div>
 
