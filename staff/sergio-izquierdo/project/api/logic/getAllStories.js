@@ -13,7 +13,7 @@ export function getAllStories(userId = null) {
 			return storiesData.map(storyData => {
 				const { id, author, title, shortStory, storyDate} = storyData
 
-				const isOwner = (userId === storyData.author.id)
+				const isOwner = (userId.toString() === storyData.author.id.toString())
 
 				return new Story(id, author, title, shortStory, storyDate, isOwner)
 			})

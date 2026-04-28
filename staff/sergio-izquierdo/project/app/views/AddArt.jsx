@@ -20,7 +20,7 @@ import { logic } from '../logic'
 import { logger } from '../logger'
 import { FieldTextTareaCharCounter } from './components/commons/FieldTextTareaCharCounter'
 
-export function AddArt({ onGoToArtistHome, onGoToProfile, onGoToLanding }) {
+export function AddArt({ onGoToArtistHome, onGoToProfile, onGoToLanding, onUserLoggedOut }) {
 	logger.debug('AddArt -> call')
 
 	const [shortStory, setShortStory] = useState('')
@@ -107,7 +107,7 @@ export function AddArt({ onGoToArtistHome, onGoToProfile, onGoToLanding }) {
 				<LogoutButton onClick={handleLogoutClick} />
 			</BarraNav>
 
-			<AvatarSalute username={username}/>
+			<AvatarSalute username={username} image={image}/>
 		</Header>
 		</div>
 		<main className='flex-1 overflow-y-auto pt-2 px-6 bg-[#E5D6D6]'>
@@ -115,7 +115,7 @@ export function AddArt({ onGoToArtistHome, onGoToProfile, onGoToLanding }) {
 				<Field alias='title' type='text'>Title:</Field>
 			<FieldTextTareaCharCounter
 			label= 'Short Story:'
-			name='shorStory'
+			name='shortStory'
 			value={shortStory}
 			onChange={handleCharCountChange}
 			maxLength={5000}

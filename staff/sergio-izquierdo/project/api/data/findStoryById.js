@@ -15,7 +15,7 @@ export function findStoryById(storyId) {
 				name: owner.name
 			}
 
-			return new StoryData(_id, author, title, shortStory, storyDate)
+			return new StoryData(_id.toString(), author, title, shortStory, storyDate)
 		})
 }
 

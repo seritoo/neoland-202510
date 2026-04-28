@@ -99,7 +99,7 @@ export function App() {
 
 			<Route path="/register" element={!loggedIn ? <Register onGoToLogin={handleGoToLogin} /> : <Navigate to="/" />} />
 
-			<Route path="/add-art" element={loggedIn ? <AddArt onGoToArtistHome={handleGoToArtistHome} onGoToProfile={handleGoToProfile} onGoToLanding={handleGoToLanding} /> : <Navigate to="/login" />} />
+			<Route path="/add-art" element={loggedIn ? <AddArt onGoToArtistHome={handleGoToArtistHome} onGoToProfile={handleGoToProfile} onGoToLanding={handleGoToLanding} onUserLoggedOut={handleGoToLogin} /> : <Navigate to="/login" />} />
 
 			<Route path="/landing" element={<Landing loggedIn={loggedIn}
 				onGoToShortStories={handleGoToShortStories} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} onGoToArtistHome={handleGoToArtistHome}  />} />

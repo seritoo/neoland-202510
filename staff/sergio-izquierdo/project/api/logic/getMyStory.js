@@ -15,7 +15,7 @@ export function getMyStory(userId, storyId) {
 		.then(storyData => {
 			if (!storyData) throw new ExistenceError('Short Story not found')
 
-			if (storyData.ownerId.toString() !== userId.toString()) throw new OwnershipError('This Short Story do not belong to user')
+			if (storyData.author.id.toString() !== userId.toString()) throw new OwnershipError('This Short Story do not belong to user')
 
 			const { id, author, title, shortStory, storyDate} = storyData
 

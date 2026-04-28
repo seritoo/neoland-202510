@@ -117,7 +117,7 @@ export function Profile({ onGoToLanding, onGoToArtistHome, onGoToAddArt, onUserL
 					</div>
 
 					<div className="text-center">
-						<h2 className="font-['Inknut_Antiqua'] text-[#3F295F] text-2xl lowercase">
+						<h2 className="font-['Inknut_Antiqua'] text-[#3F295F] text-2xl">
 							{username}
 						</h2>
 						<p className="text-sm opacity-60 italic mt-1">{speciality}</p>

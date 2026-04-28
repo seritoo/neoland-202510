@@ -103,7 +103,7 @@ export function ArtistHome({ onUserLoggedOut, onGoToProfile, onGoToAddArt, onGoT
 				</BarraNav>
 			</Header>
 
-			<AvatarSalute username={username}/>
+			<AvatarSalute username={username} image={image}/>
 
 		</div>
 

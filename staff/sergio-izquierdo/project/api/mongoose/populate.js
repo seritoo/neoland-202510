@@ -1,21 +1,21 @@
 import bcrypt from 'bcryptjs'
 
-import { database, UserModel, StoryModel } from './models.js'
+import { connect, disconnect, UserModel, StoryModel } from './index.js'
 
-database.connect('mongodb://localhost:27017/product')
+connect('mongodb://localhost:27017/project')
 	.then(() => bcrypt.hash('123123123', 10))
 	.then(hash => {
 		const jack = new UserModel({ name: 'Jack Skellington', email: 'jack@halloween.com', username: 'Jack', password: hash, image: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjF4anZ5dzI0djZqZXZvN3JlNjBva2RzbjIya3F4MzJyOG9yazZpOCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/K4Ov4XqbqUSf6/giphy.gif', description: 'I am Jack Skellington, the Pumpkin King, and I craft eerie tales with theatrical flair. I adore writing stories that twist fear into art, where shadows dance and whispers linger, turning every fright into a hauntingly beautiful narrative.' })
 		const sally = new UserModel({ name: 'Sally Skellington', email: 'sally@halloween.com', username: 'Sally', password: hash, image: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjF1bWRkdXI2eTBvNGJjczBycmcycHZ2ZWo2ZjVidXAxbXd5em12biZlcD12MV9naWZzX3NlYXJjaCZjdD1n/6al4KiQHvcaeN9P0uN/giphy.gif', description: 'I am Sally, stitched with care and quiet strength, and I write stories filled with longing and heart. My tales weave emotions and fragile hopes, where every word seeks warmth, truth, and a gentle escape from the darkness around me.' })
-		const oggie = new UserModel({ name: 'Oogie Boogie', email: 'oogie@halloween.com', username: 'Oogie', password: hash, image: 'https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3b2NseXc4OGJlcW9jNHJvYWxpd3IzeWFqbmRpbTkzNm1pbjUwbjRvYSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/AyhlWMWWBUMuI/giphy.gif', description: 'I am Oogie Boogie, the master of fright and chance, and I spin wicked tales for fun. I love writing stories driven by chaos, luck, and mischief, where every roll of fate brings a new thrill and keeps the reader guessing till the end.' })
+		const oogie = new UserModel({ name: 'Oogie Boogie', email: 'oogie@halloween.com', username: 'Oogie', password: hash, image: 'https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3b2NseXc4OGJlcW9jNHJvYWxpd3IzeWFqbmRpbTkzNm1pbjUwbjRvYSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/AyhlWMWWBUMuI/giphy.gif', description: 'I am Oogie Boogie, the master of fright and chance, and I spin wicked tales for fun. I love writing stories driven by chaos, luck, and mischief, where every roll of fate brings a new thrill and keeps the reader guessing till the end.' })
 		const emily = new UserModel({ name: 'Emily', email: 'emily@corpsebride.com', username: 'Emi', password: hash, image: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmEzMm5jYTl6MjVnY2V6NXFqZ21ic3Q1cXl0YTBuajVzZXZsYjJsbiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/FqRgAIMvPAbaU/giphy.gif', description: 'I am Emily, a bride with a broken past, and I write stories of love that lingers beyond life. My tales are filled with sorrow, hope, and devotion, where even the deepest heartbreak can bloom into something beautifully eternal.' })
 
-		return Promise.all([jack.save(), sally.save()])
+		return Promise.all([jack.save(), sally.save(), oogie.save(), emily.save()])
 			.then(([jack, sally, oogie, emily]) => {
 				console.log(jack, sally, oogie, emily)
 
 				const story1 = new StoryModel({
-					owner: jack.id, tittle: "Jack's Lament", shortStory: `There are few who'd deny, at what I do I am the best
+					owner: jack.id, title: "Jack's Lament", shortStory: `There are few who'd deny, at what I do I am the best
 For my talents are renowned far and wide
 When it comes to surprises in the moonlit night
 I excel without ever even trying
@@ -77,7 +77,7 @@ No, I think not, it's never to become
 For I am not the one` })
 
 				const story3 = new StoryModel({
-					owner: oogie.id, tittle: `Oogie Boogie's Song`, shortStory: `Well, well, well, what have we here?
+					owner: oogie.id, title: `Oogie Boogie's Song`, shortStory: `Well, well, well, what have we here?
 Sandy claws, huh?
 Oh, I'm really scared
 So you're the one everybody's talkin' about, ha, ha
@@ -179,7 +179,7 @@ You haven't got a prayer
 And you ain't going nowhere`})
 
 				const story4 = new StoryModel({
-					owner: emily.id, tittle: `Tears To Shed`, shortStory: `[Maggot]
+					owner: emily.id, title: `Tears To Shed`, shortStory: `[Maggot]
 What does that whispy little brat have that you don't have double?
 
 [Black widow]
@@ -376,7 +376,7 @@ What is this?
 Christmas Town? Hmm`})
 
 				const story6 = new StoryModel({
-					owner: oogie.id, tittle: `Das Oogie Boogie Lied`, shortStory: `Ei, ei, ei wer kommt denn da?
+					owner: oogie.id, title: `Das Oogie Boogie Lied`, shortStory: `Ei, ei, ei wer kommt denn da?
 Nickigraus? Uhhh! Ich sterbe vor Angst!
 Ach, du bist der, von dem sie alle reden?
 Wie komisch, wie komisch, den Augen trau' ich kaum
@@ -445,10 +445,10 @@ Dir hilft nicht Mann noch Maus
 Denn ich bin der Oogie Boogie
 Und mit dir ist es bald aus!`})
 
-				return Promise.all([story1.save(), story2.save(), story3.save(), story4.save(), story5.save()])
+				return Promise.all([story1.save(), story2.save(), story3.save(), story4.save(), story5.save(), story6.save()])
 			})
 			.then(([story1, story2, story3, story4, story5, story6]) => console.log(story1, story2, story3, story4, story5, story6))
 
 	})
 	.catch(error => console.error(error))
-	.finally(() => database.disconnect())
+	.finally(() => disconnect())

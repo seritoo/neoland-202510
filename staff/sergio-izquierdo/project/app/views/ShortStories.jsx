@@ -22,6 +22,7 @@ export function ShortStories({ onGoToLogin, onGoToRegister, onGoToShortStoryDeta
 	const [username, setUsername] = useState(null)
 	const [image, setImage] = useState(null)
 
+	const [shortStories, setShortStories] = useState([])
 
 	useEffect(() => {
 		if (loggedIn) {
@@ -37,7 +38,18 @@ export function ShortStories({ onGoToLogin, onGoToRegister, onGoToShortStoryDeta
 				onError(error)
 			}
 		}
-	}, [])
+		try {
+			logic.getAllStories()
+				.then(shortStories => setShortStories(shortStories))
+				.catch(error => onError(error))
+		} catch (error) {
+			onError(error)
+		}
+	}, [loggedIn])
+
+	useEffect(() => {
+
+	})
 
 	return <Layout className="h-screen overflow-hidden flex flex-col items-stretch">
 		<div className='sticky top-0 z-50 w-full bg-[#E5D6D6] shrink-0 shadow-md'>
@@ -46,7 +58,7 @@ export function ShortStories({ onGoToLogin, onGoToRegister, onGoToShortStoryDeta
 				</Header>)
 				:
 				(<Header title='Short Stories'>
-					<AvatarSalute username={username} />
+					<AvatarSalute username={username} image={image} />
 				</Header>)
 			}
 		</div>
