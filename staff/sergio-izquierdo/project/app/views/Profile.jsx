@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 import { Layout } from "./components/commons/Layout"
 import { Header } from "./components/commons/Header"
+import { AvatarProfile } from './components/commons/AvatarProfile'
 import { ProfileButton } from "./components/commons/lucide/ProfileButton"
 import { LandingButton } from "./components/commons/lucide/LandinButton"
 import { LogoutButton } from "./components/commons/lucide/LogoutButton"
@@ -107,22 +108,7 @@ export function Profile({ onGoToLanding, onGoToArtistHome, onGoToAddArt, onUserL
 
 			<main className='flex-1 overflow-y-auto w-full flex flex-col items-center px-8 py-10 gap-8'>
 
-				<div className="flex flex-col items-center gap-4">
-					<div className="w-28 h-28 rounded-full border-2 border-[#3F295F] overflow-hidden shadow-md">
-						{image ? (
-							<img src={image} alt={username} className='w-full h-full object-cover' />
-						) : (
-							<div className="w-full h-full bg-slate-200 flex items-center justify-center text-[#3F295F] opacity-30 text-xs text-center p-2">No image</div>
-						)}
-					</div>
-
-					<div className="text-center">
-						<h2 className="font-['Inknut_Antiqua'] text-[#3F295F] text-2xl">
-							{username}
-						</h2>
-						<p className="text-sm opacity-60 italic mt-1">{speciality}</p>
-					</div>
-				</div>
+				<AvatarProfile username={username} image={image} speciality={speciality}/>
 
 				<section className="w-full bg-white p-6 rounded-2xl shadow-sm border border-black/5">
 					<div className="flex justify-between items-center mb-3">

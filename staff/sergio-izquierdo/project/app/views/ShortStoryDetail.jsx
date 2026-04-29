@@ -118,11 +118,11 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 	const handleCancelDeleteClick = () => setIsConfirmingDelete(false)
 
 	const handleConfirmDeleteClick = () => {
-		setIsConfirmingDelete(false) // Cerramos el modal
+		setIsConfirmingDelete(false)
 		try {
 			logic.removeShortStory(storyId)
 				.then(() => {
-					onSuccess('Relato eliminado')
+					onSuccess('Short tory deleted successfully')
 					onGoToArtistHome()
 				})
 				.catch(error => onError(error))
@@ -145,7 +145,7 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 				</BarraNav>
 			</Header>
 			<div className="flex justify-start items-center w-full gap-3 p-3 bg-[#E5D6D6]">
-				<Avatar />
+				<Avatar image={image} />
 				<h2 className="font-['Inknut_Antiqua'] text-[#3F295F] text-xl">
 					Hola, {username || 'Artist'}!
 				</h2>

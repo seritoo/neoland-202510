@@ -18,7 +18,7 @@ export const storyRouter = new Router()
 storyRouter.post('', authMiddleware, createStoryHandler)
 storyRouter.get('/mine', authMiddleware, getMyStoriesHandler)
 storyRouter.get('/:storyId', authMiddleware, getMyStoryHandler)
-storyRouter.patch('/:storyId', authMiddleware, modifyShortStoryHandler)
+storyRouter.patch('/edit-story/:storyId', authMiddleware, modifyShortStoryHandler)
 storyRouter.delete('/:storyId', authMiddleware, removeShortStoryHandler)
 
 

@@ -14,7 +14,7 @@ import { useContext } from '../context'
 import { logic } from '../logic'
 import { StoryDetailButton } from './components/commons/lucide/StoryDetailButton'
 
-export function ShortStories({ onGoToLogin, onGoToRegister, onGoToShortStoryDetail, onGoToLanding, onGoToArtistHome, loggedIn }) {
+export function ShortStories({ onGoToLogin, onGoToRegister, onGoToShortStoryDetail, onGoToLanding, onGoToArtistHome, onGoToShortStoryView, loggedIn }) {
 	logger.debug('ShortStories -> call')
 
 	const { onError } = useContext()
@@ -47,10 +47,15 @@ export function ShortStories({ onGoToLogin, onGoToRegister, onGoToShortStoryDeta
 		}
 	}, [loggedIn])
 
-	useEffect(() => {
+	const handleShortStoryDetailButtonClick = (storyId, isOwner) => {
+		if(loggedIn && isOwner) {
+			onGoToShortStoryDetail(storyId)
+		} else {
+			onGoToShortStoryView(storyId)
+		}
+	}
 
-	})
-
+	logger.debug('Short Stories -> render')
 	return <Layout className="h-screen overflow-hidden flex flex-col items-stretch">
 		<div className='sticky top-0 z-50 w-full bg-[#E5D6D6] shrink-0 shadow-md'>
 			{!loggedIn ?
@@ -90,7 +95,7 @@ export function ShortStories({ onGoToLogin, onGoToRegister, onGoToShortStoryDeta
 				{story.storyDate}
 			</span>
 
-			<StoryDetailButton />
+				<StoryDetailButton onClick={() => handleShortStoryDetailButtonClick(story.id, story.isOwner)}/>
 		</div>
 	</article>
 ))}
