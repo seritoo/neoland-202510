@@ -1,6 +1,6 @@
-import { validate } from "com";
-import { data } from "../data";
-import { Story } from "./models";
+import { validate } from 'com'
+import { data } from '../data/index.js'
+import { Story } from './models/index.js'
 
 
 export function getAllStories(userId = null) {
@@ -13,7 +13,7 @@ export function getAllStories(userId = null) {
 			return storiesData.map(storyData => {
 				const { id, author, title, shortStory, storyDate} = storyData
 
-				const isOwner = (userId.toString() === storyData.author.id.toString())
+				const isOwner = userId ? (userId.toString() === storyData.author.id.toString()) : false
 
 				return new Story(id, author, title, shortStory, storyDate, isOwner)
 			})

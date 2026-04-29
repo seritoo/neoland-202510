@@ -1,7 +1,6 @@
-// helpers/optionalAuth.js
 import jwt from 'jsonwebtoken'
 
-export const hibridAuthMiddleware = (req, res, next) => {
+export const hybridAuthMiddleware = (req, res, next) => {
 	try {
 		const authHeader = req.headers.authorization
 

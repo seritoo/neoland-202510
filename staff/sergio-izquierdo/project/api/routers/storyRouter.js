@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import jwt from 'jsonwebtoken'
 
-import { authMiddleware, hibridAuthMiddleware } from '../middlewares/index.js'
+import { authMiddleware, hybridAuthMiddleware } from '../middlewares/index.js'
 import {
 	createStoryHandler,
 	getAllStoriesHandler,
@@ -14,10 +14,13 @@ import {
 
 
 export const storyRouter = new Router()
-
+//privadas
 storyRouter.post('', authMiddleware, createStoryHandler)
-storyRouter.get('', authMiddleware, getMyStoriesHandler)
+storyRouter.get('/mine', authMiddleware, getMyStoriesHandler)
 storyRouter.get('/:storyId', authMiddleware, getMyStoryHandler)
 storyRouter.patch('/:storyId', authMiddleware, modifyShortStoryHandler)
 storyRouter.delete('/:storyId', authMiddleware, removeShortStoryHandler)
-storyRouter.get('/stories', hibridAuthMiddleware, getAllStoriesHandler)
+
+
+// publicas
+storyRouter.get('/', hybridAuthMiddleware, getAllStoriesHandler)

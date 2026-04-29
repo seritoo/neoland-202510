@@ -66,24 +66,34 @@ export function ShortStories({ onGoToLogin, onGoToRegister, onGoToShortStoryDeta
 			<Paragraph> Enjoy the latest stories from our Storytellers...</Paragraph>
 			<section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mt-5 pb-10">
 
-				<article className="bg-white p-6 rounded-2xl shadow-sm border border-black/5 flex flex-col h-72">
-					<div className="mb-4">
-						<h2 className="font-['Inknut_Antiqua'] text-[#3F295F] text-xl mb-1 leading-tight">
-							Título del Relato
-						</h2>
-						<p className="text-[10px] uppercase tracking-wider text-[#3F295F] opacity-60 font-bold">
-							Nombre del Autor
-						</p>
-					</div>
-					<p className="text-sm leading-relaxed text-[#3F295F] text-justify opacity-90 line-clamp-5 flex-1 ">
-						Este es un texto de prueba para ver cómo funciona el scroll. Si añades muchas tarjetas, verás que el Header se queda arriba y el contenido se desliza por debajo. Además de verse solo 5 líneas en el card, esto es importante para que el usuario quiera leer más
-					</p>
-					<div className="mt-4 pt-4 border-t border-[#E5D6D6] flex justify-between items-center">
-						<span className="text-[10px] text-[#3F295F] opacity-50">27/04/2026</span>
+				{shortStories.map(story => (
+	<article
+		key={story.id}
+		className="bg-white p-6 rounded-2xl shadow-sm border border-black/5 flex flex-col h-72"
+	>
+		<div className="mb-4">
+			<h2 className="font-['Inknut_Antiqua'] text-[#3F295F] text-xl mb-1 leading-tight">
+				{story.title}
+			</h2>
 
-						<StoryDetailButton />
-					</div>
-				</article>
+			<p className="text-[10px] uppercase tracking-wider text-[#3F295F] opacity-60 font-bold">
+				{story.author?.username || 'Unknown'}
+			</p>
+		</div>
+
+		<p className="text-sm leading-relaxed text-[#3F295F] text-justify opacity-90 line-clamp-5 flex-1">
+			{story.shortStory}
+		</p>
+
+		<div className="mt-4 pt-4 border-t border-[#E5D6D6] flex justify-between items-center">
+			<span className="text-[10px] text-[#3F295F] opacity-50">
+				{story.storyDate}
+			</span>
+
+			<StoryDetailButton />
+		</div>
+	</article>
+))}
 
 			</section>
 		</main>

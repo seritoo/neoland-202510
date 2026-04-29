@@ -5,7 +5,7 @@ import { AuthError, SystemError, errorMap } from 'com'
 export function getMyStories() {
 	if(!data.getToken()) throw new AuthError('user not logged in')
 
-	return fetch(`${import.meta.env.VITE_API_URL}/stories`, {
+	return fetch(`${import.meta.env.VITE_API_URL}/stories/mine`, {
 		method: 'GET',
 		headers: {
 			Authorization:  `Bearer ${data.getToken()}`
