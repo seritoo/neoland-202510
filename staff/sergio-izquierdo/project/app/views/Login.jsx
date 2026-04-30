@@ -7,6 +7,7 @@ import { PasswordField } from './components/commons/PasswordField'
 import { Button } from './components/commons/Button'
 import { Footer } from './components/commons/Footer'
 import { Anchor } from './components/commons/Anchor'
+import { LandingButton } from './components/commons/lucide/LandinButton'
 
 import { useContext } from '../context'
 
@@ -14,7 +15,7 @@ import { logic } from '../logic'
 
 import { logger } from '../logger'
 
-export function Login({ onUserLoggedIn, onGoToRegister }) {
+export function Login({ onUserLoggedIn, onGoToRegister, onGoToLanding }) {
 	logger.debug('Login -> call')
 
 	const { onError } = useContext()
@@ -43,11 +44,17 @@ export function Login({ onUserLoggedIn, onGoToRegister }) {
 		onGoToRegister()
 	}
 
+	const handleLandingButtonClick = event => {
+		event.preventDefault()
+
+		onGoToLanding()
+	}
+
 	logger.debug('Login -> render')
 
 	return <Layout>
 		<Header title='Login'>
-			
+
 		</Header>
 
 		<Form onSubmit={handleLoginSubmit}>
@@ -57,10 +64,13 @@ export function Login({ onUserLoggedIn, onGoToRegister }) {
 
 			<Button>Login</Button>
 		</Form>
-
-		<Footer>
+		<span className='fixed bottom-4 right-5 z-50'>
+			<LandingButton onClick={handleLandingButtonClick}/>
+		</span>
+		<Footer className='mb-5'>
 			<Anchor onClick={handleRegisterClick}>Register</Anchor>
 		</Footer>
+
 	</Layout>
 
 }

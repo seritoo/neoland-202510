@@ -8,7 +8,9 @@ import {
 	modifyShortStoryHandler,
 	removeShortStoryHandler,
 	getMyStoriesHandler,
-	getMyStoryHandler
+	getMyStoryHandler,
+	getShortStoryHandler
+
 } from './handlers/index.js'
 
 
@@ -16,11 +18,13 @@ import {
 export const storyRouter = new Router()
 //privadas
 storyRouter.post('', authMiddleware, createStoryHandler)
+
 storyRouter.get('/mine', authMiddleware, getMyStoriesHandler)
-storyRouter.get('/:storyId', authMiddleware, getMyStoryHandler)
-storyRouter.patch('/edit-story/:storyId', authMiddleware, modifyShortStoryHandler)
-storyRouter.delete('/:storyId', authMiddleware, removeShortStoryHandler)
+storyRouter.get('/mine/:storyId', authMiddleware, getMyStoryHandler)
+storyRouter.patch('/mine/:storyId', authMiddleware, modifyShortStoryHandler)
+storyRouter.delete('/mine/:storyId', authMiddleware, removeShortStoryHandler)
 
 
 // publicas
 storyRouter.get('/', hybridAuthMiddleware, getAllStoriesHandler)
+storyRouter.get('/:storyId', getShortStoryHandler)

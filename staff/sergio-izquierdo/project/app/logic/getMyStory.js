@@ -7,7 +7,7 @@ export function getMyStory(storyId) {
 
 	validate.id(storyId, 'storyId')
 
-	return fetch(`${import.meta.env.VITE_API_URL}/stories/${storyId}`, {
+	return fetch(`${import.meta.env.VITE_API_URL}/stories/mine/${storyId}`, {
 		method: 'GET',
 		headers: {
 			Authorization: `Bearer ${data.getToken()}`

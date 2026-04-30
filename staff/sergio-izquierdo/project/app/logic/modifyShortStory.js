@@ -9,7 +9,7 @@ export function modifyShortStory(storyId, title, shortStory) {
 	validate.text(title, 'title')
 	validate.text(shortStory, 'shortStory')
 
-	return fetch(`${import.meta.env.VITE_API_URL}/edit-story/${storyId}`, {
+	return fetch(`${import.meta.env.VITE_API_URL}/stories/mine/${storyId}`, {
 		method: 'PATCH',
 		headers: {
 			Authorization: `Bearer ${data.getToken()}`,

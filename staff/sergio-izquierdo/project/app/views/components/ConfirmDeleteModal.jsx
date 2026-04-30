@@ -10,13 +10,9 @@ export function ConfirmDeleteModal({ message, onConfirm, onCancel }) {
 				</p>
 
 				<div className="flex gap-8">
-					<button onClick={onCancel} className="p-2 rounded-full hover:bg-gray-200 transition-colors">
-						<CancelConfirmButton/>
-					</button>
+						<CancelConfirmButton onClick={onCancel} className="p-2 rounded-full hover:bg-gray-200 transition-colors"/>
 
-					<button onClick={onConfirm} className="p-2 rounded-full hover:bg-gray-200 transition-colors">
-						<CheckConfirmButton/>
-					</button>
+						<CheckConfirmButton onClick={onConfirm} className="p-2 rounded-full hover:bg-gray-200 transition-colors"/>
 				</div>
 			</div>
 		</div>

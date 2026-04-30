@@ -6,6 +6,7 @@ import { Form } from './components/commons/Form'
 import { Field } from './components/commons/Field'
 import { Label } from './components/commons/Label'
 import { Button } from './components/commons/Button'
+import { FieldTextTareaCharCounter } from './components/commons/FieldTextTareaCharCounter'
 import { BackButton } from './components/commons/lucide/BackButton'
 import { ProfileButton } from './components/commons/lucide/ProfileButton'
 import { LandingButton } from './components/commons/lucide/LandinButton'
@@ -18,7 +19,6 @@ import { useContext } from '../context'
 import { logic } from '../logic'
 
 import { logger } from '../logger'
-import { FieldTextTareaCharCounter } from './components/commons/FieldTextTareaCharCounter'
 
 export function AddArt({ onGoToArtistHome, onGoToProfile, onGoToLanding, onUserLoggedOut }) {
 	logger.debug('AddArt -> call')
@@ -26,6 +26,8 @@ export function AddArt({ onGoToArtistHome, onGoToProfile, onGoToLanding, onUserL
 	const [shortStory, setShortStory] = useState('')
 	const [username, setUsername] = useState(null)
 	const [image, setImage] = useState(null)
+
+	const { onError, onSuccess } = useContext()
 
 	useEffect(() => {
 		logger.debug('ArtistHome -> useEffect')
@@ -40,8 +42,6 @@ export function AddArt({ onGoToArtistHome, onGoToProfile, onGoToLanding, onUserL
 			onError(error)
 		}
 	}, [])
-
-	const { onError, onSuccess } = useContext()
 
 	const handleBackClick = event => {
 		event.preventDefault()
@@ -120,7 +120,6 @@ export function AddArt({ onGoToArtistHome, onGoToProfile, onGoToLanding, onUserL
 			onChange={handleCharCountChange}
 			maxLength={5000}
 			className='border border-black bg-white min-h-30 focus:ring-[#E94E77]' />
-
 
 			<Button type='submit' className='self-center'>Share, please!</Button>
 		</Form>

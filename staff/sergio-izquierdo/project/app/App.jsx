@@ -45,7 +45,7 @@ export function App() {
 	const handleGoToProfile = () => clearFeedbackAndNavigate('/profile')
 	const handleGoToAddArt = () => clearFeedbackAndNavigate('/add-art')
 	const handleGoToLanding = () => clearFeedbackAndNavigate('/landing')
-	const handleGoToShortStoryDetail = storyId => clearFeedbackAndNavigate(`/edit-story/${storyId}`)
+	const handleGoToShortStoryDetail = storyId => clearFeedbackAndNavigate(`/mine/${storyId}`)
 	const handleGoToShortStoryView = storyId => clearFeedbackAndNavigate(`/stories/${storyId}`)
 
 	const handleError = error => {
@@ -97,9 +97,9 @@ export function App() {
 				:
 				<ArtistHome onGoToProfile={handleGoToProfile} onGoToAddArt={handleGoToAddArt} onGoToLanding={handleGoToLanding} onGoToShortStoryDetail={handleGoToShortStoryDetail} onUserLoggedOut={handleGoToLogin} />} />
 
-			<Route path="/login" element={!loggedIn ? <Login onUserLoggedIn={handleGoToArtistHome} onGoToRegister={handleGoToRegister} /> : <Navigate to="/" />} />
+			<Route path="/login" element={!loggedIn ? <Login onUserLoggedIn={handleGoToArtistHome} onGoToRegister={handleGoToRegister} onGoToLanding={handleGoToLanding}/> : <Navigate to="/" />} />
 
-			<Route path="/register" element={!loggedIn ? <Register onGoToLogin={handleGoToLogin} /> : <Navigate to="/" />} />
+			<Route path="/register" element={!loggedIn ? <Register onGoToLogin={handleGoToLogin} onGoToLanding={handleGoToLanding} /> : <Navigate to="/" />} />
 
 			<Route path="/add-art" element={loggedIn ? <AddArt onGoToArtistHome={handleGoToArtistHome} onGoToProfile={handleGoToProfile} onGoToLanding={handleGoToLanding} onUserLoggedOut={handleGoToLogin} /> : <Navigate to="/login" />} />
 
@@ -111,12 +111,12 @@ export function App() {
 				:
 				<Navigate to="/landing" />} />
 
-			<Route path="/edit-story/:storyId" element={
+			<Route path="/mine/:storyId" element={
 				<ShortStoryDetail onGoToArtistHome={handleGoToArtistHome} onGoToAddArt={handleGoToAddArt} onGoToProfile={handleGoToProfile} onUserLoggedOut={handleGoToLogin} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} /> } />
 
 			<Route path="/short-stories" element={ <ShortStories loggedIn={loggedIn} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} onGoToShortStoryDetail={handleGoToShortStoryDetail} onGoToLanding={handleGoToLanding} onGoToArtistHome={handleGoToArtistHome} onGoToShortStoryView={handleGoToShortStoryView}/>} />
 
-			<Route path="/stories/:storyId" element={<ShortStoryView onGoToLanding={handleGoToLanding}/>} />
+			<Route path="/stories/:storyId" element={<ShortStoryView onGoToShortStories={handleGoToShortStories}/>} />
 
 		</Routes>
 	</Context.Provider>
