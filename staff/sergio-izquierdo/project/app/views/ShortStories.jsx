@@ -92,7 +92,7 @@ export function ShortStories({ onGoToLogin, onGoToRegister, onGoToShortStoryDeta
 
 		<div className="mt-4 pt-4 border-t border-[#E5D6D6] flex justify-between items-center">
 			<span className="text-[10px] text-[#3F295F] opacity-50">
-				{story.storyDate}
+				{new Date(story.storyDate).toLocaleDateString()}
 			</span>
 
 				<StoryDetailButton onClick={() => handleShortStoryDetailButtonClick(story.id, story.isOwner)}/>

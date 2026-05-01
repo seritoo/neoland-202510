@@ -3,7 +3,7 @@ import { StoryModel } from '../mongoose/index.js'
 import { StoryData } from './models/index.js'
 
 export function findAllStories() {
-	return StoryModel.find().populate('owner', 'username name').lean()
+	return StoryModel.find().sort({ storyDate: -1 }).populate('owner', 'username name').lean()
 		.catch(error => { throw new SystemError(error.message) })
 		.then(storiesModel => storiesModel.map(storyModel => {
 			const { _id, owner, title, shortStory, storyDate } = storyModel

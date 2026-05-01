@@ -103,7 +103,7 @@ export function ArtistHome({ onUserLoggedOut, onGoToProfile, onGoToAddArt, onGoT
 				</BarraNav>
 			</Header>
 
-			<AvatarSalute username={username} image={image}/>
+			<AvatarSalute username={username} image={image} />
 
 		</div>
 
@@ -115,12 +115,12 @@ export function ArtistHome({ onUserLoggedOut, onGoToProfile, onGoToAddArt, onGoT
 				) : (
 					stories.map(story => (<article key={story.id} className='bg-white p-4 rounded shadow flex flex-col gap-2 overflow-hidden'>
 						<h2 className='font-bold wrap-break-word'>{story.title}</h2>
-						<p className='text-sm wrap-break-word line-clamp-3'>{story.shortStory}
-							<time className='text-[10px] block mt-2 text-gray-500'>
-								{new Date(story.storyDate).toLocaleDateString()}
-							</time></p>
+						<p className='text-sm wrap-break-word line-clamp-3'>{story.shortStory}</p>
 
-						<StoryDetailButton onClick={() => handleShortStoryDetailClick(story.id)} />
+						<div className="flex justify-between items-center mt-2">
+							<time className='text-[10px] block mt-2 text-gray-500'>{new Date(story.storyDate).toLocaleDateString()}</time>
+							<StoryDetailButton onClick={() => handleShortStoryDetailClick(story.id)} />
+						</div>
 					</article>
 					))
 				)}

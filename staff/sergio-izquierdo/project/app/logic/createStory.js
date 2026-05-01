@@ -3,20 +3,20 @@ import { data } from '../data'
 import { SystemError, AuthError, errorMap, validate } from 'com'
 
 
-export function createStory(title, shortStory) {
+export function createStory(title, shortStory, storyDate) {
 	if (!data.getToken()) throw new AuthError('user not logged in')
 
 	validate.text(title, 'title')
 	validate.text(shortStory, 'shortStory')
 
-	return fetch(`${import.meta.env.VITE_API_URL}/stories`, {
+	return fetch(`${import.meta.env.VITE_API_URL}/stories/mine`, {
 		method: 'POST',
 		headers: {
 
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${data.getToken()}`
 		},
-		body: JSON.stringify({ title, shortStory })
+		body: JSON.stringify({ title, shortStory, storyDate })
 	})
 		.catch(error => { throw new SystemError('connection error') })
 		.then(res => {

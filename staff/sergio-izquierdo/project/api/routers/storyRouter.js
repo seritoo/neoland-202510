@@ -17,7 +17,7 @@ import {
 
 export const storyRouter = new Router()
 //privadas
-storyRouter.post('', authMiddleware, createStoryHandler)
+storyRouter.post('/mine', authMiddleware, createStoryHandler)
 
 storyRouter.get('/mine', authMiddleware, getMyStoriesHandler)
 storyRouter.get('/mine/:storyId', authMiddleware, getMyStoryHandler)

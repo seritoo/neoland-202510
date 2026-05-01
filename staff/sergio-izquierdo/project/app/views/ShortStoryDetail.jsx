@@ -7,6 +7,7 @@ import { Header } from "./components/commons/Header"
 import { BarraNav } from "./components/commons/BarraNav"
 import { Avatar } from "./components/commons/Avatar"
 import { ConfirmDeleteModal } from "./components/ConfirmDeleteModal"
+import { Spinner } from "./components/commons/Spinner"
 import { AddArtButton } from "./components/commons/lucide/AddArtButton"
 import { ProfileButton } from "./components/commons/lucide/ProfileButton"
 import { BackButton } from "./components/commons/lucide/BackButton"
@@ -27,8 +28,10 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 
 	const { onError, onSuccess } = useContext()
 
+	const [story, setStory] = useState(null)
 	const [title, setTitle] = useState('')
-	const [storyText, setStoryText] = useState('')
+	const [shortStory, setShortStory] = useState('')
+
 	const [isEditing, setIsEditing] = useState(false)
 
 
@@ -58,8 +61,10 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 		try {
 			logic.getMyStory(storyId)
 				.then(story => {
+					setStory(story)
 					setTitle(story.title)
-					setStoryText(story.shortStory)
+					setShortStory(story.shortStory)
+
 				})
 				.catch(error => onError(error))
 		} catch (error) {
@@ -96,13 +101,13 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 			onError(error)
 		}
 	}
-	const handleCharCountChange = event => setStoryText(event.target.value)
+	const handleCharCountChange = event => setShortStory(event.target.value)
 
 	const handleTitleChange = (event) => setTitle(event.target.value)
 
 	const handleSaveShortStory = () => {
 		try {
-			logic.modifyShortStory(storyId, title, storyText)
+			logic.modifyShortStory(storyId, title, shortStory)
 				.then(() => {
 					setIsEditing(false)
 					onSuccess('Short story updated successfully!!')
@@ -133,6 +138,8 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 
 
 	logger.debug('ShortStoryDetail -> render')
+
+	if (!story) return <Spinner />
 
 	return <Layout className="h-screen overflow-hidden flex flex-col items-stretch">
 		<div className='sticky top-0 z-50 w-full bg-[#E5D6D6] shadow-sm'>
@@ -174,17 +181,19 @@ export function ShortStoryDetail({ onGoToAddArt, onGoToProfile, onGoToArtistHome
 							className="font-['Inknut_Antiqua'] text-[#3F295F] text-2xl mb-6 px-2 bg-white/50 border-b border-[#3F295F] focus:outline-none w-full"
 							placeholder="Short story title" />)
 						:
-						(<h1 className="font-['Inknut_Antiqua'] text-[#3F295F] text-2xl mb-6 px-2 w-full text-left">
-							{title || 'Cargando título...'} </h1>)}
+						(<h1 className="font-['Inknut_Antiqua'] text-[#3F295F] text-2xl mb-6 px-2 w-full text-left">{story.title}</h1>)}
+					<time className='text-[10px] block mt-2 text-gray-500'>
+						{new Date(story.storyDate).toLocaleDateString()}
+					</time>
 				</div>
 				{isEditing ? (
 					<FieldTextTareaCharCounter
-						name='storyText'
-						value={storyText}
+						name='shortStory'
+						value={shortStory}
 						onChange={handleCharCountChange}
 						maxLength={5000}
 						className='bg-white min-h-30 focus:ring-[#E94E77]' />) :
-					(<p className="text-sm leading-relaxed text-[#3F295F] text-justify opacity-90">{storyText}</p>)}
+					(<p className="text-sm leading-relaxed text-[#3F295F] text-justify opacity-90">{shortStory}</p>)}
 			</section>
 		</main>
 		{isConfirmingDelete && (

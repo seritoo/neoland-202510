@@ -13,7 +13,7 @@ export function createStory(userId, title, shortStory) {
 		.then(userData => {
 			if (!userData) throw new ExistenceError('user not found')
 
-			const story = new StoryData(null, userId,null, title, shortStory)
+			const story = new StoryData(null, userId, title, shortStory, new Date())
 
 			return data.insertStory(story)
 		})

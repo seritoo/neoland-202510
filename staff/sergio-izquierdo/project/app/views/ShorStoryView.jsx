@@ -5,7 +5,7 @@ import { Layout } from './components/commons/Layout'
 import { Header } from './components/commons/Header'
 import { BackButton } from './components/commons/lucide/BackButton'
 import { Avatar } from './components/commons/Avatar'
-import { Spinner} from './components/Spinner'
+import { Spinner} from './components/commons/Spinner'
 
 
 import { logger } from '../logger'
