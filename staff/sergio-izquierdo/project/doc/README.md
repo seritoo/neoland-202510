@@ -32,6 +32,6 @@ Guest
 
 ### UI/UX design
 
-[Figma](https://www.figma.com/design/DILuhWXcqfurXML03D21W4/AppasionArte?node-id=0-1&p=f&t=XZuLs56Z2YOtm1k9-0)
+[Figma](https://www.figma.com/design/DILuhWXcqfurXML03D21W4/AppasionArte?node-id=0-1&p=f&t=guzoQt1SbMVL2OQE-0)
 
 

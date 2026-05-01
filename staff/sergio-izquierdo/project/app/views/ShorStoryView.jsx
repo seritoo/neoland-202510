@@ -49,7 +49,7 @@ export function ShortStoryView({ onGoToShortStories }) {
 				<section className="mt-4 mb-5">
 					<AvatarProfile
 						image={story.author.image}
-						name={story.author.name}
+						username={story.author.name}
 						speciality='Creator in AppasionArte'
 					/>
 				</section>
