@@ -13,6 +13,6 @@ export function findStoriesByOwnerId(userId) {
 				username: owner.username,
 				name: owner.name
 			}
-			return new StoryData(_id, author, title, shortStory, storyDate)
+			return new StoryData(_id.toString(), author, title, shortStory, storyDate)
 		}))
 }

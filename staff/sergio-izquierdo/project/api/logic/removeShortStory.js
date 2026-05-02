@@ -9,7 +9,7 @@ export function removeShortStory(userId, storyId) {
 
 	return data.findStoryById(storyId)
 		.then(storyData => {
-		if(storyData.ownerId.toString() !== userId ) throw new OwnershipError('Short Story do not belong user')
+		if(storyData.author.id.toString() !== userId ) throw new OwnershipError('Short Story do not belong user')
 
 		return data.deleteShortStory(storyId)
 	})
