@@ -40,13 +40,13 @@ export function App() {
 
 	const handleGoToLogin = () => clearFeedbackAndNavigate('/login')
 	const handleGoToRegister = () => clearFeedbackAndNavigate('/register')
-	const handleGoToShortStories = () => clearFeedbackAndNavigate('/short-stories')
+	const handleGoToShortStories = () => clearFeedbackAndNavigate('/short-stories/private')
 	const handleGoToArtistHome = () => clearFeedbackAndNavigate('/')
 	const handleGoToProfile = () => clearFeedbackAndNavigate('/profile')
 	const handleGoToAddArt = () => clearFeedbackAndNavigate('/add-art')
 	const handleGoToLanding = () => clearFeedbackAndNavigate('/landing')
 	const handleGoToShortStoryDetail = storyId => clearFeedbackAndNavigate(`/mine/${storyId}`)
-	const handleGoToShortStoryView = storyId => clearFeedbackAndNavigate(`/stories/${storyId}`)
+	const handleGoToShortStoryView = storyId => clearFeedbackAndNavigate(`/short-stories/private/${storyId}`)
 
 	const handleError = error => {
 		if (error instanceof AuthError) {
@@ -114,9 +114,10 @@ export function App() {
 			<Route path="/mine/:storyId" element={
 				<ShortStoryDetail onGoToArtistHome={handleGoToArtistHome} onGoToAddArt={handleGoToAddArt} onGoToProfile={handleGoToProfile} onUserLoggedOut={handleGoToLogin} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} /> } />
 
-			<Route path="/short-stories" element={ <ShortStories loggedIn={loggedIn} onGoToLogin={handleGoToLogin} onGoToRegister={handleGoToRegister} onGoToShortStoryDetail={handleGoToShortStoryDetail} onGoToLanding={handleGoToLanding} onGoToArtistHome={handleGoToArtistHome} onGoToShortStoryView={handleGoToShortStoryView}/>} />
+			<Route path="/short-stories/private" element={ loggedIn ? <ShortStories onGoToShortStoryDetail={handleGoToShortStoryDetail} onGoToArtistHome={handleGoToArtistHome} onGoToShortStoryView={handleGoToShortStoryView}/>
+			: <Navigate to="/login" />} />
 
-			<Route path="/stories/:storyId" element={<ShortStoryView onGoToShortStories={handleGoToShortStories}/>} />
+			<Route path="/short-stories/private/:storyId" element={ loggedIn ? <ShortStoryView onGoToShortStories={handleGoToShortStories}/> : <Navigate to="/login"/>} />
 
 		</Routes>
 	</Context.Provider>

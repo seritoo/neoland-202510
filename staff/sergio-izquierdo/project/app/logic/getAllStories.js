@@ -1,17 +1,15 @@
 import { data } from '../data'
 
-import { SystemError, errorMap } from 'com'
+import { AuthError, SystemError, errorMap } from 'com'
 
 export function getAllStories() {
-	const headers = {}
-	const token = data.getToken()
+	if(!data.getToken()) throw new AuthError('user not logged in')
 
-	if (token) {
-		headers.Authorization = `Bearer ${token}`
-	}
-	return fetch(`${import.meta.env.VITE_API_URL}/stories`, {
+	return fetch(`${import.meta.env.VITE_API_URL}/stories/private`, {
 		method: 'GET',
-		headers: headers
+		headers: {
+			Authorization:  `Bearer ${data.getToken()}`
+		}
 	})
 		.catch(error => { throw new SystemError('connection error') })
 		.then(res => {

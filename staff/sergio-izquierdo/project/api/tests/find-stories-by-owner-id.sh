@@ -1,0 +1,1 @@
+curl -X GET -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWYwZTk4NjkzYjcwOGJjMDMzMWRjMTkiLCJpYXQiOjE3NzkxMjY3MzAsImV4cCI6MTc3OTE1MTkzMH0.8Rgf6Jfe9AXhin0hZIgP7yUL1PZg65YDfsBfsjtW_kc" http://localhost:8080/stories/mine -v
