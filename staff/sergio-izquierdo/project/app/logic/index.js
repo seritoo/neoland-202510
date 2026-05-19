@@ -11,6 +11,7 @@ import { modifyShortStory } from './modifyShortStory'
 import { removeShortStory } from './removeShortStory'
 import { getAllStories } from './getAllStories'
 import { getShortStory} from './getShortStory'
+import { getAllPublicStories} from './getAllPublicStories'
 
 
 export const logic = {
@@ -26,5 +27,6 @@ export const logic = {
 	modifyShortStory,
 	removeShortStory,
 	getAllStories,
-	getShortStory
+	getShortStory,
+	getAllPublicStories
 }

@@ -1,4 +1,4 @@
-import { validate } from 'com'
+import { validate, ExistenceError } from 'com'
 import { data } from '../data/index.js'
 import { Story } from './models/index.js'
 
