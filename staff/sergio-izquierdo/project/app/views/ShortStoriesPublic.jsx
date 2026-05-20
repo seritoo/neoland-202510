@@ -11,7 +11,7 @@ import { useContext } from '../context'
 
 import { logger } from '../logger'
 
-export function ShortStoriesPublic({ onGoToShortstoryDetailPublic, onGoToLanding }) {
+export function ShortStoriesPublic({ onGoToShortStoryView, onGoToLanding }) {
 	logger.debug('Short Stories Public -> call')
 
 	const { onError } = useContext()
@@ -27,9 +27,10 @@ export function ShortStoriesPublic({ onGoToShortstoryDetailPublic, onGoToLanding
 		}
 	}, [])
 
-	const handleShortStoryDetailButtonClick = storyId => onGoToShortstoryDetailPublic(storyId)
+	const handleShortStoryDetailButtonClick = storyId => onGoToShortStoryView(storyId)
 
 	logger.debug('Short Stories Public -> render')
+
 	return <Layout className="h-screen overflow-hidden flex flex-col items-stretch">
 		<div className='sticky top-0 z-50 w-full bg-[#E5D6D6] shrink-0 shadow-md'>
 			<Header title='Short Stories' className='pb-5'>

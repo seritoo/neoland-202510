@@ -53,6 +53,7 @@ export function ShortStories({onGoToShortStoryDetail, onGoToArtistHome, onGoToSh
 	}
 
 	logger.debug('Short Stories -> render')
+
 	return <Layout className="h-screen overflow-hidden flex flex-col items-stretch">
 		<div className='sticky top-0 z-50 w-full bg-[#E5D6D6] shrink-0 shadow-md'>
 			<Header title='Short Stories'>

@@ -127,7 +127,10 @@ export function App() {
 
 			<Route path="/short-stories/private/:storyId" element={loggedIn ? <ShortStoryView onGoToShortStories={handleGoToShortStories} /> : <Navigate to="/login" />} />
 
-			<Route path="/short-stories/public" element={<ShortStoriesPublic onGoToShortStoryView={handleGoToShortStoryView} onGoToLanding={handleGoToLanding} />} />
+			<Route path="/short-stories/public" element={<ShortStoriesPublic onGoToShortStoryView={handleGoToShortStoryViewPublic} onGoToLanding={handleGoToLanding} />} />
+
+			<Route path="/short-stories/public/:storyId" element={
+				<ShortStoryView onGoToShortStoryView={handleGoToShortStoryViewPublic} onGoToShortStories={handleGoToShortStories} />} />
 
 		</Routes>
 	</Context.Provider>
