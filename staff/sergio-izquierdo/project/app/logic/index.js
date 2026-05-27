@@ -12,6 +12,7 @@ import { removeShortStory } from './removeShortStory'
 import { getAllStories } from './getAllStories'
 import { getShortStory} from './getShortStory'
 import { getAllPublicStories} from './getAllPublicStories'
+import { modifyUserImage } from './modifyUserImage'
 
 
 export const logic = {
@@ -28,5 +29,6 @@ export const logic = {
 	removeShortStory,
 	getAllStories,
 	getShortStory,
-	getAllPublicStories
+	getAllPublicStories,
+	modifyUserImage
 }

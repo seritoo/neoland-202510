@@ -8,13 +8,14 @@ import {
 	registerUserHandler,
 	getUserHandler,
 	createStoryHandler,
-	modifyUserDescriptionHandler
+	modifyUserDescriptionHandler,
+	modifyUserImageHandler
 } from "./handlers/index.js"
-
 
 export const userRouter = new Router()
 
 userRouter.post('', registerUserHandler)
 userRouter.post('/auth', authenticateUserHandler)
 userRouter.get('/me', authMiddleware, getUserHandler)
-userRouter.patch('/description', authMiddleware, modifyUserDescriptionHandler)
+userRouter.patch('/me/description', authMiddleware, modifyUserDescriptionHandler)
+userRouter.patch('/me/image', authMiddleware, modifyUserImageHandler)

@@ -13,6 +13,7 @@ import { deleteShortStory } from './deleteShortStory.js'
 import { findAllStories} from './findAllStories.js'
 import { deleteAllUsers } from './deleteAllUsers.js'
 import { deleteAllShortStories} from './deleteAllShortStories.js'
+import { updateUser } from './updateUser.js'
 
 export const data = {
 	findUserByEmail,
@@ -27,6 +28,7 @@ export const data = {
 	deleteShortStory,
 	findAllStories,
 	deleteAllUsers,
-	deleteAllShortStories
+	deleteAllShortStories,
+	updateUser
 }
 

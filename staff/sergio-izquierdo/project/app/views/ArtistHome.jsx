@@ -31,7 +31,7 @@ export function ArtistHome({ onUserLoggedOut, onGoToProfile, onGoToAddArt, onGoT
 
 	const [stories, setStories] = useState([])
 	const [username, setUsername] = useState(null)
-	const [image, setImage] = useState(null)
+	const [image, setImage] = useState('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcnBncmJzbTdkcWozbGgzaDJic3I2ZWxhZ2xnZnVqZTU0MHp1cWUyaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Pj6TQs4cuQ7LAhebA5/giphy.gif')
 
 	useEffect(() => {
 		logger.debug('ArtistHome -> useEffect')
